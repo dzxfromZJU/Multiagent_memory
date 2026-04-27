@@ -1,0 +1,14 @@
+# 基础依赖
+pyautogen
+
+# 用于embedding的依赖
+transformers
+sentence-transformers
+faiss-cpu
+
+# 其他可能需要的依赖
+numpy
+pandas
+requests
+beautifulsoup4
+packaging
