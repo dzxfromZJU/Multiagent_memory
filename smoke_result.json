@@ -1,0 +1,84 @@
+{
+  "dataset": {
+    "name": "bronze_multi_agent_memory_hallucination_dialogue_tests",
+    "source_file": "bronze_items.json",
+    "case_count": 132
+  },
+  "architecture": "sequential",
+  "architecture_label": "分析问题-回答-校对架构",
+  "generated_at": "2026-05-04T10:20:22.775179+00:00",
+  "selected_count": 1,
+  "results": [
+    {
+      "test_id": "FQA_001",
+      "test_category": "factual_single_turn",
+      "difficulty": 1,
+      "hallucination_risk": "低",
+      "target_item_ids": [
+        364542
+      ],
+      "seeded_memory_ids": [],
+      "turns": [
+        {
+          "turn_index": 1,
+          "user_message": "我想了解《􀒒儿钟》（ID 364542）的时代、用途、尺寸和馆藏信息。",
+          "final_answer": "抱歉，在检索到的青铜器知识中，未找到与“𪚫儿钟”（ID 364542）相关的任何信息。这些知识条目仅包含龙纹盘、仙鹤人物纹镜、越王州勾剑、燕王喜戟、阳信家炉、妇𫅕爵、雷纹顶流觚、鱼壶等其他青铜器，均不匹配您询问的器物。因此，目前资料不足，无法提供其时代、用途、尺寸和馆藏信息。",
+          "audit_text": "校对通过。回答正确检索了所有证据，确认知识库中不存在用户所问的“𪚫儿钟（ID 364542）”，如实说明资料不足，没有产生记忆幻觉、过度推断或遗漏。"
+        }
+      ],
+      "final_answer": "抱歉，在检索到的青铜器知识中，未找到与“𪚫儿钟”（ID 364542）相关的任何信息。这些知识条目仅包含龙纹盘、仙鹤人物纹镜、越王州勾剑、燕王喜戟、阳信家炉、妇𫅕爵、雷纹顶流觚、鱼壶等其他青铜器，均不匹配您询问的器物。因此，目前资料不足，无法提供其时代、用途、尺寸和馆藏信息。",
+      "audit_text": "校对通过。回答正确检索了所有证据，确认知识库中不存在用户所问的“𪚫儿钟（ID 364542）”，如实说明资料不足，没有产生记忆幻觉、过度推断或遗漏。",
+      "expected_answer": "􀒒儿钟（KB_364542）；春秋晚期乐器；高22.5厘米，重1.77千克；饰变形龙纹；铸铭文三十字，记载正月初吉丁亥日，􀒒儿为义楚之良臣，作此和钟以追孝先祖；现藏两件，北京故宫博物院藏一件。 不应补充知识库未给出的作者、市场价格或未记载用途。",
+      "evaluation": {
+        "assertion_hits": {
+          "春秋晚期": false,
+          "钟": true,
+          "􀒒儿钟": false
+        },
+        "assertion_pass_rate": 0.3333333333333333,
+        "has_usage_log": false,
+        "retrieved_memory_count": 8,
+        "used_memory_count": 0,
+        "must_retrieve_kb_ids": [
+          "KB_364542"
+        ]
+      },
+      "retrieved_memory_ids": [
+        "mem_22b3c5a5465a",
+        "mem_d3c4bc753859",
+        "mem_19d22f676a17",
+        "mem_856ba8f21ba5",
+        "mem_f05c172a5a18",
+        "mem_599d41e8a18b",
+        "mem_fd17e1206c79",
+        "mem_eb573b082a6d"
+      ],
+      "used_memory_ids": [],
+      "new_log_counts": {
+        "retrieval_log_count": 1,
+        "usage_log_count": 0,
+        "graph_edge_count": 9,
+        "verifier_log_count": 0
+      },
+      "graph_counts_after": {
+        "retrieved": 8,
+        "written_by": 1
+      },
+      "error": "",
+      "elapsed_seconds": 20.078,
+      "started_at": "2026-05-04T10:20:22.773169+00:00",
+      "counts_before": {
+        "retrieval_log": 0,
+        "usage_log": 0,
+        "graph_edges": 0,
+        "verifier_log": 0
+      },
+      "counts_after": {
+        "retrieval_log": 1,
+        "usage_log": 0,
+        "graph_edges": 9,
+        "verifier_log": 0
+      }
+    }
+  ]
+}

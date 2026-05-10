@@ -1,0 +1,2733 @@
+{
+  "dataset_name": "bronze_long_factual_dialogue_tests",
+  "source_file": "bronze_items.json",
+  "source_record_count": 1810,
+  "generated_at": "2026-05-09T08:34:57.729932+00:00",
+  "case_count": 30,
+  "schema": {
+    "test_category": "factual_long_dialogue",
+    "dialogue": "Each case contains 10 or more factual user questions."
+  },
+  "cases": [
+    {
+      "test_id": "LFQA_001",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《网格纹鼎》（ID 363144）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《云纹鼎》（ID 363145）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363146）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363147）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《网格纹鼎》（ID 363144）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《云纹鼎》（ID 363145）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹鼎》（ID 363146）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363147）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《网格纹鼎》（ID 363144）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《云纹鼎》（ID 363145）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹鼎》（ID 363146）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹鼎》（ID 363147）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "云纹鼎",
+        "兽面纹鼎",
+        "网格纹鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363144",
+          "KB_363145",
+          "KB_363146",
+          "KB_363147"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_002",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363148,
+        363149,
+        363150,
+        363151
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹鼎》（ID 363148）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《变形兽面纹鼎》（ID 363149）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《雷纹鼎》（ID 363150）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《弦纹鼎》（ID 363151）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹鼎》（ID 363148）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《变形兽面纹鼎》（ID 363149）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《雷纹鼎》（ID 363150）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《弦纹鼎》（ID 363151）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363148）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《变形兽面纹鼎》（ID 363149）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《雷纹鼎》（ID 363150）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《弦纹鼎》（ID 363151）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹鼎",
+        "变形兽面纹鼎",
+        "弦纹鼎",
+        "雷纹鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363148",
+          "KB_363149",
+          "KB_363150",
+          "KB_363151"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_003",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363152,
+        363153,
+        363154,
+        363155
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹扁足鼎》（ID 363152）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《乳钉纹方鼎》（ID 363153）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹方鼎》（ID 363154）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹方鼎》（ID 363155）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹扁足鼎》（ID 363152）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《乳钉纹方鼎》（ID 363153）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹方鼎》（ID 363154）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹方鼎》（ID 363155）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹扁足鼎》（ID 363152）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《乳钉纹方鼎》（ID 363153）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹方鼎》（ID 363154）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹方鼎》（ID 363155）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "乳钉纹方鼎",
+        "兽面纹扁足鼎",
+        "兽面纹方鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363152",
+          "KB_363153",
+          "KB_363154",
+          "KB_363155"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_004",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363156,
+        363157,
+        363158,
+        363159
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹方鼎》（ID 363156）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363157）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363158）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363159）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹方鼎》（ID 363156）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹鼎》（ID 363157）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹鼎》（ID 363158）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363159）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹方鼎》（ID 363156）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363157）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹鼎》（ID 363158）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹鼎》（ID 363159）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹方鼎",
+        "兽面纹鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363156",
+          "KB_363157",
+          "KB_363158",
+          "KB_363159"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_005",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363160,
+        363161,
+        363162,
+        363163
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹扁足鼎》（ID 363160）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹扁足鼎》（ID 363161）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《雷纹扁足鼎》（ID 363162）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《雷纹方鼎》（ID 363163）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹扁足鼎》（ID 363160）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹扁足鼎》（ID 363161）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《雷纹扁足鼎》（ID 363162）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《雷纹方鼎》（ID 363163）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹扁足鼎》（ID 363160）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹扁足鼎》（ID 363161）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《雷纹扁足鼎》（ID 363162）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《雷纹方鼎》（ID 363163）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹扁足鼎",
+        "雷纹扁足鼎",
+        "雷纹方鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363160",
+          "KB_363161",
+          "KB_363162",
+          "KB_363163"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_006",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363164,
+        363165,
+        363166,
+        363167
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《鸟纹扁足鼎》（ID 363164）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹扁足鼎》（ID 363165）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽纹扁足鼎》（ID 363166）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《妇好鸟足鼎》（ID 363167）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《鸟纹扁足鼎》（ID 363164）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹扁足鼎》（ID 363165）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽纹扁足鼎》（ID 363166）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《妇好鸟足鼎》（ID 363167）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《鸟纹扁足鼎》（ID 363164）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹扁足鼎》（ID 363165）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽纹扁足鼎》（ID 363166）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《妇好鸟足鼎》（ID 363167）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "兽纹扁足鼎",
+        "兽面纹扁足鼎",
+        "妇好鸟足鼎",
+        "鸟纹扁足鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363164",
+          "KB_363165",
+          "KB_363166",
+          "KB_363167"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_007",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363168,
+        363169,
+        363170,
+        363171
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《正鼎》（ID 363168）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《妇好鼎》（ID 363169）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《妇好鼎》（ID 363170）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363171）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《正鼎》（ID 363168）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《妇好鼎》（ID 363169）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《妇好鼎》（ID 363170）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363171）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《正鼎》（ID 363168）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《妇好鼎》（ID 363169）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《妇好鼎》（ID 363170）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹鼎》（ID 363171）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹鼎",
+        "妇好鼎",
+        "正鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363168",
+          "KB_363169",
+          "KB_363170",
+          "KB_363171"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_008",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363172,
+        363173,
+        363174,
+        363175
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《目纹鼎》（ID 363172）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《邑鼎》（ID 363173）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《𫅓鼎》（ID 363174）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《刘鼎》（ID 363175）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《目纹鼎》（ID 363172）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《邑鼎》（ID 363173）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《𫅓鼎》（ID 363174）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《刘鼎》（ID 363175）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《目纹鼎》（ID 363172）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《邑鼎》（ID 363173）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《𫅓鼎》（ID 363174）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《刘鼎》（ID 363175）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "刘鼎",
+        "目纹鼎",
+        "邑鼎",
+        "鼎",
+        "𫅓鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363172",
+          "KB_363173",
+          "KB_363174",
+          "KB_363175"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_009",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363176,
+        363177,
+        363178,
+        363179
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《蝉纹鼎》（ID 363176）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《戍􀑓鼎》（ID 363177）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363178）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363179）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《蝉纹鼎》（ID 363176）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《戍􀑓鼎》（ID 363177）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹鼎》（ID 363178）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363179）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《蝉纹鼎》（ID 363176）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《戍􀑓鼎》（ID 363177）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹鼎》（ID 363178）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹鼎》（ID 363179）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹鼎",
+        "戍􀑓鼎",
+        "蝉纹鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363176",
+          "KB_363177",
+          "KB_363178",
+          "KB_363179"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_010",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363180,
+        363181,
+        363182,
+        363183
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《告宁鼎》（ID 363180）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《子􀑹君妻鼎》（ID 363181）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《乳钉雷纹鼎》（ID 363182）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《父丁鼎》（ID 363183）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《告宁鼎》（ID 363180）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《子􀑹君妻鼎》（ID 363181）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《乳钉雷纹鼎》（ID 363182）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《父丁鼎》（ID 363183）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《告宁鼎》（ID 363180）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《子􀑹君妻鼎》（ID 363181）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《乳钉雷纹鼎》（ID 363182）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《父丁鼎》（ID 363183）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "乳钉雷纹鼎",
+        "告宁鼎",
+        "子􀑹君妻鼎",
+        "父丁鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363180",
+          "KB_363181",
+          "KB_363182",
+          "KB_363183"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_011",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363184,
+        363185,
+        363186,
+        363187
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《亚弜鼎》（ID 363184）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363185）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《爰鼎》（ID 363186）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《戍嗣子鼎》（ID 363187）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《亚弜鼎》（ID 363184）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹鼎》（ID 363185）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《爰鼎》（ID 363186）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《戍嗣子鼎》（ID 363187）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《亚弜鼎》（ID 363184）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363185）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《爰鼎》（ID 363186）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《戍嗣子鼎》（ID 363187）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "亚弜鼎",
+        "兽面纹鼎",
+        "戍嗣子鼎",
+        "爰鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363184",
+          "KB_363185",
+          "KB_363186",
+          "KB_363187"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_012",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363188,
+        363189,
+        363190,
+        363191
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《𡠏鼎》（ID 363188）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《司母戊方鼎》（ID 363189）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《司母辛方鼎》（ID 363190）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《妇好方鼎》（ID 363191）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《𡠏鼎》（ID 363188）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《司母戊方鼎》（ID 363189）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《司母辛方鼎》（ID 363190）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《妇好方鼎》（ID 363191）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《𡠏鼎》（ID 363188）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《司母戊方鼎》（ID 363189）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《司母辛方鼎》（ID 363190）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《妇好方鼎》（ID 363191）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "司母戊方鼎",
+        "司母辛方鼎",
+        "妇好方鼎",
+        "鼎",
+        "𡠏鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363188",
+          "KB_363189",
+          "KB_363190",
+          "KB_363191"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_013",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363192,
+        363193,
+        363194,
+        363195
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《牛方鼎》（ID 363192）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《鹿方鼎》（ID 363193）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《大禾方鼎》（ID 363194）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《徙方鼎》（ID 363195）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《牛方鼎》（ID 363192）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《鹿方鼎》（ID 363193）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《大禾方鼎》（ID 363194）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《徙方鼎》（ID 363195）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《牛方鼎》（ID 363192）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《鹿方鼎》（ID 363193）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《大禾方鼎》（ID 363194）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《徙方鼎》（ID 363195）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "大禾方鼎",
+        "徙方鼎",
+        "牛方鼎",
+        "鹿方鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363192",
+          "KB_363193",
+          "KB_363194",
+          "KB_363195"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_014",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363196,
+        363197,
+        363198,
+        363199
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《父戊方鼎》（ID 363196）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《亚址方鼎》（ID 363197）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹方鼎》（ID 363198）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《小臣缶方鼎》（ID 363199）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《父戊方鼎》（ID 363196）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《亚址方鼎》（ID 363197）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹方鼎》（ID 363198）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《小臣缶方鼎》（ID 363199）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《父戊方鼎》（ID 363196）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《亚址方鼎》（ID 363197）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹方鼎》（ID 363198）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《小臣缶方鼎》（ID 363199）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "亚址方鼎",
+        "兽面纹方鼎",
+        "小臣缶方鼎",
+        "父戊方鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363196",
+          "KB_363197",
+          "KB_363198",
+          "KB_363199"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_015",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363200,
+        363201,
+        363202,
+        363203
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹方鼎》（ID 363200）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《田告方鼎》（ID 363201）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《亚酗方鼎》（ID 363202）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《宁方鼎》（ID 363203）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹方鼎》（ID 363200）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《田告方鼎》（ID 363201）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《亚酗方鼎》（ID 363202）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《宁方鼎》（ID 363203）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹方鼎》（ID 363200）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《田告方鼎》（ID 363201）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《亚酗方鼎》（ID 363202）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《宁方鼎》（ID 363203）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "亚酗方鼎",
+        "兽面纹方鼎",
+        "宁方鼎",
+        "田告方鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363200",
+          "KB_363201",
+          "KB_363202",
+          "KB_363203"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_016",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363204,
+        363205,
+        363206,
+        363207
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《鸟纹鼎》（ID 363204）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363205）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《温鼎》（ID 363206）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363207）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《鸟纹鼎》（ID 363204）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹鼎》（ID 363205）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《温鼎》（ID 363206）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363207）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《鸟纹鼎》（ID 363204）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363205）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《温鼎》（ID 363206）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹鼎》（ID 363207）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹鼎",
+        "温鼎",
+        "鸟纹鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363204",
+          "KB_363205",
+          "KB_363206",
+          "KB_363207"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_017",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363208,
+        363209,
+        363210,
+        363211
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《亚𠤕鼎》（ID 363208）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《献侯􀒓鼎》（ID 363209）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《􀂷方鼎》（ID 363210）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《大祝禽方鼎》（ID 363211）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《亚𠤕鼎》（ID 363208）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《献侯􀒓鼎》（ID 363209）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《􀂷方鼎》（ID 363210）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《大祝禽方鼎》（ID 363211）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《亚𠤕鼎》（ID 363208）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《献侯􀒓鼎》（ID 363209）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《􀂷方鼎》（ID 363210）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《大祝禽方鼎》（ID 363211）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "亚𠤕鼎",
+        "大祝禽方鼎",
+        "献侯􀒓鼎",
+        "鼎",
+        "􀂷方鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363208",
+          "KB_363209",
+          "KB_363210",
+          "KB_363211"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_018",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363212,
+        363213,
+        363214,
+        363215
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《作册大方鼎》（ID 363212）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《大保方鼎》（ID 363213）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《德方鼎》（ID 363214）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《德鼎》（ID 363215）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《作册大方鼎》（ID 363212）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《大保方鼎》（ID 363213）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《德方鼎》（ID 363214）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《德鼎》（ID 363215）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《作册大方鼎》（ID 363212）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《大保方鼎》（ID 363213）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《德方鼎》（ID 363214）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《德鼎》（ID 363215）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "作册大方鼎",
+        "大保方鼎",
+        "德方鼎",
+        "德鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363212",
+          "KB_363213",
+          "KB_363214",
+          "KB_363215"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_019",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363216,
+        363217,
+        363218,
+        363219
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《燕侯旨鼎》（ID 363216）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《燕侯旨鼎》（ID 363217）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《堇鼎》（ID 363218）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《大盂鼎》（ID 363219）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《燕侯旨鼎》（ID 363216）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《燕侯旨鼎》（ID 363217）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《堇鼎》（ID 363218）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《大盂鼎》（ID 363219）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《燕侯旨鼎》（ID 363216）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《燕侯旨鼎》（ID 363217）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《堇鼎》（ID 363218）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《大盂鼎》（ID 363219）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "堇鼎",
+        "大盂鼎",
+        "燕侯旨鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363216",
+          "KB_363217",
+          "KB_363218",
+          "KB_363219"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_020",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363220,
+        363221,
+        363222,
+        363223
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《􀊥方鼎》（ID 363220）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《康侯封方鼎》（ID 363221）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《小盂鼎》（ID 363222）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《麦方鼎》（ID 363223）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《􀊥方鼎》（ID 363220）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《康侯封方鼎》（ID 363221）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《小盂鼎》（ID 363222）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《麦方鼎》（ID 363223）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《􀊥方鼎》（ID 363220）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《康侯封方鼎》（ID 363221）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《小盂鼎》（ID 363222）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《麦方鼎》（ID 363223）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "小盂鼎",
+        "康侯封方鼎",
+        "麦方鼎",
+        "鼎",
+        "􀊥方鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363220",
+          "KB_363221",
+          "KB_363222",
+          "KB_363223"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_021",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363224,
+        363225,
+        363226,
+        363227
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《师旂鼎》（ID 363224）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《成王方鼎》（ID 363225）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《员方鼎》（ID 363226）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《厚趠方鼎》（ID 363227）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《师旂鼎》（ID 363224）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《成王方鼎》（ID 363225）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《员方鼎》（ID 363226）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《厚趠方鼎》（ID 363227）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《师旂鼎》（ID 363224）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《成王方鼎》（ID 363225）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《员方鼎》（ID 363226）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《厚趠方鼎》（ID 363227）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "厚趠方鼎",
+        "员方鼎",
+        "师旂鼎",
+        "成王方鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363224",
+          "KB_363225",
+          "KB_363226",
+          "KB_363227"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_022",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363228,
+        363229,
+        363230,
+        363231
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《亢鼎》（ID 363228）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《􀑺鼎》（ID 363229）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《应公鼎》（ID 363230）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《成周鼎》（ID 363231）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《亢鼎》（ID 363228）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《􀑺鼎》（ID 363229）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《应公鼎》（ID 363230）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《成周鼎》（ID 363231）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《亢鼎》（ID 363228）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《􀑺鼎》（ID 363229）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《应公鼎》（ID 363230）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《成周鼎》（ID 363231）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "亢鼎",
+        "应公鼎",
+        "成周鼎",
+        "鼎",
+        "􀑺鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363228",
+          "KB_363229",
+          "KB_363230",
+          "KB_363231"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_023",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363232,
+        363233,
+        363234,
+        363235
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《子龙鼎》（ID 363232）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《中鼎》（ID 363233）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363234）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《交鼎》（ID 363235）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《子龙鼎》（ID 363232）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《中鼎》（ID 363233）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹鼎》（ID 363234）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《交鼎》（ID 363235）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《子龙鼎》（ID 363232）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《中鼎》（ID 363233）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹鼎》（ID 363234）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《交鼎》（ID 363235）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "中鼎",
+        "交鼎",
+        "兽面纹鼎",
+        "子龙鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363232",
+          "KB_363233",
+          "KB_363234",
+          "KB_363235"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_024",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363236,
+        363237,
+        363238,
+        363239
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《牛鼎》（ID 363236）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363237）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363238）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《龙纹鼎》（ID 363239）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《牛鼎》（ID 363236）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹鼎》（ID 363237）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《兽面纹鼎》（ID 363238）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《龙纹鼎》（ID 363239）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《牛鼎》（ID 363236）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363237）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《兽面纹鼎》（ID 363238）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《龙纹鼎》（ID 363239）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹鼎",
+        "牛鼎",
+        "鼎",
+        "龙纹鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363236",
+          "KB_363237",
+          "KB_363238",
+          "KB_363239"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_025",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363240,
+        363241,
+        363242,
+        363243
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《黼纹鼎》（ID 363240）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《外叔鼎》（ID 363241）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《嬴霝德鼎》（ID 363242）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《寓鼎》（ID 363243）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《黼纹鼎》（ID 363240）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《外叔鼎》（ID 363241）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《嬴霝德鼎》（ID 363242）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《寓鼎》（ID 363243）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《黼纹鼎》（ID 363240）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《外叔鼎》（ID 363241）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《嬴霝德鼎》（ID 363242）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《寓鼎》（ID 363243）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "外叔鼎",
+        "嬴霝德鼎",
+        "寓鼎",
+        "黼纹鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363240",
+          "KB_363241",
+          "KB_363242",
+          "KB_363243"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_026",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363244,
+        363245,
+        363246,
+        363247
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《长子口鼎》（ID 363244）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《􀆦伯鼎》（ID 363245）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《𬥅父丁鼎》（ID 363246）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《子申鼎》（ID 363247）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《长子口鼎》（ID 363244）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《􀆦伯鼎》（ID 363245）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《𬥅父丁鼎》（ID 363246）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《子申鼎》（ID 363247）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《长子口鼎》（ID 363244）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《􀆦伯鼎》（ID 363245）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《𬥅父丁鼎》（ID 363246）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《子申鼎》（ID 363247）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "子申鼎",
+        "长子口鼎",
+        "鼎",
+        "𬥅父丁鼎",
+        "􀆦伯鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363244",
+          "KB_363245",
+          "KB_363246",
+          "KB_363247"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_027",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363248,
+        363249,
+        363250,
+        363251
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《子口鼎》（ID 363248）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《鸟纹鼎》（ID 363249）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《遽从鼎》（ID 363250）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《田告父丁方鼎》（ID 363251）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《子口鼎》（ID 363248）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《鸟纹鼎》（ID 363249）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《遽从鼎》（ID 363250）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《田告父丁方鼎》（ID 363251）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《子口鼎》（ID 363248）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《鸟纹鼎》（ID 363249）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《遽从鼎》（ID 363250）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《田告父丁方鼎》（ID 363251）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "子口鼎",
+        "田告父丁方鼎",
+        "遽从鼎",
+        "鸟纹鼎",
+        "鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363248",
+          "KB_363249",
+          "KB_363250",
+          "KB_363251"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_028",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363252,
+        363253,
+        363254,
+        363255
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《􀉛𢦚方鼎》（ID 363252）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《凤纹方鼎》（ID 363253）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《𤯍方鼎》（ID 363254）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《􀒕􀒖方鼎》（ID 363255）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《􀉛𢦚方鼎》（ID 363252）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《凤纹方鼎》（ID 363253）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《𤯍方鼎》（ID 363254）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《􀒕􀒖方鼎》（ID 363255）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《􀉛𢦚方鼎》（ID 363252）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《凤纹方鼎》（ID 363253）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《𤯍方鼎》（ID 363254）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《􀒕􀒖方鼎》（ID 363255）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "凤纹方鼎",
+        "鼎",
+        "𤯍方鼎",
+        "􀉛𢦚方鼎",
+        "􀒕􀒖方鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363252",
+          "KB_363253",
+          "KB_363254",
+          "KB_363255"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_029",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363256,
+        363258,
+        363259,
+        363260
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《􀑻方鼎》（ID 363256）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《伯方鼎》（ID 363258）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《夆方鼎》（ID 363259）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹方鼎》（ID 363260）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《􀑻方鼎》（ID 363256）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《伯方鼎》（ID 363258）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《夆方鼎》（ID 363259）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《兽面纹方鼎》（ID 363260）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《􀑻方鼎》（ID 363256）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《伯方鼎》（ID 363258）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《夆方鼎》（ID 363259）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《兽面纹方鼎》（ID 363260）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "伯方鼎",
+        "兽面纹方鼎",
+        "夆方鼎",
+        "鼎",
+        "􀑻方鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363256",
+          "KB_363258",
+          "KB_363259",
+          "KB_363260"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    },
+    {
+      "test_id": "LFQA_030",
+      "test_category": "factual_long_dialogue",
+      "goal": "生成正常事实型长对话资料，观察多轮共享记忆读写和事实回答稳定性。",
+      "difficulty": 2,
+      "target_item_ids": [
+        363261,
+        363262,
+        363263,
+        363264
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《蝉纹方鼎》（ID 363261）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《鳞纹扁足方鼎》（ID 363262）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《滕侯方鼎》（ID 363263）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《􀂸方鼎》（ID 363264）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《蝉纹方鼎》（ID 363261）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《鳞纹扁足方鼎》（ID 363262）的某些信息，请明确说明缺失。"
+        },
+        {
+          "role": "user",
+          "content": "请根据知识库介绍《滕侯方鼎》（ID 363263）的时代、器类和基本用途。"
+        },
+        {
+          "role": "user",
+          "content": "《􀂸方鼎》（ID 363264）有哪些尺寸或重量信息？"
+        },
+        {
+          "role": "user",
+          "content": "《蝉纹方鼎》（ID 363261）的纹饰、铭文或形制特征是什么？"
+        },
+        {
+          "role": "user",
+          "content": "《鳞纹扁足方鼎》（ID 363262）的出土地点或馆藏信息是什么？"
+        },
+        {
+          "role": "user",
+          "content": "请只依据知识库概括《滕侯方鼎》（ID 363263）的关键信息，不要补充未记录内容。"
+        },
+        {
+          "role": "user",
+          "content": "如果知识库没有记载《􀂸方鼎》（ID 363264）的某些信息，请明确说明缺失。"
+        }
+      ],
+      "expected_assertions": [
+        "滕侯方鼎",
+        "蝉纹方鼎",
+        "鳞纹扁足方鼎",
+        "鼎",
+        "􀂸方鼎"
+      ],
+      "hallucination_risk": "低",
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363261",
+          "KB_363262",
+          "KB_363263",
+          "KB_363264"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": false,
+        "expected_edges": [
+          "retrieved",
+          "cited",
+          "written_by"
+        ]
+      },
+      "evaluation_tags": [
+        "事实问答",
+        "长对话",
+        "正常询问",
+        "来源约束"
+      ]
+    }
+  ]
+}

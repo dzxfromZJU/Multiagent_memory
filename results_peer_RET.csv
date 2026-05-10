@@ -1,0 +1,11 @@
+test_id,test_category,difficulty,hallucination_risk,assertion_pass_rate,retrieved_memory_count,used_memory_count,retrieval_log_count,usage_log_count,graph_edge_count,verifier_log_count,elapsed_seconds,error
+RET_001,condition_based_retrieval,3,中,0.75,8,8,1,1,17,0,33.386,
+RET_002,condition_based_retrieval,3,中,0.5,8,8,1,1,25,0,28.044,
+RET_003,condition_based_retrieval,3,中,0.75,8,0,1,0,9,0,27.035,
+RET_004,condition_based_retrieval,3,中,0.5,8,1,1,1,11,0,35.872,
+RET_005,condition_based_retrieval,3,中,0.5,8,8,1,1,34,1,35.601,
+RET_006,condition_based_retrieval,3,中,0.75,8,8,1,1,25,0,38.766,
+RET_007,condition_based_retrieval,3,中,0.5,8,8,1,1,17,0,30.192,
+RET_008,condition_based_retrieval,3,中,0.5,8,8,1,1,17,0,30.929,
+RET_009,condition_based_retrieval,3,中,0.5,8,1,1,1,13,1,26.175,
+RET_010,condition_based_retrieval,3,中,0.75,8,8,1,1,20,1,42.979,

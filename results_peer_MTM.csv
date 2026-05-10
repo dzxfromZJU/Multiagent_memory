@@ -1,0 +1,11 @@
+test_id,test_category,difficulty,hallucination_risk,assertion_pass_rate,retrieved_memory_count,used_memory_count,retrieval_log_count,usage_log_count,graph_edge_count,verifier_log_count,elapsed_seconds,error
+MTM_001,multi_turn_memory_followup,3,中,0.6666666666666666,13,1,2,1,22,1,55.236,
+MTM_002,multi_turn_memory_followup,3,中,0.6666666666666666,13,1,2,1,22,1,48.935,
+MTM_003,multi_turn_memory_followup,3,中,0.6666666666666666,14,0,2,0,18,0,61.182,
+MTM_004,multi_turn_memory_followup,3,中,0.6666666666666666,14,0,2,0,18,0,61.829,
+MTM_005,multi_turn_memory_followup,3,中,1.0,14,1,2,1,22,1,62.835,
+MTM_006,multi_turn_memory_followup,3,中,0.6666666666666666,14,0,2,0,18,0,67.238,
+MTM_007,multi_turn_memory_followup,3,中,0.0,14,0,2,0,18,0,93.786,
+MTM_008,multi_turn_memory_followup,3,中,0.6666666666666666,16,0,2,0,18,0,80.133,
+MTM_009,multi_turn_memory_followup,3,中,1.0,13,0,2,0,18,0,97.668,
+MTM_010,multi_turn_memory_followup,3,中,0.3333333333333333,14,0,2,0,18,0,82.465,

@@ -1,0 +1,702 @@
+{
+  "run_id": "cur_312434df9702",
+  "review_items": [
+    {
+      "review_id": "rev_4d241eed17e3",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_2cce685d795d",
+      "claim_id": "claim_4a8b3c9ae8c2",
+      "kb_id": "KB_363946",
+      "field": "period",
+      "candidate_value": "战国早期",
+      "evidence": {
+        "base_evidence_text": "商代早期",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.416493+00:00",
+      "updated_at": "2026-05-09T14:53:48.416493+00:00"
+    },
+    {
+      "review_id": "rev_ebc9cb4c9868",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_2cce685d795d",
+      "claim_id": "claim_94f30b8a0844",
+      "kb_id": "KB_363946",
+      "field": "period",
+      "candidate_value": "战国",
+      "evidence": {
+        "base_evidence_text": "商代早期",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.419492+00:00",
+      "updated_at": "2026-05-09T14:53:48.420492+00:00"
+    },
+    {
+      "review_id": "rev_9256bccb4459",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_051488e5d25b",
+      "claim_id": "claim_db1f6a31303b",
+      "kb_id": "",
+      "field": "unresolved_memory",
+      "candidate_value": "Committed memory (对等协同架构)\nConversation: conv_000036\nMemory type: final_answer\nUser question: 请在知识库中找出符合条件的器物：类别为“簋”，时代为“春秋中期”，且记录中包含“1923年甘肃天水西南乡出土”。找到后用 ID 回答，并说明不要返回只满足部分条件的器物。\nContent: 经过对知识库全部8条记录的交叉核对，所有记录均不符合类别为“簋”这一核心条件。同时，也未能找到任何记录同时满足“时代为春秋中期”和“1923年甘肃天水西南乡出土”。因此，在当前知识库中，没有符合条件的器物。无法返回任何ID。",
+      "evidence": {
+        "base_evidence_text": "",
+        "support_type": "unsupported",
+        "confidence": 0.2
+      },
+      "conflict_summary": "no matching base KB entity was found",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.522377+00:00",
+      "updated_at": "2026-05-09T14:53:48.522377+00:00"
+    },
+    {
+      "review_id": "rev_7b6e968f7880",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_ce14de54e110",
+      "claim_id": "claim_6c2ca6fd4f01",
+      "kb_id": "KB_364381",
+      "field": "period",
+      "candidate_value": "夏代晚期",
+      "evidence": {
+        "base_evidence_text": "商代晚期",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.542379+00:00",
+      "updated_at": "2026-05-09T14:53:48.542379+00:00"
+    },
+    {
+      "review_id": "rev_0f8cae106962",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_ce14de54e110",
+      "claim_id": "claim_8ee5187b4065",
+      "kb_id": "KB_364381",
+      "field": "period",
+      "candidate_value": "夏代",
+      "evidence": {
+        "base_evidence_text": "商代晚期",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.545378+00:00",
+      "updated_at": "2026-05-09T14:53:48.545378+00:00"
+    },
+    {
+      "review_id": "rev_01404b9c87a2",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_ce14de54e110",
+      "claim_id": "claim_8a6536fb1191",
+      "kb_id": "KB_364381",
+      "field": "period",
+      "candidate_value": "商代中期",
+      "evidence": {
+        "base_evidence_text": "商代晚期",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.549376+00:00",
+      "updated_at": "2026-05-09T14:53:48.549376+00:00"
+    },
+    {
+      "review_id": "rev_1cf61318eeaf",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_ce14de54e110",
+      "claim_id": "claim_678516e3fb99",
+      "kb_id": "KB_364381",
+      "field": "period",
+      "candidate_value": "西汉",
+      "evidence": {
+        "base_evidence_text": "商代晚期",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.559376+00:00",
+      "updated_at": "2026-05-09T14:53:48.559376+00:00"
+    },
+    {
+      "review_id": "rev_25e7e69ae493",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_bf23863666e6",
+      "claim_id": "claim_7ef0e1614909",
+      "kb_id": "",
+      "field": "unresolved_memory",
+      "candidate_value": "用户查询类别为“瓿”、时代为“商代晚期”、出土于“1959年湖南宁乡寨子山”的青铜器，经核对当前知识库无任何记录满足全部条件，无法返回ID。",
+      "evidence": {
+        "base_evidence_text": "",
+        "support_type": "unsupported",
+        "confidence": 0.2
+      },
+      "conflict_summary": "no matching base KB entity was found",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.578378+00:00",
+      "updated_at": "2026-05-09T14:53:48.578378+00:00"
+    },
+    {
+      "review_id": "rev_3f58cce09b98",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_7db9b4892468",
+      "claim_id": "claim_d3ebf082316f",
+      "kb_id": "",
+      "field": "unresolved_memory",
+      "candidate_value": "Committed memory (对等协同架构)\nConversation: conv_000040\nMemory type: final_answer\nUser question: 请在知识库中找出符合条件的器物：类别为“瓿”，时代为“商代晚期”，且记录中包含“1959年湖南宁乡寨子山出土”。找到后用 ID 回答，并说明不要返回只满足部分条件的器物。\nContent: 经过对检索到的所有知识库记录进行交叉核对，没有任何一件器物的分类为“瓿”，也没有任何记录包含“1959年湖南宁乡寨子山出土”这一信息。因此，在当前知识库中，我们未能找到完全符合条件的器物，无法返回任何ID。",
+      "evidence": {
+        "base_evidence_text": "",
+        "support_type": "unsupported",
+        "confidence": 0.2
+      },
+      "conflict_summary": "no matching base KB entity was found",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.581377+00:00",
+      "updated_at": "2026-05-09T14:53:48.581377+00:00"
+    },
+    {
+      "review_id": "rev_4d768629e2a3",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_beba95a8d465",
+      "claim_id": "claim_74c806c3b9ff",
+      "kb_id": "",
+      "field": "unresolved_memory",
+      "candidate_value": "Committed memory (对等协同架构)\nConversation: conv_000041\nMemory type: final_answer\nUser question: 请在知识库中找出符合条件的器物：类别为“钟”，时代为“战国早期”，且记录中包含“1931年间河南洛阳金村出土”。找到后用 ID 回答，并说明不要返回只满足部分条件的器物。\nContent: 经过对检索到的所有知识库记录的交叉核对，没有任何一件器物的分类为“钟”，也没有任何记录完整地包含“1931年间河南洛阳金村出土”这一信息。虽然存在记录[2]（时代为战国早期）和记录[5]（出土于“传河南洛阳金村古墓”）满足部分条件，但根据用户要求，不能返回只满足部分条件的器物。因此，在当前知识库中，我们未能找到完全符合条件的器物，无法返回任何ID。",
+      "evidence": {
+        "base_evidence_text": "",
+        "support_type": "unsupported",
+        "confidence": 0.2
+      },
+      "conflict_summary": "no matching base KB entity was found",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.584377+00:00",
+      "updated_at": "2026-05-09T14:53:48.584377+00:00"
+    },
+    {
+      "review_id": "rev_7c7cea8a3c47",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_b03dd3104f77",
+      "claim_id": "claim_37e6ece16686",
+      "kb_id": "",
+      "field": "unresolved_memory",
+      "candidate_value": "Committed memory (对等协同架构)\nConversation: conv_000042\nMemory type: final_answer\nUser question: 请在知识库中找出符合条件的器物：类别为“壶”，时代为“战国早期”，且记录中包含“1982年河南洛阳中州路出土”。找到后用 ID 回答，并说明不要返回只满足部分条件的器物。\nContent: 经过对检索到的所有青铜器知识库记录的交叉核对，没有任何一件器物的分类为“壶”，也没有任何记录包含“1982年河南洛阳中州路出土”这一信息。因此，在当前知识库中，我们未能找到完全符合条件的器物，无法返回任何ID。",
+      "evidence": {
+        "base_evidence_text": "",
+        "support_type": "unsupported",
+        "confidence": 0.2
+      },
+      "conflict_summary": "no matching base KB entity was found",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.587375+00:00",
+      "updated_at": "2026-05-09T14:53:48.587375+00:00"
+    },
+    {
+      "review_id": "rev_0ab57b27aa2c",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_2cce340f98a2",
+      "claim_id": "claim_f038355806f4",
+      "kb_id": "",
+      "field": "unresolved_memory",
+      "candidate_value": "Committed memory (对等协同架构)\nConversation: conv_000043\nMemory type: final_answer\nUser question: 请在知识库中找出符合条件的器物：类别为“簋”，时代为“战国早期”，且记录中包含“1940年左右山东临淄附近出土”。找到后用 ID 回答，并说明不要返回只满足部分条件的器物。\nContent: 经过对检索到的所有知识库记录的交叉核对，没有任何一件器物的分类为“簋”，也没有任何记录包含“1940年左右山东临淄附近出土”这一信息。因此，在当前知识库中，我们未能找到完全符合条件的器物，无法返回任何ID。",
+      "evidence": {
+        "base_evidence_text": "",
+        "support_type": "unsupported",
+        "confidence": 0.2
+      },
+      "conflict_summary": "no matching base KB entity was found",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.590374+00:00",
+      "updated_at": "2026-05-09T14:53:48.590374+00:00"
+    },
+    {
+      "review_id": "rev_302a25d1c972",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_356b654c7dda",
+      "claim_id": "claim_95b3cf8eafcf",
+      "kb_id": "",
+      "field": "unresolved_memory",
+      "candidate_value": "知识库中无符合类别（铃类）、时代（西周晚期）、出土地（1974年陕西武功回龙村）的全部条件的青铜器记录。",
+      "evidence": {
+        "base_evidence_text": "",
+        "support_type": "unsupported",
+        "confidence": 0.2
+      },
+      "conflict_summary": "no matching base KB entity was found",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.616375+00:00",
+      "updated_at": "2026-05-09T14:53:48.616375+00:00"
+    },
+    {
+      "review_id": "rev_83d06377d73f",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_7c1081c88a8d",
+      "claim_id": "claim_4301edd7e66f",
+      "kb_id": "KB_364502",
+      "field": "period",
+      "candidate_value": "西周晚期",
+      "evidence": {
+        "base_evidence_text": "西周中期",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:48.628376+00:00",
+      "updated_at": "2026-05-09T14:53:48.628376+00:00"
+    },
+    {
+      "review_id": "rev_06f89ed45b0a",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_a83e56ecc808",
+      "claim_id": "claim_4d272b5690a8",
+      "kb_id": "KB_363148",
+      "field": "dimensions",
+      "candidate_value": "高18.4厘米",
+      "evidence": {
+        "base_evidence_text": "高55厘米；口径35厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.184375+00:00",
+      "updated_at": "2026-05-09T14:53:49.184375+00:00"
+    },
+    {
+      "review_id": "rev_854e22c8146a",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_a83e56ecc808",
+      "claim_id": "claim_baaf2393867c",
+      "kb_id": "KB_363148",
+      "field": "dimensions",
+      "candidate_value": "口径14.9厘米",
+      "evidence": {
+        "base_evidence_text": "高55厘米；口径35厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.189377+00:00",
+      "updated_at": "2026-05-09T14:53:49.189377+00:00"
+    },
+    {
+      "review_id": "rev_fc076e5269e2",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_30b9e141138a",
+      "claim_id": "claim_73094fd892c6",
+      "kb_id": "KB_363153",
+      "field": "dimensions",
+      "candidate_value": "高18.4厘米",
+      "evidence": {
+        "base_evidence_text": "高64厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.448378+00:00",
+      "updated_at": "2026-05-09T14:53:49.448378+00:00"
+    },
+    {
+      "review_id": "rev_ddcc586ab575",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_5e2d847636e0",
+      "claim_id": "claim_a72123635742",
+      "kb_id": "KB_363154",
+      "field": "dimensions",
+      "candidate_value": "高19.4厘米",
+      "evidence": {
+        "base_evidence_text": "高81厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.469374+00:00",
+      "updated_at": "2026-05-09T14:53:49.469374+00:00"
+    },
+    {
+      "review_id": "rev_f6fbf404c428",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_5e2d847636e0",
+      "claim_id": "claim_f4195fed5067",
+      "kb_id": "KB_363154",
+      "field": "dimensions",
+      "candidate_value": "高64厘米",
+      "evidence": {
+        "base_evidence_text": "高81厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.473373+00:00",
+      "updated_at": "2026-05-09T14:53:49.473373+00:00"
+    },
+    {
+      "review_id": "rev_50efdcca115f",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_1002b48472a5",
+      "claim_id": "claim_e660a3152278",
+      "kb_id": "KB_363152",
+      "field": "dimensions",
+      "candidate_value": "高64厘米",
+      "evidence": {
+        "base_evidence_text": "高19.4厘米；口径16厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.533375+00:00",
+      "updated_at": "2026-05-09T14:53:49.533375+00:00"
+    },
+    {
+      "review_id": "rev_c2a3163aed4f",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_1002b48472a5",
+      "claim_id": "claim_bd629977facb",
+      "kb_id": "KB_363152",
+      "field": "dimensions",
+      "candidate_value": "高81厘米",
+      "evidence": {
+        "base_evidence_text": "高19.4厘米；口径16厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.536374+00:00",
+      "updated_at": "2026-05-09T14:53:49.536374+00:00"
+    },
+    {
+      "review_id": "rev_be4481be2371",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_5b8719f905fc",
+      "claim_id": "claim_4112eb736142",
+      "kb_id": "KB_363154",
+      "field": "period",
+      "candidate_value": "西周早期",
+      "evidence": {
+        "base_evidence_text": "商代早期",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.588375+00:00",
+      "updated_at": "2026-05-09T14:53:49.588375+00:00"
+    },
+    {
+      "review_id": "rev_c424df98c13f",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_5b8719f905fc",
+      "claim_id": "claim_31566005d37d",
+      "kb_id": "KB_363154",
+      "field": "period",
+      "candidate_value": "西周",
+      "evidence": {
+        "base_evidence_text": "商代早期",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.591375+00:00",
+      "updated_at": "2026-05-09T14:53:49.591375+00:00"
+    },
+    {
+      "review_id": "rev_d9869f40b387",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_5b8719f905fc",
+      "claim_id": "claim_ba24d3c2c1ec",
+      "kb_id": "KB_363154",
+      "field": "dimensions",
+      "candidate_value": "高18.4厘米",
+      "evidence": {
+        "base_evidence_text": "高81厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.599375+00:00",
+      "updated_at": "2026-05-09T14:53:49.599375+00:00"
+    },
+    {
+      "review_id": "rev_dbc48dc02381",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_5b8719f905fc",
+      "claim_id": "claim_68f52762b82d",
+      "kb_id": "KB_363154",
+      "field": "dimensions",
+      "candidate_value": "口径14.9厘米",
+      "evidence": {
+        "base_evidence_text": "高81厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.602375+00:00",
+      "updated_at": "2026-05-09T14:53:49.602375+00:00"
+    },
+    {
+      "review_id": "rev_1757d7b9924a",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_3dcb0627cf16",
+      "claim_id": "claim_80c26a66db7d",
+      "kb_id": "KB_363152",
+      "field": "dimensions",
+      "candidate_value": "高18.4厘米",
+      "evidence": {
+        "base_evidence_text": "高19.4厘米；口径16厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.657373+00:00",
+      "updated_at": "2026-05-09T14:53:49.657373+00:00"
+    },
+    {
+      "review_id": "rev_3a77b7f31e06",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_3dcb0627cf16",
+      "claim_id": "claim_decf7670a98f",
+      "kb_id": "KB_363152",
+      "field": "dimensions",
+      "candidate_value": "高100厘米",
+      "evidence": {
+        "base_evidence_text": "高19.4厘米；口径16厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.661374+00:00",
+      "updated_at": "2026-05-09T14:53:49.661374+00:00"
+    },
+    {
+      "review_id": "rev_a56c4eda80f7",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_3dcb0627cf16",
+      "claim_id": "claim_2e01a6773096",
+      "kb_id": "KB_363152",
+      "field": "weight",
+      "candidate_value": "重82.4千克",
+      "evidence": {
+        "base_evidence_text": "重1.46千克",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.666376+00:00",
+      "updated_at": "2026-05-09T14:53:49.666376+00:00"
+    },
+    {
+      "review_id": "rev_4bd566f68329",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_b87287705671",
+      "claim_id": "claim_ca7047e25de5",
+      "kb_id": "KB_363154",
+      "field": "dimensions",
+      "candidate_value": "高100厘米",
+      "evidence": {
+        "base_evidence_text": "高81厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.732841+00:00",
+      "updated_at": "2026-05-09T14:53:49.732841+00:00"
+    },
+    {
+      "review_id": "rev_f82f4fba0459",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_b87287705671",
+      "claim_id": "claim_e0352bd21c47",
+      "kb_id": "KB_363154",
+      "field": "dimensions",
+      "candidate_value": "高64厘米",
+      "evidence": {
+        "base_evidence_text": "高81厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:49.734842+00:00",
+      "updated_at": "2026-05-09T14:53:49.735841+00:00"
+    },
+    {
+      "review_id": "rev_f2672a8cec68",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_8bb90366df57",
+      "claim_id": "claim_dcd36642b506",
+      "kb_id": "KB_363238",
+      "field": "dimensions",
+      "candidate_value": "高23.1厘米",
+      "evidence": {
+        "base_evidence_text": "高36厘米；口径9.7厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:54.258368+00:00",
+      "updated_at": "2026-05-09T14:53:54.258368+00:00"
+    },
+    {
+      "review_id": "rev_5b057893ba62",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_8bb90366df57",
+      "claim_id": "claim_8eb5d90df4db",
+      "kb_id": "KB_363238",
+      "field": "dimensions",
+      "candidate_value": "口径17.6厘米",
+      "evidence": {
+        "base_evidence_text": "高36厘米；口径9.7厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:54.261367+00:00",
+      "updated_at": "2026-05-09T14:53:54.261367+00:00"
+    },
+    {
+      "review_id": "rev_f2b991f8582c",
+      "curation_run_id": "cur_312434df9702",
+      "candidate_memory_id": "mem_0e1e7a3e5798",
+      "claim_id": "claim_cf183b379466",
+      "kb_id": "KB_363250",
+      "field": "dimensions",
+      "candidate_value": "通高14.9厘米",
+      "evidence": {
+        "base_evidence_text": "高14.9厘米；口径10.4厘米",
+        "support_type": "conflicting_or_unsupported",
+        "confidence": 0.45
+      },
+      "conflict_summary": "candidate value differs from the immutable base KB field; base KB takes precedence",
+      "suggested_decision": "needs_human_review",
+      "status": "open",
+      "human_decision": null,
+      "human_notes": null,
+      "created_at": "2026-05-09T14:53:55.045462+00:00",
+      "updated_at": "2026-05-09T14:53:55.045462+00:00"
+    }
+  ],
+  "instructions": {
+    "human_decision": "set to approved, rejected, or needs_more_evidence",
+    "human_notes": "explain the decision or correction"
+  }
+}

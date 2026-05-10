@@ -1,0 +1,31 @@
+test_id,test_category,difficulty,hallucination_risk,assertion_pass_rate,retrieved_memory_count,used_memory_count,retrieval_log_count,usage_log_count,graph_edge_count,verifier_log_count,elapsed_seconds,error
+LFQA_001,factual_long_dialogue,2,低,0.0,24,6,12,9,137,3,433.078,
+LFQA_002,factual_long_dialogue,2,低,0.4,15,7,12,7,129,1,525.918,
+LFQA_003,factual_long_dialogue,2,低,0.75,14,2,12,2,112,0,659.126,
+LFQA_004,factual_long_dialogue,2,低,0.6666666666666666,14,2,12,2,114,1,510.359,
+LFQA_005,factual_long_dialogue,2,低,0.5,11,0,2,0,17,0,69.285,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+LFQA_006,factual_long_dialogue,2,低,0.4,14,4,9,6,99,3,433.662,Error in __cdecl faiss::FileIOWriter::FileIOWriter(const char *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\impl\io.cpp:104: Error: 'f' failed: could not open vector_db_bronze_peer\index.faiss for writing: Invalid argument
+LFQA_007,factual_long_dialogue,2,低,0.5,14,4,12,8,126,1,509.084,
+LFQA_008,factual_long_dialogue,2,低,0.4,15,4,12,12,140,4,411.098,
+LFQA_009,factual_long_dialogue,2,低,0.5,17,5,10,8,112,3,370.961,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+LFQA_010,factual_long_dialogue,2,低,0.4,17,4,9,6,98,3,291.966,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+LFQA_011,factual_long_dialogue,2,低,0.4,17,4,12,9,130,2,443.188,
+LFQA_012,factual_long_dialogue,2,低,0.4,24,4,12,10,130,1,591.536,
+LFQA_013,factual_long_dialogue,2,低,0.4,18,4,12,12,136,2,662.892,
+LFQA_014,factual_long_dialogue,2,低,0.4,20,11,12,8,149,6,683.028,
+LFQA_015,factual_long_dialogue,2,低,0.4,20,5,12,6,129,3,760.821,
+LFQA_016,factual_long_dialogue,2,低,0.5,22,5,12,8,128,1,517.056,
+LFQA_017,factual_long_dialogue,2,低,0.4,22,4,12,10,129,1,642.413,
+LFQA_018,factual_long_dialogue,2,低,0.4,24,4,12,10,132,2,456.421,
+LFQA_019,factual_long_dialogue,2,低,0.5,25,4,12,9,130,2,561.237,
+LFQA_020,factual_long_dialogue,2,低,0.4,25,4,12,9,136,5,929.897,
+LFQA_021,factual_long_dialogue,2,低,0.4,23,4,6,4,63,1,318.049,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+LFQA_022,factual_long_dialogue,2,低,0.4,26,3,10,5,100,1,485.424,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+LFQA_023,factual_long_dialogue,2,低,0.4,26,11,9,9,110,2,455.017,[Errno 22] Invalid argument: 'vector_db_bronze_peer\\id_to_text.pkl'
+LFQA_024,factual_long_dialogue,2,低,0.5,27,8,12,8,138,4,600.528,
+LFQA_025,factual_long_dialogue,2,低,0.4,29,5,12,11,144,6,574.978,
+LFQA_026,factual_long_dialogue,2,低,0.4,31,3,12,5,119,1,639.978,
+LFQA_027,factual_long_dialogue,2,低,0.4,33,3,12,7,132,5,528.749,
+LFQA_028,factual_long_dialogue,2,低,0.2,24,4,12,9,132,3,586.599,
+LFQA_029,factual_long_dialogue,2,低,0.4,30,5,12,12,140,3,573.949,
+LFQA_030,factual_long_dialogue,2,低,0.4,26,4,12,8,126,1,523.807,

@@ -1,7 +1,9 @@
+import json
 import os
+import re
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from autogen import AssistantAgent, GroupChat, GroupChatManager, UserProxyAgent
 
@@ -54,22 +56,37 @@ def llm_config() -> Dict[str, object]:
     }
 
 
-def initialize_bronze_system(architecture: str) -> Tuple[VectorDatabase, ArchitectureMemory]:
+def initialize_bronze_system(
+    architecture: str,
+    *,
+    rebuild_vector_db: bool = False,
+) -> Tuple[VectorDatabase, ArchitectureMemory]:
     if architecture not in ARCHITECTURES:
         raise ValueError(f"未知架构: {architecture}")
 
     config = ARCHITECTURES[architecture]
     vector_db = VectorDatabase(db_path=config["vector_db"], model_path=MODEL_PATH)
     processor = BronzeDataProcessor(BRONZE_DATA_FILE)
-    texts = processor.generate_text_representations()
+    if rebuild_vector_db:
+        safe_print("Rebuilding bronze vector database from bronze_items.json ...")
+        vector_db.clear()
 
-    if not has_bronze_dataset(vector_db):
+    if rebuild_vector_db or not has_complete_bronze_dataset(vector_db, processor.count()):
         safe_print(f"正在初始化青铜器知识库: {processor.count()} 条")
         existing = set(vector_db.id_to_text.values())
         added = 0
-        for text in texts:
+        for item, text in processor.generate_memory_records():
             if text not in existing:
-                vector_db.add_text(text)
+                kb_id = f"KB_{item.get('id')}" if item.get("id") is not None else ""
+                vector_db.add_text(
+                    text,
+                    source_type="knowledge_base",
+                    source_ids=[kb_id] if kb_id else [],
+                    created_by="bronze_kb_loader",
+                    confidence=1.0,
+                    contamination_status="clean",
+                    metadata={"kb_item_id": kb_id, "raw_item_id": item.get("id")},
+                )
                 existing.add(text)
                 added += 1
         vector_db.save()
@@ -85,18 +102,42 @@ def has_bronze_dataset(vector_db: VectorDatabase) -> bool:
     return any(str(text).startswith("青铜器: ") for text in vector_db.id_to_text.values())
 
 
-def build_context(vector_db: VectorDatabase, memory: ArchitectureMemory, question: str) -> Tuple[str, List[str]]:
-    results = vector_db.search(question, top_k=8)
+def has_complete_bronze_dataset(vector_db: VectorDatabase, expected_count: int) -> bool:
+    row = vector_db.conn.execute(
+        """
+        SELECT COUNT(*) AS count
+        FROM memories
+        WHERE source_type = 'knowledge_base'
+          AND source_ids LIKE '%KB_%'
+        """
+    ).fetchone()
+    metadata_count = int(row["count"]) if row else 0
+    return metadata_count >= expected_count
+
+
+def build_context(
+    vector_db: VectorDatabase,
+    memory: ArchitectureMemory,
+    question: str,
+    *,
+    agent_id: str = "MemoryManager",
+    turn_id: Optional[str] = None,
+) -> Tuple[str, List[str], List[str]]:
+    results = vector_db.search(question, top_k=8, agent_id=agent_id, turn_id=turn_id)
     lines: List[str] = []
     raw_contexts: List[str] = []
+    retrieved_memory_ids: List[str] = []
 
     for index, item in enumerate(results, start=1):
         text = str(item.get("text", "")).strip()
         if not text:
             continue
         distance = item.get("distance", "")
+        memory_id = str(item.get("memory_id") or "")
+        if memory_id:
+            retrieved_memory_ids.append(memory_id)
         raw_contexts.append(text)
-        lines.append(f"[{index}] distance={distance}\n{text}")
+        lines.append(f"[{index}] memory_id={memory_id} distance={distance}\n{text}")
 
     recent_memory = memory.get_recent_conversations(limit=3)
     memory_lines = []
@@ -111,7 +152,93 @@ def build_context(vector_db: VectorDatabase, memory: ArchitectureMemory, questio
         + "\n\n【本架构最近对话记忆】\n"
         + ("\n\n".join(memory_lines) if memory_lines else "无")
     )
-    return context, raw_contexts
+    return context, raw_contexts, retrieved_memory_ids
+
+
+STRUCTURED_MEMORY_OUTPUT_INSTRUCTIONS = """
+
+Memory provenance requirements:
+If you use retrieved evidence, explicitly cite its memory_id in the answer.
+Append exactly one JSON code block after the user-facing answer:
+```json
+{
+  "answer": "final user-facing answer",
+  "used_memory_ids": ["mem_xxx"],
+  "derived_from": ["mem_xxx"],
+  "new_memory": "new shared-memory conclusion, or empty string"
+}
+```
+used_memory_ids must only contain memory_ids shown in the context.
+derived_from means which existing memories support or imply new_memory.
+"""
+
+
+def extract_structured_memory_payload(text: str) -> Dict[str, Any]:
+    match = re.search(r"```json\s*(\{.*?\})\s*```", text, flags=re.DOTALL)
+    if not match:
+        return {}
+    try:
+        payload = json.loads(match.group(1))
+    except json.JSONDecodeError:
+        return {}
+    if not isinstance(payload, dict):
+        return {}
+    return payload
+
+
+def strip_structured_memory_payload(text: str) -> str:
+    return re.sub(r"\n?```json\s*\{.*?\}\s*```\s*$", "", text, flags=re.DOTALL).strip()
+
+
+def valid_memory_ids(candidate_ids: Any, allowed_ids: List[str]) -> List[str]:
+    if not isinstance(candidate_ids, list):
+        return []
+    allowed = set(allowed_ids)
+    return [str(item) for item in candidate_ids if str(item) in allowed]
+
+
+def record_answer_usage(
+    vector_db: VectorDatabase,
+    *,
+    agent_id: str,
+    final_answer: str,
+    retrieved_memory_ids: List[str],
+    turn_id: str,
+) -> Tuple[str, List[str], List[str]]:
+    payload = extract_structured_memory_payload(final_answer)
+    used_memory_ids = valid_memory_ids(payload.get("used_memory_ids"), retrieved_memory_ids)
+    derived_from = valid_memory_ids(payload.get("derived_from"), retrieved_memory_ids)
+    answer_text = str(payload.get("answer") or strip_structured_memory_payload(final_answer)).strip()
+    answer_id = f"answer_{turn_id}"
+
+    if used_memory_ids:
+        vector_db.log_usage(
+            agent_id=agent_id,
+            used_memory_ids=used_memory_ids,
+            turn_id=turn_id,
+            answer_id=answer_id,
+        )
+
+    new_memory = str(payload.get("new_memory") or "").strip()
+    if new_memory and derived_from:
+        new_memory_id = vector_db.add_memory(
+            content=new_memory,
+            source_type="memory_derived",
+            source_ids=used_memory_ids,
+            created_by=agent_id,
+            created_turn=turn_id,
+            confidence=0.6,
+            contamination_status="clean",
+            derived_from=derived_from,
+            metadata={"answer_id": answer_id},
+        )
+        vector_db.verify_derived_from(
+            new_memory_id=new_memory_id,
+            derived_from=derived_from,
+            verifier_agent="Verifier",
+        )
+
+    return answer_text, used_memory_ids, derived_from
 
 
 def create_user_proxy() -> UserProxyAgent:
@@ -127,8 +254,17 @@ def answer_with_sequential_architecture(
     question: str,
     vector_db: VectorDatabase,
     memory: ArchitectureMemory,
+    *,
+    return_details: bool = False,
 ) -> Tuple[str, str]:
-    context, supporting_context = build_context(vector_db, memory, question)
+    turn_id = f"{SEQUENTIAL}_{len(memory.memory.get('conversations', [])) + 1:06d}"
+    context, supporting_context, retrieved_memory_ids = build_context(
+        vector_db,
+        memory,
+        question,
+        agent_id="SequentialAgents",
+        turn_id=turn_id,
+    )
     agents = create_sequential_agents()
     manager = setup_sequential_group_chat(agents)
 
@@ -139,6 +275,7 @@ def answer_with_sequential_architecture(
 
 请按照“分析问题 -> 回答 -> 校对”的流程完成。本轮只允许基于上面的青铜器知识和本架构记忆回答；如果证据不足，请明确说明不知道或资料不足。"""
 
+    message += STRUCTURED_MEMORY_OUTPUT_INSTRUCTIONS
     chat_result = agents[0].initiate_chat(manager, message=message)
     history = extract_history(chat_result, manager)
     final_answer = find_last_message(history, "Answerer")
@@ -147,13 +284,39 @@ def answer_with_sequential_architecture(
     if not final_answer:
         final_answer = find_last_non_user_message(history)
 
+    final_answer, used_memory_ids, derived_from = record_answer_usage(
+        vector_db,
+        agent_id="Answerer",
+        final_answer=final_answer,
+        retrieved_memory_ids=retrieved_memory_ids,
+        turn_id=turn_id,
+    )
+
     memory.add_conversation(
         question,
         final_answer,
         architecture=ARCHITECTURES[SEQUENTIAL]["label"],
         validation=validation,
         supporting_context=supporting_context,
+        raw_history=history,
+        retrieved_memory_ids=retrieved_memory_ids,
+        used_memory_ids=used_memory_ids,
+        derived_from=derived_from,
     )
+    if return_details:
+        return {
+            "architecture": SEQUENTIAL,
+            "turn_id": turn_id,
+            "question": question,
+            "final_answer": final_answer,
+            "final_answer_agent": "Answerer",
+            "audit_text": validation,
+            "raw_agent_history": history,
+            "supporting_context": supporting_context,
+            "retrieved_memory_ids": retrieved_memory_ids,
+            "used_memory_ids": used_memory_ids,
+            "derived_from": derived_from,
+        }
     return final_answer, validation
 
 
@@ -215,8 +378,17 @@ def answer_with_peer_architecture(
     question: str,
     vector_db: VectorDatabase,
     memory: ArchitectureMemory,
+    *,
+    return_details: bool = False,
 ) -> Tuple[str, str]:
-    context, supporting_context = build_context(vector_db, memory, question)
+    turn_id = f"{PEER}_{len(memory.memory.get('conversations', [])) + 1:06d}"
+    context, supporting_context, retrieved_memory_ids = build_context(
+        vector_db,
+        memory,
+        question,
+        agent_id="PeerAgents",
+        turn_id=turn_id,
+    )
     agents = create_peer_agents()
     manager = setup_peer_group_chat(agents)
 
@@ -227,11 +399,20 @@ def answer_with_peer_architecture(
 
 请用“对等协同”的方式完成：各智能体从不同角度补充证据、互相纠偏，最后由最后一位发言者给出“最终协同回答”。只能基于上面的青铜器知识和本架构记忆回答；证据不足时必须说明。"""
 
+    message += STRUCTURED_MEMORY_OUTPUT_INSTRUCTIONS
     chat_result = agents[0].initiate_chat(manager, message=message)
     history = extract_history(chat_result, manager)
     final_answer = find_last_message(history, "FormAndUsePeer")
     if not final_answer:
         final_answer = find_last_non_user_message(history)
+
+    final_answer, used_memory_ids, derived_from = record_answer_usage(
+        vector_db,
+        agent_id="FormAndUsePeer",
+        final_answer=final_answer,
+        retrieved_memory_ids=retrieved_memory_ids,
+        turn_id=turn_id,
+    )
 
     collaboration_trace = "\n\n".join(
         f"{msg.get('name', '')}: {msg.get('content', '')}"
@@ -245,7 +426,25 @@ def answer_with_peer_architecture(
         architecture=ARCHITECTURES[PEER]["label"],
         validation=collaboration_trace,
         supporting_context=supporting_context,
+        raw_history=history,
+        retrieved_memory_ids=retrieved_memory_ids,
+        used_memory_ids=used_memory_ids,
+        derived_from=derived_from,
     )
+    if return_details:
+        return {
+            "architecture": PEER,
+            "turn_id": turn_id,
+            "question": question,
+            "final_answer": final_answer,
+            "final_answer_agent": "FormAndUsePeer",
+            "audit_text": collaboration_trace,
+            "raw_agent_history": history,
+            "supporting_context": supporting_context,
+            "retrieved_memory_ids": retrieved_memory_ids,
+            "used_memory_ids": used_memory_ids,
+            "derived_from": derived_from,
+        }
     return final_answer, collaboration_trace
 
 
@@ -303,20 +502,20 @@ def setup_peer_group_chat(agents: List[object]) -> GroupChatManager:
     return GroupChatManager(groupchat=group_chat, llm_config=llm_config())
 
 
-def extract_history(chat_result: object, manager: GroupChatManager) -> List[Dict[str, str]]:
+def extract_history(chat_result: object, manager: GroupChatManager) -> List[Dict[str, Any]]:
     if chat_result and hasattr(chat_result, "chat_history"):
         return list(chat_result.chat_history)
     return list(manager.groupchat.messages)
 
 
-def find_last_message(history: List[Dict[str, str]], name: str) -> str:
+def find_last_message(history: List[Dict[str, Any]], name: str) -> str:
     for message in reversed(history):
         if message.get("name") == name:
             return str(message.get("content", "")).strip()
     return ""
 
 
-def find_last_non_user_message(history: List[Dict[str, str]]) -> str:
+def find_last_non_user_message(history: List[Dict[str, Any]]) -> str:
     for message in reversed(history):
         if message.get("name") != "User":
             return str(message.get("content", "")).strip()
@@ -329,8 +528,28 @@ def answer_question(
     vector_db: VectorDatabase,
     memory: ArchitectureMemory,
 ) -> Tuple[str, str]:
+    result = answer_question_detailed(architecture, question, vector_db, memory)
+    return result["final_answer"], result["audit_text"]
+
+
+def answer_question_detailed(
+    architecture: str,
+    question: str,
+    vector_db: VectorDatabase,
+    memory: ArchitectureMemory,
+) -> Dict[str, Any]:
     if architecture == SEQUENTIAL:
-        return answer_with_sequential_architecture(question, vector_db, memory)
+        return answer_with_sequential_architecture(
+            question,
+            vector_db,
+            memory,
+            return_details=True,
+        )
     if architecture == PEER:
-        return answer_with_peer_architecture(question, vector_db, memory)
+        return answer_with_peer_architecture(
+            question,
+            vector_db,
+            memory,
+            return_details=True,
+        )
     raise ValueError(f"未知架构: {architecture}")

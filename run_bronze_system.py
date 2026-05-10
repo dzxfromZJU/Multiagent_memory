@@ -19,6 +19,11 @@ def parse_args() -> argparse.Namespace:
         default=SEQUENTIAL,
         help="选择多智能体架构: sequential=分析问题-回答-校对, peer=对等协同",
     )
+    parser.add_argument(
+        "--rebuild-vector-db",
+        action="store_true",
+        help="Rebuild the FAISS index and SQLite metadata from bronze_items.json before starting.",
+    )
     return parser.parse_args()
 
 
@@ -32,7 +37,10 @@ def main() -> None:
     safe_print(f"记忆文件: {config['memory']}")
     safe_print(f"向量库目录: {config['vector_db']}")
 
-    vector_db, memory = initialize_bronze_system(architecture)
+    vector_db, memory = initialize_bronze_system(
+        architecture,
+        rebuild_vector_db=args.rebuild_vector_db,
+    )
 
     safe_print("\n可以询问青铜器名称、器类、年代、出土地、形制、纹饰、收藏地等问题。")
     safe_print("输入 exit、quit 或 退出 结束对话。")

@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 
 class BronzeDataProcessor:
@@ -22,6 +22,36 @@ class BronzeDataProcessor:
         return data
 
     def generate_text_representations(self) -> List[str]:
+        return [text for _, text in self.generate_memory_records()]
+
+    def generate_memory_records(self) -> List[Tuple[Dict[str, object], str]]:
+        records: List[Tuple[Dict[str, object], str]] = []
+        for item in self.data:
+            text = self.item_to_text(item)
+            if text:
+                records.append((item, text))
+        return records
+
+    def item_to_text(self, item: Dict[str, object]) -> str:
+        item_id = item.get("id")
+        kb_id = f"KB_{item_id}" if item_id is not None else ""
+        name = str(item.get("name", "")).strip()
+        category = str(item.get("category", "")).strip()
+        summary = str(item.get("summary", "")).strip()
+        detail = str(item.get("detail", "")).strip()
+        if not name:
+            return ""
+
+        return (
+            f"KB_ID: {kb_id}\n"
+            f"ID: {item_id if item_id is not None else ''}\n"
+            f"青铜器: {name}\n"
+            f"分类: {category}\n"
+            f"简介: {summary}\n"
+            f"详细介绍: {detail}"
+        )
+
+    def generate_legacy_text_representations(self) -> List[str]:
         texts: List[str] = []
         for item in self.data:
             name = str(item.get("name", "")).strip()
