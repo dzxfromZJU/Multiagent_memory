@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import sqlite3
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -115,6 +116,101 @@ def has_complete_bronze_dataset(vector_db: VectorDatabase, expected_count: int) 
     return metadata_count >= expected_count
 
 
+class CuratedKnowledgeRetriever:
+    """Read-only lightweight retriever for verified derived bronze facts."""
+
+    def __init__(self, db_path: str) -> None:
+        self.db_path = Path(db_path)
+        if not self.db_path.exists():
+            raise FileNotFoundError(f"Curated knowledge DB not found: {self.db_path}")
+        self.conn = sqlite3.connect(self.db_path)
+        self.conn.row_factory = sqlite3.Row
+
+    def search(self, question: str, *, limit: int = 24) -> List[Dict[str, Any]]:
+        ids = extract_item_ids(question)
+        names = extract_quoted_names(question)
+        rows: List[sqlite3.Row] = []
+        seen_fact_ids = set()
+
+        for item_id in ids:
+            for row in self.conn.execute(
+                """
+                SELECT *
+                FROM curated_facts
+                WHERE status = 'approved' AND kb_id = ?
+                ORDER BY field ASC, created_at ASC
+                LIMIT ?
+                """,
+                (f"KB_{item_id}", limit),
+            ).fetchall():
+                if row["fact_id"] not in seen_fact_ids:
+                    rows.append(row)
+                    seen_fact_ids.add(row["fact_id"])
+
+        remaining = max(limit - len(rows), 0)
+        if remaining > 0:
+            for name in names:
+                for row in self.conn.execute(
+                    """
+                    SELECT *
+                    FROM curated_facts
+                    WHERE status = 'approved' AND entity_name LIKE ?
+                    ORDER BY field ASC, created_at ASC
+                    LIMIT ?
+                    """,
+                    (f"%{name}%", remaining),
+                ).fetchall():
+                    if row["fact_id"] not in seen_fact_ids:
+                        rows.append(row)
+                        seen_fact_ids.add(row["fact_id"])
+                remaining = max(limit - len(rows), 0)
+                if remaining == 0:
+                    break
+
+        return [dict(row) for row in rows[:limit]]
+
+    def close(self) -> None:
+        self.conn.close()
+
+
+def extract_item_ids(text: str) -> List[str]:
+    ids = []
+    for match in re.finditer(r"(?:ID|KB_)\s*[:：]?\s*(\d{5,})", text):
+        item_id = match.group(1)
+        if item_id not in ids:
+            ids.append(item_id)
+    return ids
+
+
+def extract_quoted_names(text: str) -> List[str]:
+    names = []
+    for name in re.findall(r"《([^》]+)》", text):
+        clean = name.strip()
+        if clean and clean not in names:
+            names.append(clean)
+    return names
+
+
+def format_curated_facts(facts: List[Dict[str, Any]]) -> str:
+    if not facts:
+        return "无"
+    lines = []
+    for index, fact in enumerate(facts, start=1):
+        lines.append(
+            "[C{index}] fact_id={fact_id} kb_id={kb_id} entity={entity_name} "
+            "field={field} confidence={confidence}\n{value}".format(
+                index=index,
+                fact_id=fact.get("fact_id", ""),
+                kb_id=fact.get("kb_id", ""),
+                entity_name=fact.get("entity_name", ""),
+                field=fact.get("field", ""),
+                confidence=fact.get("confidence", ""),
+                value=fact.get("value", ""),
+            )
+        )
+    return "\n\n".join(lines)
+
+
 def build_context(
     vector_db: VectorDatabase,
     memory: ArchitectureMemory,
@@ -122,11 +218,20 @@ def build_context(
     *,
     agent_id: str = "MemoryManager",
     turn_id: Optional[str] = None,
-) -> Tuple[str, List[str], List[str]]:
+    curated_kb_path: Optional[str] = None,
+) -> Tuple[str, List[str], List[str], List[Dict[str, Any]]]:
     results = vector_db.search(question, top_k=8, agent_id=agent_id, turn_id=turn_id)
     lines: List[str] = []
     raw_contexts: List[str] = []
     retrieved_memory_ids: List[str] = []
+    curated_facts: List[Dict[str, Any]] = []
+
+    if curated_kb_path:
+        retriever = CuratedKnowledgeRetriever(curated_kb_path)
+        try:
+            curated_facts = retriever.search(question)
+        finally:
+            retriever.close()
 
     for index, item in enumerate(results, start=1):
         text = str(item.get("text", "")).strip()
@@ -149,10 +254,13 @@ def build_context(
     context = (
         "【检索到的青铜器知识】\n"
         + ("\n\n".join(lines) if lines else "无")
+        + "\n\n【知识编辑系统验证通过的派生知识】\n"
+        + format_curated_facts(curated_facts)
+        + "\n提示：该部分来自独立可信派生知识库，只能作为补充证据；若与原始知识库冲突，以原始知识库为准。"
         + "\n\n【本架构最近对话记忆】\n"
         + ("\n\n".join(memory_lines) if memory_lines else "无")
     )
-    return context, raw_contexts, retrieved_memory_ids
+    return context, raw_contexts, retrieved_memory_ids, curated_facts
 
 
 STRUCTURED_MEMORY_OUTPUT_INSTRUCTIONS = """
@@ -169,6 +277,7 @@ Append exactly one JSON code block after the user-facing answer:
 }
 ```
 used_memory_ids must only contain memory_ids shown in the context.
+Do not put curated fact_id values into used_memory_ids.
 derived_from means which existing memories support or imply new_memory.
 """
 
@@ -256,14 +365,16 @@ def answer_with_sequential_architecture(
     memory: ArchitectureMemory,
     *,
     return_details: bool = False,
+    curated_kb_path: Optional[str] = None,
 ) -> Tuple[str, str]:
     turn_id = f"{SEQUENTIAL}_{len(memory.memory.get('conversations', [])) + 1:06d}"
-    context, supporting_context, retrieved_memory_ids = build_context(
+    context, supporting_context, retrieved_memory_ids, curated_facts = build_context(
         vector_db,
         memory,
         question,
         agent_id="SequentialAgents",
         turn_id=turn_id,
+        curated_kb_path=curated_kb_path,
     )
     agents = create_sequential_agents()
     manager = setup_sequential_group_chat(agents)
@@ -313,6 +424,8 @@ def answer_with_sequential_architecture(
             "audit_text": validation,
             "raw_agent_history": history,
             "supporting_context": supporting_context,
+            "curated_kb_path": curated_kb_path,
+            "curated_facts": curated_facts,
             "retrieved_memory_ids": retrieved_memory_ids,
             "used_memory_ids": used_memory_ids,
             "derived_from": derived_from,
@@ -380,14 +493,16 @@ def answer_with_peer_architecture(
     memory: ArchitectureMemory,
     *,
     return_details: bool = False,
+    curated_kb_path: Optional[str] = None,
 ) -> Tuple[str, str]:
     turn_id = f"{PEER}_{len(memory.memory.get('conversations', [])) + 1:06d}"
-    context, supporting_context, retrieved_memory_ids = build_context(
+    context, supporting_context, retrieved_memory_ids, curated_facts = build_context(
         vector_db,
         memory,
         question,
         agent_id="PeerAgents",
         turn_id=turn_id,
+        curated_kb_path=curated_kb_path,
     )
     agents = create_peer_agents()
     manager = setup_peer_group_chat(agents)
@@ -441,6 +556,8 @@ def answer_with_peer_architecture(
             "audit_text": collaboration_trace,
             "raw_agent_history": history,
             "supporting_context": supporting_context,
+            "curated_kb_path": curated_kb_path,
+            "curated_facts": curated_facts,
             "retrieved_memory_ids": retrieved_memory_ids,
             "used_memory_ids": used_memory_ids,
             "derived_from": derived_from,
@@ -527,8 +644,16 @@ def answer_question(
     question: str,
     vector_db: VectorDatabase,
     memory: ArchitectureMemory,
+    *,
+    curated_kb_path: Optional[str] = None,
 ) -> Tuple[str, str]:
-    result = answer_question_detailed(architecture, question, vector_db, memory)
+    result = answer_question_detailed(
+        architecture,
+        question,
+        vector_db,
+        memory,
+        curated_kb_path=curated_kb_path,
+    )
     return result["final_answer"], result["audit_text"]
 
 
@@ -537,6 +662,8 @@ def answer_question_detailed(
     question: str,
     vector_db: VectorDatabase,
     memory: ArchitectureMemory,
+    *,
+    curated_kb_path: Optional[str] = None,
 ) -> Dict[str, Any]:
     if architecture == SEQUENTIAL:
         return answer_with_sequential_architecture(
@@ -544,6 +671,7 @@ def answer_question_detailed(
             vector_db,
             memory,
             return_details=True,
+            curated_kb_path=curated_kb_path,
         )
     if architecture == PEER:
         return answer_with_peer_architecture(
@@ -551,5 +679,6 @@ def answer_question_detailed(
             vector_db,
             memory,
             return_details=True,
+            curated_kb_path=curated_kb_path,
         )
     raise ValueError(f"未知架构: {architecture}")

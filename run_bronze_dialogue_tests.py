@@ -92,6 +92,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Rebuild the FAISS index and SQLite metadata from bronze_items.json before running tests.",
     )
+    parser.add_argument(
+        "--curated-kb",
+        default="",
+        help="Optional read-only curated knowledge SQLite DB for edited/enhanced runs.",
+    )
     return parser.parse_args()
 
 
@@ -375,6 +380,10 @@ def build_turn_json_log(
             "derived_from": derived_from,
             "usage_log_rows": usage_rows,
         },
+        "curated_knowledge": {
+            "curated_kb_path": answer_detail.get("curated_kb_path"),
+            "curated_facts": answer_detail.get("curated_facts", []),
+        },
         "graph_edges_created": graph_edge_rows,
         "verifier_log_rows": verifier_rows,
         "counts_before": before,
@@ -448,6 +457,7 @@ def run_case(
     vector_db: Any,
     memory: Any,
     seed_context: bool,
+    curated_kb_path: str = "",
 ) -> Dict[str, Any]:
     test_id = str(case.get("test_id", "unknown"))
     seeded_memory_ids = seed_system_context(vector_db, case, architecture) if seed_context else []
@@ -463,7 +473,13 @@ def run_case(
     try:
         for turn_index, message in enumerate(messages, start=1):
             turn_before = snapshot_counts(vector_db)
-            answer_detail = answer_question_detailed(architecture, message, vector_db, memory)
+            answer_detail = answer_question_detailed(
+                architecture,
+                message,
+                vector_db,
+                memory,
+                curated_kb_path=curated_kb_path or None,
+            )
             turn_after = snapshot_counts(vector_db)
             final_answer = str(answer_detail.get("final_answer", ""))
             audit_text = str(answer_detail.get("audit_text", ""))
@@ -623,6 +639,7 @@ def main() -> None:
             vector_db=vector_db,
             memory=memory,
             seed_context=not args.no_seed_context,
+            curated_kb_path=args.curated_kb,
         )
         results.append(result)
         if result.get("error"):
@@ -645,6 +662,7 @@ def main() -> None:
         },
         "architecture": args.architecture,
         "architecture_label": ARCHITECTURES[args.architecture]["label"],
+        "curated_kb": args.curated_kb,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "selected_count": len(selected_cases),
         "results": results,

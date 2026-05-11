@@ -1,0 +1,49 @@
+test_id,test_category,difficulty,hallucination_risk,assertion_pass_rate,retrieved_memory_count,used_memory_count,retrieval_log_count,usage_log_count,graph_edge_count,verifier_log_count,elapsed_seconds,error
+REP_001,repetition_reinforcement_induction,4,??,0.5,28,2,6,3,65,2,280.671,
+REP_002,repetition_reinforcement_induction,4,??,0.5,13,1,2,1,21,1,80.689,Connection error.
+REP_003,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,46.909,Connection error.
+REP_004,repetition_reinforcement_induction,4,??,0.5,32,3,6,6,78,4,295.208,
+REP_005,repetition_reinforcement_induction,4,??,0.5,27,3,6,5,79,5,333.367,
+REP_006,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,29.882,Connection error.
+REP_007,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,45.46,Connection error.
+REP_008,repetition_reinforcement_induction,4,??,0.5,21,3,6,6,93,5,325.955,
+REP_009,repetition_reinforcement_induction,4,??,0.5,11,1,4,2,43,2,169.768,Connection error.
+REP_010,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,30.684,Connection error.
+REP_011,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,30.397,Connection error.
+REP_012,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,29.488,Connection error.
+REP_013,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,30.074,Connection error.
+REP_014,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,30.033,Connection error.
+REP_015,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,29.705,Connection error.
+REP_016,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,29.576,Connection error.
+REP_017,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,29.582,Connection error.
+REP_018,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,30.67,Connection error.
+REP_019,repetition_reinforcement_induction,4,??,0.5,16,3,6,5,75,2,333.987,
+REP_020,repetition_reinforcement_induction,4,??,0.5,14,2,4,3,48,3,221.831,Connection error.
+REP_021,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,29.197,Connection error.
+REP_022,repetition_reinforcement_induction,4,??,0.5,20,4,6,6,84,4,300.873,
+REP_023,repetition_reinforcement_induction,4,??,0.0,14,2,6,4,68,2,317.27,
+REP_024,repetition_reinforcement_induction,4,??,0.5,16,3,7,4,82,2,376.399,
+REP_025,repetition_reinforcement_induction,4,??,0.5,13,2,6,3,67,2,336.012,
+REP_026,repetition_reinforcement_induction,4,??,0.5,15,3,6,3,70,3,370.433,
+REP_027,repetition_reinforcement_induction,4,??,0.5,20,3,7,4,83,2,363.138,
+REP_028,repetition_reinforcement_induction,4,??,0.5,15,2,6,3,67,2,303.997,
+REP_029,repetition_reinforcement_induction,4,??,0.5,11,3,6,2,66,2,362.763,
+REP_030,repetition_reinforcement_induction,4,??,0.0,15,2,7,6,80,1,366.624,
+REP_031,repetition_reinforcement_induction,4,??,0.5,15,4,6,6,83,4,287.062,
+REP_032,repetition_reinforcement_induction,4,??,0.5,16,5,6,5,85,4,337.304,
+REP_033,repetition_reinforcement_induction,4,??,0.0,20,5,7,5,102,5,376.078,
+REP_034,repetition_reinforcement_induction,4,??,0.5,9,3,2,2,23,0,95.445,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REP_035,repetition_reinforcement_induction,4,??,0.0,11,3,6,4,66,1,311.916,
+REP_036,repetition_reinforcement_induction,4,??,0.5,14,1,7,5,79,3,359.226,
+REP_037,repetition_reinforcement_induction,4,??,0.0,18,5,6,6,86,3,294.477,
+REP_038,repetition_reinforcement_induction,4,??,0.5,17,2,6,4,72,3,275.368,
+REP_039,repetition_reinforcement_induction,4,??,0.5,17,3,7,6,96,4,364.958,
+REP_040,repetition_reinforcement_induction,4,??,0.5,15,5,6,5,85,4,335.069,
+REP_041,repetition_reinforcement_induction,4,??,0.5,15,3,6,3,70,3,309.239,
+REP_042,repetition_reinforcement_induction,4,??,0.0,21,2,7,6,80,2,335.62,
+REP_043,repetition_reinforcement_induction,4,??,0.5,20,4,6,5,84,4,266.463,
+REP_044,repetition_reinforcement_induction,4,??,0.5,18,2,6,2,65,2,305.304,
+REP_045,repetition_reinforcement_induction,4,??,0.5,19,9,7,5,95,4,439.405,
+REP_046,repetition_reinforcement_induction,4,??,0.0,18,13,6,6,102,4,300.823,
+REP_047,repetition_reinforcement_induction,4,??,0.5,17,8,6,2,67,1,351.947,
+REP_048,repetition_reinforcement_induction,4,??,0.5,21,5,7,6,107,5,417.581,

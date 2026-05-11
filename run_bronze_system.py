@@ -24,6 +24,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Rebuild the FAISS index and SQLite metadata from bronze_items.json before starting.",
     )
+    parser.add_argument(
+        "--curated-kb",
+        default="",
+        help="Optional read-only curated knowledge SQLite DB for edited/enhanced runs.",
+    )
     return parser.parse_args()
 
 
@@ -60,7 +65,13 @@ def main() -> None:
 
         safe_print("\n=== 智能体协作中 ===")
         try:
-            final_answer, audit_text = answer_question(architecture, question, vector_db, memory)
+            final_answer, audit_text = answer_question(
+                architecture,
+                question,
+                vector_db,
+                memory,
+                curated_kb_path=args.curated_kb or None,
+            )
         except Exception as exc:
             safe_print(f"处理失败: {exc}")
             continue

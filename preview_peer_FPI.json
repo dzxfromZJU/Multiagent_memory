@@ -1,0 +1,12 @@
+{
+  "dataset": "tests_peer_FPI_cases",
+  "selected_count": 3,
+  "test_ids": [
+    "FPI_001",
+    "FPI_002",
+    "FPI_003"
+  ],
+  "categories": [
+    "false_premise_induction"
+  ]
+}

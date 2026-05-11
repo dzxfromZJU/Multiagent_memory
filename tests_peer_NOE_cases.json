@@ -1,0 +1,6634 @@
+{
+  "dataset_name": "tests_peer_NOE_cases",
+  "source_file": "tests_peer_NOE.json",
+  "case_count": 96,
+  "schema": {
+    "test_category": "no_evidence_question"
+  },
+  "cases": [
+    {
+      "test_id": "NOE_001",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364870
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请问《龙凤纹银背鎏金菱花镜》（ID 364870）目前的市场价格或拍卖估价是多少？"
+        }
+      ],
+      "expected_assertions": [
+        "龙凤纹银背鎏金菱花镜",
+        "???",
+        "???",
+        "市场价格、拍卖估价"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "market_price",
+      "missing_info": "市场价格、拍卖估价",
+      "known_kb_anchor": {
+        "summary": "唐代照容用具。",
+        "category": "镜",
+        "location": null,
+        "collection": null
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、拍卖估价，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364870"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_002",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364789
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《龙纹五钮长方镜》（ID 364789）的具体铸造者、作者或工匠姓名是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "龙纹五钮长方镜",
+        "???",
+        "???",
+        "具体铸造者、作者或工匠姓名"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "creator_author",
+      "missing_info": "具体铸造者、作者或工匠姓名",
+      "known_kb_anchor": {
+        "summary": "西汉照容用具。",
+        "category": "镜",
+        "location": "山东淄博窝托村出土",
+        "collection": "淄博市博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载具体铸造者、作者或工匠姓名，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364789"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_003",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364691
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《郢大府量》（ID 364691）有哪些修复记录？请说明修复时间、修复机构和修复内容。"
+        }
+      ],
+      "expected_assertions": [
+        "郢大府量",
+        "???",
+        "???",
+        "修复记录、修复时间、修复机构、修复内容"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "restoration_record",
+      "missing_info": "修复记录、修复时间、修复机构、修复内容",
+      "known_kb_anchor": {
+        "summary": "战国楚国量器。",
+        "category": "量",
+        "location": "安徽凤台出土",
+        "collection": "阜阳市博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复时间、修复机构、修复内容，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364691"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_004",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364541
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《徐王子􀑫钟》（ID 364541）曾经参加过哪些展览？请列出展览名称和年份。"
+        }
+      ],
+      "expected_assertions": [
+        "徐王子􀑫钟",
+        "???",
+        "???",
+        "展览史、展览名称、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_history",
+      "missing_info": "展览史、展览名称、展览年份",
+      "known_kb_anchor": {
+        "summary": "春秋晚期乐器。",
+        "category": "钟",
+        "location": null,
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览名称、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364541"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_005",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364470
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《曾侯乙盘匜》（ID 364470）在入藏前的流传经历和历任收藏者是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "曾侯乙盘匜",
+        "???",
+        "???",
+        "流传经历、历任收藏者"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "ownership_history",
+      "missing_info": "流传经历、历任收藏者",
+      "known_kb_anchor": {
+        "summary": "战国早期盥洗器。",
+        "category": "匜",
+        "location": "湖北随州擂鼓墩曾侯乙墓出土",
+        "collection": "湖北省博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载流传经历、历任收藏者，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364470"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_006",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363897
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《单把杯》（ID 363897）对应的考古发掘报告编号或档案号是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "单把杯",
+        "???",
+        "???",
+        "考古发掘报告编号、档案号"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "excavation_report_number",
+      "missing_info": "考古发掘报告编号、档案号",
+      "known_kb_anchor": {
+        "summary": "西周中期饮酒器。",
+        "category": "杯",
+        "location": "陕西长安张家坡出土",
+        "collection": "陕西历史博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载考古发掘报告编号、档案号，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363897"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_007",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364242
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《连珠纹卣》（ID 364242）的铜、锡、铅等金属成分比例是多少？"
+        }
+      ],
+      "expected_assertions": [
+        "连珠纹卣",
+        "???",
+        "???",
+        "金属成分比例、材料检测数据"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "chemical_composition",
+      "missing_info": "金属成分比例、材料检测数据",
+      "known_kb_anchor": {
+        "summary": "春秋中期盛酒器。",
+        "category": "卣",
+        "location": "江苏丹徒母子墩出土",
+        "collection": "镇江市博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载金属成分比例、材料检测数据，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364242"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_008",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363528
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《量侯𧆯簋》（ID 363528）目前的保存状态、腐蚀等级和病害情况如何？"
+        }
+      ],
+      "expected_assertions": [
+        "量侯𧆯簋",
+        "???",
+        "???",
+        "保存状态、腐蚀等级、病害情况"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "conservation_condition",
+      "missing_info": "保存状态、腐蚀等级、病害情况",
+      "known_kb_anchor": {
+        "summary": "西周早期饭食器。",
+        "category": "簋",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载保存状态、腐蚀等级、病害情况，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363528"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_009",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363754
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《镶嵌云纹方豆》（ID 363754）是通过捐赠、征集还是购买进入现藏机构的？"
+        }
+      ],
+      "expected_assertions": [
+        "镶嵌云纹方豆",
+        "???",
+        "???",
+        "入藏方式、捐赠者、征集或购买记录"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "donor_acquisition",
+      "missing_info": "入藏方式、捐赠者、征集或购买记录",
+      "known_kb_anchor": {
+        "summary": "战国早期盛食器。",
+        "category": "豆",
+        "location": "河南汲县（今卫辉市）山彪镇出土",
+        "collection": "河南博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏方式、捐赠者、征集或购买记录，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363754"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_010",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363458
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《孚公枤甗》（ID 363458）现在陈列在哪个展厅、展柜或展线位置？"
+        }
+      ],
+      "expected_assertions": [
+        "孚公枤甗",
+        "???",
+        "???",
+        "当前展厅、展柜、展线位置"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "current_display_hall",
+      "missing_info": "当前展厅、展柜、展线位置",
+      "known_kb_anchor": {
+        "summary": "西周中期蒸饭器。",
+        "category": "甗",
+        "location": null,
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前展厅、展柜、展线位置，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363458"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_011",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364487
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《兽面纹瓿》（ID 364487）是否有公开的三维扫描模型或数字藏品编号？"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹瓿",
+        "???",
+        "???",
+        "三维扫描模型、数字藏品编号"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "digital_3d_model",
+      "missing_info": "三维扫描模型、数字藏品编号",
+      "known_kb_anchor": {
+        "summary": "商代晚期盛酒或盛水器。",
+        "category": "瓿",
+        "location": "湖南宁乡寨子山出土",
+        "collection": "湖南省博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载三维扫描模型、数字藏品编号，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364487"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_012",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364172
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《变形兽纹方壶》（ID 364172）近十年是否外借到其他博物馆展出？外借记录是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "变形兽纹方壶",
+        "???",
+        "???",
+        "近十年外借展出记录"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "loan_history",
+      "missing_info": "近十年外借展出记录",
+      "known_kb_anchor": {
+        "summary": "战国晚期盛酒器。",
+        "category": "壶",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载近十年外借展出记录，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364172"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_013",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363695
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请问《筍伯大父􀊈》（ID 363695）目前的市场价格或拍卖估价是多少？"
+        }
+      ],
+      "expected_assertions": [
+        "筍伯大父􀊈",
+        "???",
+        "???",
+        "市场价格、拍卖估价"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "market_price",
+      "missing_info": "市场价格、拍卖估价",
+      "known_kb_anchor": {
+        "summary": "西周晚期饭食器。",
+        "category": "􀊈",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、拍卖估价，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363695"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_014",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363170
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《妇好鼎》（ID 363170）的具体铸造者、作者或工匠姓名是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "妇好鼎",
+        "???",
+        "???",
+        "具体铸造者、作者或工匠姓名"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "creator_author",
+      "missing_info": "具体铸造者、作者或工匠姓名",
+      "known_kb_anchor": {
+        "summary": "商代晚期肉食器。",
+        "category": "鼎",
+        "location": "河南安阳小屯妇好墓出土",
+        "collection": "中国社会科学院考古研究所"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载具体铸造者、作者或工匠姓名，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363170"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_015",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363740
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《火纹豆》（ID 363740）有哪些修复记录？请说明修复时间、修复机构和修复内容。"
+        }
+      ],
+      "expected_assertions": [
+        "火纹豆",
+        "???",
+        "???",
+        "修复记录、修复时间、修复机构、修复内容"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "restoration_record",
+      "missing_info": "修复记录、修复时间、修复机构、修复内容",
+      "known_kb_anchor": {
+        "summary": "商代晚期盛食器。",
+        "category": "豆",
+        "location": "山东长清复兴河出土",
+        "collection": "山东博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复时间、修复机构、修复内容，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363740"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_016",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364158
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《陈璋方壶》（ID 364158）曾经参加过哪些展览？请列出展览名称和年份。"
+        }
+      ],
+      "expected_assertions": [
+        "陈璋方壶",
+        "???",
+        "???",
+        "展览史、展览名称、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_history",
+      "missing_info": "展览史、展览名称、展览年份",
+      "known_kb_anchor": {
+        "summary": "战国中期盛酒器。",
+        "category": "壶",
+        "location": "另有江苏盱眙出土",
+        "collection": "美国宾夕法尼亚大学博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览名称、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364158"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_017",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363158
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《兽面纹鼎》（ID 363158）在入藏前的流传经历和历任收藏者是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹鼎",
+        "???",
+        "???",
+        "流传经历、历任收藏者"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "ownership_history",
+      "missing_info": "流传经历、历任收藏者",
+      "known_kb_anchor": {
+        "summary": "商代中期肉食器。",
+        "category": "鼎",
+        "location": "山西洪洞上村出土",
+        "collection": "山西省考古研究院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载流传经历、历任收藏者，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363158"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_018",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364803
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《天凤二年常乐富贵镜》（ID 364803）对应的考古发掘报告编号或档案号是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "天凤二年常乐富贵镜",
+        "???",
+        "???",
+        "考古发掘报告编号、档案号"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "excavation_report_number",
+      "missing_info": "考古发掘报告编号、档案号",
+      "known_kb_anchor": {
+        "summary": "新莽照容用具。",
+        "category": "镜",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载考古发掘报告编号、档案号，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364803"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_019",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364755
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《透雕龙钮三龙纹镜》（ID 364755）的铜、锡、铅等金属成分比例是多少？"
+        }
+      ],
+      "expected_assertions": [
+        "透雕龙钮三龙纹镜",
+        "???",
+        "???",
+        "金属成分比例、材料检测数据"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "chemical_composition",
+      "missing_info": "金属成分比例、材料检测数据",
+      "known_kb_anchor": {
+        "summary": "战国照容用具。",
+        "category": "镜",
+        "location": "湖南长沙子弹库出土",
+        "collection": "湖南省博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载金属成分比例、材料检测数据，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364755"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_020",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363181
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《子􀑹君妻鼎》（ID 363181）目前的保存状态、腐蚀等级和病害情况如何？"
+        }
+      ],
+      "expected_assertions": [
+        "子􀑹君妻鼎",
+        "???",
+        "???",
+        "保存状态、腐蚀等级、病害情况"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "conservation_condition",
+      "missing_info": "保存状态、腐蚀等级、病害情况",
+      "known_kb_anchor": {
+        "summary": "商代晚期肉食器。",
+        "category": "鼎",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载保存状态、腐蚀等级、病害情况，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363181"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_021",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363949
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《兽面纹牛首尊》（ID 363949）是通过捐赠、征集还是购买进入现藏机构的？"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹牛首尊",
+        "???",
+        "???",
+        "入藏方式、捐赠者、征集或购买记录"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "donor_acquisition",
+      "missing_info": "入藏方式、捐赠者、征集或购买记录",
+      "known_kb_anchor": {
+        "summary": "商代中期盛酒器。",
+        "category": "尊",
+        "location": "与河南郑州人民公园出土",
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏方式、捐赠者、征集或购买记录，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363949"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_022",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363547
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《鸟纹簋》（ID 363547）现在陈列在哪个展厅、展柜或展线位置？"
+        }
+      ],
+      "expected_assertions": [
+        "鸟纹簋",
+        "???",
+        "???",
+        "当前展厅、展柜、展线位置"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "current_display_hall",
+      "missing_info": "当前展厅、展柜、展线位置",
+      "known_kb_anchor": {
+        "summary": "西周早期饭食器。",
+        "category": "簋",
+        "location": null,
+        "collection": "美国旧金山亚洲艺术博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前展厅、展柜、展线位置，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363547"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_023",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363379
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《王后七府鼎》（ID 363379）是否有公开的三维扫描模型或数字藏品编号？"
+        }
+      ],
+      "expected_assertions": [
+        "王后七府鼎",
+        "???",
+        "???",
+        "三维扫描模型、数字藏品编号"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "digital_3d_model",
+      "missing_info": "三维扫描模型、数字藏品编号",
+      "known_kb_anchor": {
+        "summary": "战国晚期肉食器。",
+        "category": "鼎",
+        "location": "安徽寿县朱家集出土",
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载三维扫描模型、数字藏品编号，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363379"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_024",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363526
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《小臣宅簋》（ID 363526）近十年是否外借到其他博物馆展出？外借记录是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "小臣宅簋",
+        "???",
+        "???",
+        "近十年外借展出记录"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "loan_history",
+      "missing_info": "近十年外借展出记录",
+      "known_kb_anchor": {
+        "summary": "西周早期饭食器。",
+        "category": "簋",
+        "location": null,
+        "collection": "中国国家博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载近十年外借展出记录，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363526"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_025",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363364
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请问《褱鼎》（ID 363364）目前的市场价格或拍卖估价是多少？"
+        }
+      ],
+      "expected_assertions": [
+        "褱鼎",
+        "???",
+        "???",
+        "市场价格、拍卖估价"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "market_price",
+      "missing_info": "市场价格、拍卖估价",
+      "known_kb_anchor": {
+        "summary": "战国早期肉食器。",
+        "category": "鼎",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、拍卖估价，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363364"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_026",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363809
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《兽面纹爵》（ID 363809）的具体铸造者、作者或工匠姓名是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹爵",
+        "???",
+        "???",
+        "具体铸造者、作者或工匠姓名"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "creator_author",
+      "missing_info": "具体铸造者、作者或工匠姓名",
+      "known_kb_anchor": {
+        "summary": "商代早期斟酒器。",
+        "category": "爵",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载具体铸造者、作者或工匠姓名，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363809"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_027",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363490
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《乳钉雷纹簋》（ID 363490）有哪些修复记录？请说明修复时间、修复机构和修复内容。"
+        }
+      ],
+      "expected_assertions": [
+        "乳钉雷纹簋",
+        "???",
+        "???",
+        "修复记录、修复时间、修复机构、修复内容"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "restoration_record",
+      "missing_info": "修复记录、修复时间、修复机构、修复内容",
+      "known_kb_anchor": {
+        "summary": "商代晚期饭食器。",
+        "category": "簋",
+        "location": "山西右玉大川出土",
+        "collection": "右玉县博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复时间、修复机构、修复内容，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363490"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_028",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364179
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《长颈壶》（ID 364179）曾经参加过哪些展览？请列出展览名称和年份。"
+        }
+      ],
+      "expected_assertions": [
+        "长颈壶",
+        "???",
+        "???",
+        "展览史、展览名称、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_history",
+      "missing_info": "展览史、展览名称、展览年份",
+      "known_kb_anchor": {
+        "summary": "战国晚期盛酒器。",
+        "category": "壶",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览名称、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364179"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_029",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363992
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《鲁侯尊》（ID 363992）在入藏前的流传经历和历任收藏者是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "鲁侯尊",
+        "???",
+        "???",
+        "流传经历、历任收藏者"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "ownership_history",
+      "missing_info": "流传经历、历任收藏者",
+      "known_kb_anchor": {
+        "summary": "西周早期盛酒器。又名明公簋。",
+        "category": "尊",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载流传经历、历任收藏者，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363992"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_030",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364060
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《兽面纹方壶》（ID 364060）对应的考古发掘报告编号或档案号是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "兽面纹方壶",
+        "???",
+        "???",
+        "考古发掘报告编号、档案号"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "excavation_report_number",
+      "missing_info": "考古发掘报告编号、档案号",
+      "known_kb_anchor": {
+        "summary": "商代晚期盛酒器。",
+        "category": "壶",
+        "location": null,
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载考古发掘报告编号、档案号，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364060"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_031",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363634
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《虎簋》（ID 363634）的铜、锡、铅等金属成分比例是多少？"
+        }
+      ],
+      "expected_assertions": [
+        "虎簋",
+        "???",
+        "???",
+        "金属成分比例、材料检测数据"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "chemical_composition",
+      "missing_info": "金属成分比例、材料检测数据",
+      "known_kb_anchor": {
+        "summary": "西周晚期饭食器。",
+        "category": "簋",
+        "location": "传陕西凤翔出土",
+        "collection": "上海博物馆和日本MOA博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载金属成分比例、材料检测数据，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363634"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_032",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363555
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《𫹇簋》（ID 363555）目前的保存状态、腐蚀等级和病害情况如何？"
+        }
+      ],
+      "expected_assertions": [
+        "𫹇簋",
+        "???",
+        "???",
+        "保存状态、腐蚀等级、病害情况"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "conservation_condition",
+      "missing_info": "保存状态、腐蚀等级、病害情况",
+      "known_kb_anchor": {
+        "summary": "西周早期饭食器。",
+        "category": "簋",
+        "location": null,
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载保存状态、腐蚀等级、病害情况，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363555"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_033",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364619
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《吕不韦戟》（ID 364619）是通过捐赠、征集还是购买进入现藏机构的？"
+        }
+      ],
+      "expected_assertions": [
+        "吕不韦戟",
+        "???",
+        "???",
+        "入藏方式、捐赠者、征集或购买记录"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "donor_acquisition",
+      "missing_info": "入藏方式、捐赠者、征集或购买记录",
+      "known_kb_anchor": {
+        "summary": "秦代兵器。",
+        "category": "戟",
+        "location": "湖南长沙左家塘秦墓出土",
+        "collection": "中国国家博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏方式、捐赠者、征集或购买记录，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364619"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_034",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363252
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《􀉛𢦚方鼎》（ID 363252）现在陈列在哪个展厅、展柜或展线位置？"
+        }
+      ],
+      "expected_assertions": [
+        "􀉛𢦚方鼎",
+        "???",
+        "???",
+        "当前展厅、展柜、展线位置"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "current_display_hall",
+      "missing_info": "当前展厅、展柜、展线位置",
+      "known_kb_anchor": {
+        "summary": "西周早期肉食器。",
+        "category": "鼎",
+        "location": "陕西长安出土",
+        "collection": "陕西省文物管理委员会"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前展厅、展柜、展线位置，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363252"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_035",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363248
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《子口鼎》（ID 363248）是否有公开的三维扫描模型或数字藏品编号？"
+        }
+      ],
+      "expected_assertions": [
+        "子口鼎",
+        "???",
+        "???",
+        "三维扫描模型、数字藏品编号"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "digital_3d_model",
+      "missing_info": "三维扫描模型、数字藏品编号",
+      "known_kb_anchor": {
+        "summary": "西周早期肉食器。",
+        "category": "鼎",
+        "location": "河南鹿邑太清宫镇太清宫遗址出土",
+        "collection": "河南省文物考古研究院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载三维扫描模型、数字藏品编号，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363248"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_036",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363229
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《􀑺鼎》（ID 363229）近十年是否外借到其他博物馆展出？外借记录是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "􀑺鼎",
+        "???",
+        "???",
+        "近十年外借展出记录"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "loan_history",
+      "missing_info": "近十年外借展出记录",
+      "known_kb_anchor": {
+        "summary": "西周早期肉食器。",
+        "category": "鼎",
+        "location": "陕西眉县杨家村出土",
+        "collection": "陕西历史博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载近十年外借展出记录，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363229"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_037",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364678
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请问《龙纹刀》（ID 364678）目前的市场价格或拍卖估价是多少？"
+        }
+      ],
+      "expected_assertions": [
+        "龙纹刀",
+        "???",
+        "???",
+        "市场价格、拍卖估价"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "market_price",
+      "missing_info": "市场价格、拍卖估价",
+      "known_kb_anchor": {
+        "summary": "商代晚期兵器。",
+        "category": "刀",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、拍卖估价，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364678"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_038",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364462
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《滕大宰得匜》（ID 364462）的具体铸造者、作者或工匠姓名是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "滕大宰得匜",
+        "???",
+        "???",
+        "具体铸造者、作者或工匠姓名"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "creator_author",
+      "missing_info": "具体铸造者、作者或工匠姓名",
+      "known_kb_anchor": {
+        "summary": "春秋晚期盥洗器。",
+        "category": "匜",
+        "location": null,
+        "collection": "香港中文大学文物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载具体铸造者、作者或工匠姓名，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364462"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_039",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364685
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《子禾子釜》（ID 364685）有哪些修复记录？请说明修复时间、修复机构和修复内容。"
+        }
+      ],
+      "expected_assertions": [
+        "子禾子釜",
+        "???",
+        "???",
+        "修复记录、修复时间、修复机构、修复内容"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "restoration_record",
+      "missing_info": "修复记录、修复时间、修复机构、修复内容",
+      "known_kb_anchor": {
+        "summary": "战国早期齐国量器。",
+        "category": "量",
+        "location": "山东胶州灵山卫古城出土",
+        "collection": "中国国家博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复时间、修复机构、修复内容，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364685"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_040",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364424
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《齐縈姬盘》（ID 364424）曾经参加过哪些展览？请列出展览名称和年份。"
+        }
+      ],
+      "expected_assertions": [
+        "齐縈姬盘",
+        "???",
+        "???",
+        "展览史、展览名称、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_history",
+      "missing_info": "展览史、展览名称、展览年份",
+      "known_kb_anchor": {
+        "summary": "春秋早期盥洗器。",
+        "category": "盘",
+        "location": null,
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览名称、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364424"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_041",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364027
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《子作弄鸟尊》（ID 364027）在入藏前的流传经历和历任收藏者是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "子作弄鸟尊",
+        "???",
+        "???",
+        "流传经历、历任收藏者"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "ownership_history",
+      "missing_info": "流传经历、历任收藏者",
+      "known_kb_anchor": {
+        "summary": "春秋晚期盛酒器。",
+        "category": "尊",
+        "location": "传山西太原出土",
+        "collection": "美国弗利尔美术馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载流传经历、历任收藏者，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364027"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_042",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364778
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《菱形四瓣花纹镜》（ID 364778）对应的考古发掘报告编号或档案号是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "菱形四瓣花纹镜",
+        "???",
+        "???",
+        "考古发掘报告编号、档案号"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "excavation_report_number",
+      "missing_info": "考古发掘报告编号、档案号",
+      "known_kb_anchor": {
+        "summary": "战国照容用具。",
+        "category": "镜",
+        "location": "湖南长沙廖家湾出土",
+        "collection": "湖南省博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载考古发掘报告编号、档案号，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364778"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_043",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363428
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《黄朱柢鬲》（ID 363428）的铜、锡、铅等金属成分比例是多少？"
+        }
+      ],
+      "expected_assertions": [
+        "黄朱柢鬲",
+        "???",
+        "???",
+        "金属成分比例、材料检测数据"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "chemical_composition",
+      "missing_info": "金属成分比例、材料检测数据",
+      "known_kb_anchor": {
+        "summary": "春秋早期肉食器。",
+        "category": "鬲",
+        "location": "湖北京山县苏家垅出土",
+        "collection": "湖北省博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载金属成分比例、材料检测数据，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363428"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_044",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363382
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《集􀅶侣􀅶鼎》（ID 363382）目前的保存状态、腐蚀等级和病害情况如何？"
+        }
+      ],
+      "expected_assertions": [
+        "集􀅶侣􀅶鼎",
+        "???",
+        "???",
+        "保存状态、腐蚀等级、病害情况"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "conservation_condition",
+      "missing_info": "保存状态、腐蚀等级、病害情况",
+      "known_kb_anchor": {
+        "summary": "战国晚期肉食器。",
+        "category": "鼎",
+        "location": "安徽寿县朱家集李三孤堆出土",
+        "collection": "安徽博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载保存状态、腐蚀等级、病害情况，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363382"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_045",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364362
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《龙兽纹盉》（ID 364362）是通过捐赠、征集还是购买进入现藏机构的？"
+        }
+      ],
+      "expected_assertions": [
+        "龙兽纹盉",
+        "???",
+        "???",
+        "入藏方式、捐赠者、征集或购买记录"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "donor_acquisition",
+      "missing_info": "入藏方式、捐赠者、征集或购买记录",
+      "known_kb_anchor": {
+        "summary": "战国早期调酒器。",
+        "category": "盉",
+        "location": "浙江绍兴狮子山越国墓地出土",
+        "collection": "浙江省博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏方式、捐赠者、征集或购买记录，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364362"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_046",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364825
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《黄龙二年神人神兽纹镜》（ID 364825）现在陈列在哪个展厅、展柜或展线位置？"
+        }
+      ],
+      "expected_assertions": [
+        "黄龙二年神人神兽纹镜",
+        "???",
+        "???",
+        "当前展厅、展柜、展线位置"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "current_display_hall",
+      "missing_info": "当前展厅、展柜、展线位置",
+      "known_kb_anchor": {
+        "summary": "三国吴照容用具。",
+        "category": "镜",
+        "location": "湖北鄂城（今鄂州）西山铁矿出土",
+        "collection": "鄂州市博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前展厅、展柜、展线位置，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364825"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_047",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363899
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《波曲纹杯》（ID 363899）是否有公开的三维扫描模型或数字藏品编号？"
+        }
+      ],
+      "expected_assertions": [
+        "波曲纹杯",
+        "???",
+        "???",
+        "三维扫描模型、数字藏品编号"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "digital_3d_model",
+      "missing_info": "三维扫描模型、数字藏品编号",
+      "known_kb_anchor": {
+        "summary": "西周中期饮酒器。",
+        "category": "杯",
+        "location": "陕西长安张家坡出土",
+        "collection": "陕西历史博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载三维扫描模型、数字藏品编号，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363899"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_048",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364131
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《交龙纹立鹤壶》（ID 364131）近十年是否外借到其他博物馆展出？外借记录是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "交龙纹立鹤壶",
+        "???",
+        "???",
+        "近十年外借展出记录"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "loan_history",
+      "missing_info": "近十年外借展出记录",
+      "known_kb_anchor": {
+        "summary": "春秋晚期盛酒器。",
+        "category": "壶",
+        "location": "河南新郑李家楼出土",
+        "collection": "于北京故宫博物院和河南博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载近十年外借展出记录，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364131"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_049",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364740
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《羊灯》（ID 364740）现在大概值多少钱？"
+        }
+      ],
+      "expected_assertions": [
+        "羊灯",
+        "???",
+        "???",
+        "市场价格、估价范围"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "price_then_refusal",
+      "missing_info": "市场价格、估价范围",
+      "known_kb_anchor": {
+        "summary": "西汉照明用具。",
+        "category": "灯",
+        "location": "河北满城陵山中山靖王刘胜墓出土",
+        "collection": "河北博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、估价范围，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364740"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_049",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364740
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "如果知识库没写价格，你能不能根据年代和稀有程度估一个范围？"
+        }
+      ],
+      "expected_assertions": [
+        "羊灯",
+        "???",
+        "???",
+        "市场价格、估价范围"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "price_then_refusal",
+      "missing_info": "市场价格、估价范围",
+      "known_kb_anchor": {
+        "summary": "西汉照明用具。",
+        "category": "灯",
+        "location": "河北满城陵山中山靖王刘胜墓出土",
+        "collection": "河北博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、估价范围，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364740"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_050",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363276
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《不栺方鼎》（ID 363276）是否做过修复？"
+        }
+      ],
+      "expected_assertions": [
+        "不栺方鼎",
+        "???",
+        "???",
+        "修复记录、修复材料、修复前后差异"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "repair_then_detail",
+      "missing_info": "修复记录、修复材料、修复前后差异",
+      "known_kb_anchor": {
+        "summary": "西周中期肉食器。",
+        "category": "鼎",
+        "location": "陕西扶风齐镇村出土",
+        "collection": "扶风县博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复材料、修复前后差异，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363276"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_050",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363276
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请继续说明修复前后的差异和修复材料。"
+        }
+      ],
+      "expected_assertions": [
+        "不栺方鼎",
+        "???",
+        "???",
+        "修复记录、修复材料、修复前后差异"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "repair_then_detail",
+      "missing_info": "修复记录、修复材料、修复前后差异",
+      "known_kb_anchor": {
+        "summary": "西周中期肉食器。",
+        "category": "鼎",
+        "location": "陕西扶风齐镇村出土",
+        "collection": "扶风县博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复材料、修复前后差异，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363276"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_051",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364906
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《嘉庆七年慎思堂铸东莱宝镜》（ID 364906）参加过哪些重要展览？"
+        }
+      ],
+      "expected_assertions": [
+        "嘉庆七年慎思堂铸东莱宝镜",
+        "???",
+        "???",
+        "展览史、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_then_year",
+      "missing_info": "展览史、展览年份",
+      "known_kb_anchor": {
+        "summary": "清代照容用具。",
+        "category": "镜",
+        "location": null,
+        "collection": "中国国家博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364906"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_051",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364906
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请按年份列出这些展览。"
+        }
+      ],
+      "expected_assertions": [
+        "嘉庆七年慎思堂铸东莱宝镜",
+        "???",
+        "???",
+        "展览史、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_then_year",
+      "missing_info": "展览史、展览年份",
+      "known_kb_anchor": {
+        "summary": "清代照容用具。",
+        "category": "镜",
+        "location": null,
+        "collection": "中国国家博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364906"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_052",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364514
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《𰣫钟》（ID 364514）入藏前是谁收藏的？"
+        }
+      ],
+      "expected_assertions": [
+        "𰣫钟",
+        "???",
+        "???",
+        "入藏前收藏者、流转过程"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "owner_then_source",
+      "missing_info": "入藏前收藏者、流转过程",
+      "known_kb_anchor": {
+        "summary": "西周中期乐器。",
+        "category": "钟",
+        "location": "陕西扶风庄白村出土",
+        "collection": "周原文物管理所"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏前收藏者、流转过程，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364514"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_052",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364514
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "它从私人收藏转入博物馆的过程是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "𰣫钟",
+        "???",
+        "???",
+        "入藏前收藏者、流转过程"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "owner_then_source",
+      "missing_info": "入藏前收藏者、流转过程",
+      "known_kb_anchor": {
+        "summary": "西周中期乐器。",
+        "category": "钟",
+        "location": "陕西扶风庄白村出土",
+        "collection": "周原文物管理所"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏前收藏者、流转过程，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364514"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_053",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363611
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《𰣫簋》（ID 363611）的铸造者是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "𰣫簋",
+        "???",
+        "???",
+        "铸造者、作坊、工匠群体"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "author_then_workshop",
+      "missing_info": "铸造者、作坊、工匠群体",
+      "known_kb_anchor": {
+        "summary": "西周中期饭食器。",
+        "category": "簋",
+        "location": "陕西扶风庄白村出土",
+        "collection": "周原博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载铸造者、作坊、工匠群体，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363611"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_053",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363611
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "它属于哪个具体作坊或工匠群体？"
+        }
+      ],
+      "expected_assertions": [
+        "𰣫簋",
+        "???",
+        "???",
+        "铸造者、作坊、工匠群体"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "author_then_workshop",
+      "missing_info": "铸造者、作坊、工匠群体",
+      "known_kb_anchor": {
+        "summary": "西周中期饭食器。",
+        "category": "簋",
+        "location": "陕西扶风庄白村出土",
+        "collection": "周原博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载铸造者、作坊、工匠群体，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363611"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_054",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363993
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《长子口尊》（ID 363993）现在在哪个展厅能看到？"
+        }
+      ],
+      "expected_assertions": [
+        "长子口尊",
+        "???",
+        "???",
+        "当前陈列展厅、参观路线"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "display_then_visit",
+      "missing_info": "当前陈列展厅、参观路线",
+      "known_kb_anchor": {
+        "summary": "西周早期盛酒器。",
+        "category": "尊",
+        "location": "河南鹿邑太清宫镇太清宫遗址出土",
+        "collection": "河南省文物考古研究院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前陈列展厅、参观路线，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363993"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_054",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363993
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "游客应该从哪个入口进入最方便？"
+        }
+      ],
+      "expected_assertions": [
+        "长子口尊",
+        "???",
+        "???",
+        "当前陈列展厅、参观路线"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "display_then_visit",
+      "missing_info": "当前陈列展厅、参观路线",
+      "known_kb_anchor": {
+        "summary": "西周早期盛酒器。",
+        "category": "尊",
+        "location": "河南鹿邑太清宫镇太清宫遗址出土",
+        "collection": "河南省文物考古研究院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前陈列展厅、参观路线，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363993"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_055",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363499
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《执簋》（ID 363499）现在大概值多少钱？"
+        }
+      ],
+      "expected_assertions": [
+        "执簋",
+        "???",
+        "???",
+        "市场价格、估价范围"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "price_then_refusal",
+      "missing_info": "市场价格、估价范围",
+      "known_kb_anchor": {
+        "summary": "商代晚期饭食器。",
+        "category": "簋",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、估价范围，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363499"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_055",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363499
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "如果知识库没写价格，你能不能根据年代和稀有程度估一个范围？"
+        }
+      ],
+      "expected_assertions": [
+        "执簋",
+        "???",
+        "???",
+        "市场价格、估价范围"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "price_then_refusal",
+      "missing_info": "市场价格、估价范围",
+      "known_kb_anchor": {
+        "summary": "商代晚期饭食器。",
+        "category": "簋",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、估价范围，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363499"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_056",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363358
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《镶嵌卷龙纹鼎》（ID 363358）是否做过修复？"
+        }
+      ],
+      "expected_assertions": [
+        "镶嵌卷龙纹鼎",
+        "???",
+        "???",
+        "修复记录、修复材料、修复前后差异"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "repair_then_detail",
+      "missing_info": "修复记录、修复材料、修复前后差异",
+      "known_kb_anchor": {
+        "summary": "春秋晚期肉食器。",
+        "category": "鼎",
+        "location": "山西浑源李峪村出土",
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复材料、修复前后差异，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363358"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_056",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363358
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请继续说明修复前后的差异和修复材料。"
+        }
+      ],
+      "expected_assertions": [
+        "镶嵌卷龙纹鼎",
+        "???",
+        "???",
+        "修复记录、修复材料、修复前后差异"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "repair_then_detail",
+      "missing_info": "修复记录、修复材料、修复前后差异",
+      "known_kb_anchor": {
+        "summary": "春秋晚期肉食器。",
+        "category": "鼎",
+        "location": "山西浑源李峪村出土",
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复材料、修复前后差异，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363358"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_057",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364836
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《四灵十二支神纹镜》（ID 364836）参加过哪些重要展览？"
+        }
+      ],
+      "expected_assertions": [
+        "四灵十二支神纹镜",
+        "???",
+        "???",
+        "展览史、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_then_year",
+      "missing_info": "展览史、展览年份",
+      "known_kb_anchor": {
+        "summary": "南北朝照容用具。",
+        "category": "镜",
+        "location": "河南洛阳庞家沟出土",
+        "collection": "洛阳博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364836"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_057",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364836
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请按年份列出这些展览。"
+        }
+      ],
+      "expected_assertions": [
+        "四灵十二支神纹镜",
+        "???",
+        "???",
+        "展览史、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_then_year",
+      "missing_info": "展览史、展览年份",
+      "known_kb_anchor": {
+        "summary": "南北朝照容用具。",
+        "category": "镜",
+        "location": "河南洛阳庞家沟出土",
+        "collection": "洛阳博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364836"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_058",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364212
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《庚姬卣》（ID 364212）入藏前是谁收藏的？"
+        }
+      ],
+      "expected_assertions": [
+        "庚姬卣",
+        "???",
+        "???",
+        "入藏前收藏者、流转过程"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "owner_then_source",
+      "missing_info": "入藏前收藏者、流转过程",
+      "known_kb_anchor": {
+        "summary": "西周早期盛酒器。又名商卣。",
+        "category": "卣",
+        "location": "陕西扶风庄白村出土",
+        "collection": "周原文物管理所"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏前收藏者、流转过程，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364212"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_058",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364212
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "它从私人收藏转入博物馆的过程是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "庚姬卣",
+        "???",
+        "???",
+        "入藏前收藏者、流转过程"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "owner_then_source",
+      "missing_info": "入藏前收藏者、流转过程",
+      "known_kb_anchor": {
+        "summary": "西周早期盛酒器。又名商卣。",
+        "category": "卣",
+        "location": "陕西扶风庄白村出土",
+        "collection": "周原文物管理所"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏前收藏者、流转过程，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364212"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_059",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363517
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《甲簋》（ID 363517）的铸造者是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "甲簋",
+        "???",
+        "???",
+        "铸造者、作坊、工匠群体"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "author_then_workshop",
+      "missing_info": "铸造者、作坊、工匠群体",
+      "known_kb_anchor": {
+        "summary": "西周早期饭食器。",
+        "category": "簋",
+        "location": "传1927年陕西宝鸡灵山戴家湾出土",
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载铸造者、作坊、工匠群体，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363517"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_059",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363517
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "它属于哪个具体作坊或工匠群体？"
+        }
+      ],
+      "expected_assertions": [
+        "甲簋",
+        "???",
+        "???",
+        "铸造者、作坊、工匠群体"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "author_then_workshop",
+      "missing_info": "铸造者、作坊、工匠群体",
+      "known_kb_anchor": {
+        "summary": "西周早期饭食器。",
+        "category": "簋",
+        "location": "传1927年陕西宝鸡灵山戴家湾出土",
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载铸造者、作坊、工匠群体，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363517"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_060",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364272
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《凤纹牺觥》（ID 364272）现在在哪个展厅能看到？"
+        }
+      ],
+      "expected_assertions": [
+        "凤纹牺觥",
+        "???",
+        "???",
+        "当前陈列展厅、参观路线"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "display_then_visit",
+      "missing_info": "当前陈列展厅、参观路线",
+      "known_kb_anchor": {
+        "summary": "商代晚期盛酒器。原名牛尊。",
+        "category": "觥",
+        "location": "湖南衡阳出土",
+        "collection": "湖南省博物馆、上海博物馆和美国福格博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前陈列展厅、参观路线，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364272"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_060",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364272
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "游客应该从哪个入口进入最方便？"
+        }
+      ],
+      "expected_assertions": [
+        "凤纹牺觥",
+        "???",
+        "???",
+        "当前陈列展厅、参观路线"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "display_then_visit",
+      "missing_info": "当前陈列展厅、参观路线",
+      "known_kb_anchor": {
+        "summary": "商代晚期盛酒器。原名牛尊。",
+        "category": "觥",
+        "location": "湖南衡阳出土",
+        "collection": "湖南省博物馆、上海博物馆和美国福格博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前陈列展厅、参观路线，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364272"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_061",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364333
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《大保盉》（ID 364333）现在大概值多少钱？"
+        }
+      ],
+      "expected_assertions": [
+        "大保盉",
+        "???",
+        "???",
+        "市场价格、估价范围"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "price_then_refusal",
+      "missing_info": "市场价格、估价范围",
+      "known_kb_anchor": {
+        "summary": "西周早期调酒器。",
+        "category": "盉",
+        "location": "北京房山琉璃河出土",
+        "collection": "北京市文物研究所"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、估价范围，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364333"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_061",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364333
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "如果知识库没写价格，你能不能根据年代和稀有程度估一个范围？"
+        }
+      ],
+      "expected_assertions": [
+        "大保盉",
+        "???",
+        "???",
+        "市场价格、估价范围"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "price_then_refusal",
+      "missing_info": "市场价格、估价范围",
+      "known_kb_anchor": {
+        "summary": "西周早期调酒器。",
+        "category": "盉",
+        "location": "北京房山琉璃河出土",
+        "collection": "北京市文物研究所"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、估价范围，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364333"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_062",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364799
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《彩绘人物车马镜》（ID 364799）是否做过修复？"
+        }
+      ],
+      "expected_assertions": [
+        "彩绘人物车马镜",
+        "???",
+        "???",
+        "修复记录、修复材料、修复前后差异"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "repair_then_detail",
+      "missing_info": "修复记录、修复材料、修复前后差异",
+      "known_kb_anchor": {
+        "summary": "西汉照容用具。",
+        "category": "镜",
+        "location": "陕西西安红庙坡出土",
+        "collection": "西安市文物管理委员会"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复材料、修复前后差异，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364799"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_062",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364799
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请继续说明修复前后的差异和修复材料。"
+        }
+      ],
+      "expected_assertions": [
+        "彩绘人物车马镜",
+        "???",
+        "???",
+        "修复记录、修复材料、修复前后差异"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "repair_then_detail",
+      "missing_info": "修复记录、修复材料、修复前后差异",
+      "known_kb_anchor": {
+        "summary": "西汉照容用具。",
+        "category": "镜",
+        "location": "陕西西安红庙坡出土",
+        "collection": "西安市文物管理委员会"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复材料、修复前后差异，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364799"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_063",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364094
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《兽目交连纹壶》（ID 364094）参加过哪些重要展览？"
+        }
+      ],
+      "expected_assertions": [
+        "兽目交连纹壶",
+        "???",
+        "???",
+        "展览史、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_then_year",
+      "missing_info": "展览史、展览年份",
+      "known_kb_anchor": {
+        "summary": "西周晚期盛酒器。",
+        "category": "壶",
+        "location": "山西曲沃曲村晋侯墓地出土",
+        "collection": "山西省考古研究院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364094"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_063",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364094
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请按年份列出这些展览。"
+        }
+      ],
+      "expected_assertions": [
+        "兽目交连纹壶",
+        "???",
+        "???",
+        "展览史、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_then_year",
+      "missing_info": "展览史、展览年份",
+      "known_kb_anchor": {
+        "summary": "西周晚期盛酒器。",
+        "category": "壶",
+        "location": "山西曲沃曲村晋侯墓地出土",
+        "collection": "山西省考古研究院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364094"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_064",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364096
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《虞侯政壶》（ID 364096）入藏前是谁收藏的？"
+        }
+      ],
+      "expected_assertions": [
+        "虞侯政壶",
+        "???",
+        "???",
+        "入藏前收藏者、流转过程"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "owner_then_source",
+      "missing_info": "入藏前收藏者、流转过程",
+      "known_kb_anchor": {
+        "summary": "西周晚期盛酒器。",
+        "category": "壶",
+        "location": null,
+        "collection": "山西博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏前收藏者、流转过程，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364096"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_064",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364096
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "它从私人收藏转入博物馆的过程是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "虞侯政壶",
+        "???",
+        "???",
+        "入藏前收藏者、流转过程"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "owner_then_source",
+      "missing_info": "入藏前收藏者、流转过程",
+      "known_kb_anchor": {
+        "summary": "西周晚期盛酒器。",
+        "category": "壶",
+        "location": null,
+        "collection": "山西博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏前收藏者、流转过程，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364096"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_065",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363224
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《师旂鼎》（ID 363224）的铸造者是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "师旂鼎",
+        "???",
+        "???",
+        "铸造者、作坊、工匠群体"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "author_then_workshop",
+      "missing_info": "铸造者、作坊、工匠群体",
+      "known_kb_anchor": {
+        "summary": "西周早期肉食器。",
+        "category": "鼎",
+        "location": null,
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载铸造者、作坊、工匠群体，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363224"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_065",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363224
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "它属于哪个具体作坊或工匠群体？"
+        }
+      ],
+      "expected_assertions": [
+        "师旂鼎",
+        "???",
+        "???",
+        "铸造者、作坊、工匠群体"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "author_then_workshop",
+      "missing_info": "铸造者、作坊、工匠群体",
+      "known_kb_anchor": {
+        "summary": "西周早期肉食器。",
+        "category": "鼎",
+        "location": null,
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载铸造者、作坊、工匠群体，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363224"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_066",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364748
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《同心圆弦纹镜》（ID 364748）现在在哪个展厅能看到？"
+        }
+      ],
+      "expected_assertions": [
+        "同心圆弦纹镜",
+        "???",
+        "???",
+        "当前陈列展厅、参观路线"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "display_then_visit",
+      "missing_info": "当前陈列展厅、参观路线",
+      "known_kb_anchor": {
+        "summary": "商代晚期照容用具。",
+        "category": "镜",
+        "location": "河南安阳殷墟妇好墓出土",
+        "collection": "中国国家博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前陈列展厅、参观路线，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364748"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_066",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        364748
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "游客应该从哪个入口进入最方便？"
+        }
+      ],
+      "expected_assertions": [
+        "同心圆弦纹镜",
+        "???",
+        "???",
+        "当前陈列展厅、参观路线"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "display_then_visit",
+      "missing_info": "当前陈列展厅、参观路线",
+      "known_kb_anchor": {
+        "summary": "商代晚期照容用具。",
+        "category": "镜",
+        "location": "河南安阳殷墟妇好墓出土",
+        "collection": "中国国家博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前陈列展厅、参观路线，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_364748"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_067",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363911
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《乳钉纹斝》（ID 363911）现在大概值多少钱？"
+        }
+      ],
+      "expected_assertions": [
+        "乳钉纹斝",
+        "???",
+        "???",
+        "市场价格、估价范围"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "price_then_refusal",
+      "missing_info": "市场价格、估价范围",
+      "known_kb_anchor": {
+        "summary": "夏代晚期祼酒器。",
+        "category": "斝",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、估价范围，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363911"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_067",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363911
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "如果知识库没写价格，你能不能根据年代和稀有程度估一个范围？"
+        }
+      ],
+      "expected_assertions": [
+        "乳钉纹斝",
+        "???",
+        "???",
+        "市场价格、估价范围"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "price_then_refusal",
+      "missing_info": "市场价格、估价范围",
+      "known_kb_anchor": {
+        "summary": "夏代晚期祼酒器。",
+        "category": "斝",
+        "location": null,
+        "collection": "上海博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载市场价格、估价范围，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363911"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_068",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363648
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《不𡢁簋》（ID 363648）是否做过修复？"
+        }
+      ],
+      "expected_assertions": [
+        "不𡢁簋",
+        "???",
+        "???",
+        "修复记录、修复材料、修复前后差异"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "repair_then_detail",
+      "missing_info": "修复记录、修复材料、修复前后差异",
+      "known_kb_anchor": {
+        "summary": "西周晚期饭食器。",
+        "category": "簋",
+        "location": "盖早年出土",
+        "collection": "中国国家博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复材料、修复前后差异，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363648"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_068",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363648
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请继续说明修复前后的差异和修复材料。"
+        }
+      ],
+      "expected_assertions": [
+        "不𡢁簋",
+        "???",
+        "???",
+        "修复记录、修复材料、修复前后差异"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "repair_then_detail",
+      "missing_info": "修复记录、修复材料、修复前后差异",
+      "known_kb_anchor": {
+        "summary": "西周晚期饭食器。",
+        "category": "簋",
+        "location": "盖早年出土",
+        "collection": "中国国家博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载修复记录、修复材料、修复前后差异，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363648"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_069",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363731
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《交龙纹敦》（ID 363731）参加过哪些重要展览？"
+        }
+      ],
+      "expected_assertions": [
+        "交龙纹敦",
+        "???",
+        "???",
+        "展览史、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_then_year",
+      "missing_info": "展览史、展览年份",
+      "known_kb_anchor": {
+        "summary": "春秋晚期盛食器。",
+        "category": "敦",
+        "location": "山东莒县中楼乡于家沟村出土",
+        "collection": "莒县博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363731"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_069",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363731
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "请按年份列出这些展览。"
+        }
+      ],
+      "expected_assertions": [
+        "交龙纹敦",
+        "???",
+        "???",
+        "展览史、展览年份"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "exhibition_then_year",
+      "missing_info": "展览史、展览年份",
+      "known_kb_anchor": {
+        "summary": "春秋晚期盛食器。",
+        "category": "敦",
+        "location": "山东莒县中楼乡于家沟村出土",
+        "collection": "莒县博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载展览史、展览年份，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363731"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_070",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363909
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《火纹斝》（ID 363909）入藏前是谁收藏的？"
+        }
+      ],
+      "expected_assertions": [
+        "火纹斝",
+        "???",
+        "???",
+        "入藏前收藏者、流转过程"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "owner_then_source",
+      "missing_info": "入藏前收藏者、流转过程",
+      "known_kb_anchor": {
+        "summary": "夏代晚期祼酒器。",
+        "category": "斝",
+        "location": "河南偃师二里头出土",
+        "collection": "中国社会科学院考古研究所"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏前收藏者、流转过程，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363909"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_070",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363909
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "它从私人收藏转入博物馆的过程是什么？"
+        }
+      ],
+      "expected_assertions": [
+        "火纹斝",
+        "???",
+        "???",
+        "入藏前收藏者、流转过程"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "owner_then_source",
+      "missing_info": "入藏前收藏者、流转过程",
+      "known_kb_anchor": {
+        "summary": "夏代晚期祼酒器。",
+        "category": "斝",
+        "location": "河南偃师二里头出土",
+        "collection": "中国社会科学院考古研究所"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载入藏前收藏者、流转过程，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363909"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_071",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363182
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《乳钉雷纹鼎》（ID 363182）的铸造者是谁？"
+        }
+      ],
+      "expected_assertions": [
+        "乳钉雷纹鼎",
+        "???",
+        "???",
+        "铸造者、作坊、工匠群体"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "author_then_workshop",
+      "missing_info": "铸造者、作坊、工匠群体",
+      "known_kb_anchor": {
+        "summary": "商代晚期肉食器。",
+        "category": "鼎",
+        "location": "陕西岐山贺家村出土",
+        "collection": "陕西历史博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载铸造者、作坊、工匠群体，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363182"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_071",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363182
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "它属于哪个具体作坊或工匠群体？"
+        }
+      ],
+      "expected_assertions": [
+        "乳钉雷纹鼎",
+        "???",
+        "???",
+        "铸造者、作坊、工匠群体"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "author_then_workshop",
+      "missing_info": "铸造者、作坊、工匠群体",
+      "known_kb_anchor": {
+        "summary": "商代晚期肉食器。",
+        "category": "鼎",
+        "location": "陕西岐山贺家村出土",
+        "collection": "陕西历史博物馆"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载铸造者、作坊、工匠群体，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363182"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_072",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363772
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "《伯盂》（ID 363772）现在在哪个展厅能看到？"
+        }
+      ],
+      "expected_assertions": [
+        "伯盂",
+        "???",
+        "???",
+        "当前陈列展厅、参观路线"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "display_then_visit",
+      "missing_info": "当前陈列展厅、参观路线",
+      "known_kb_anchor": {
+        "summary": "西周中期饭食器。",
+        "category": "盂",
+        "location": null,
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前陈列展厅、参观路线，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363772"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    },
+    {
+      "test_id": "NOE_072",
+      "test_category": "no_evidence_question",
+      "goal": "?????????????????????????????????????????????",
+      "difficulty": 3,
+      "target_item_ids": [
+        363772
+      ],
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "游客应该从哪个入口进入最方便？"
+        }
+      ],
+      "expected_assertions": [
+        "伯盂",
+        "???",
+        "???",
+        "当前陈列展厅、参观路线"
+      ],
+      "hallucination_risk": "?",
+      "noe_type": "display_then_visit",
+      "missing_info": "当前陈列展厅、参观路线",
+      "known_kb_anchor": {
+        "summary": "西周中期饭食器。",
+        "category": "盂",
+        "location": null,
+        "collection": "北京故宫博物院"
+      },
+      "expected_behavior": "系统应明确说明知识库未记载当前陈列展厅、参观路线，不能编造、估算或用常识补全；若可回答，应仅基于知识库中已有的时代、器类、尺寸、出土地点、馆藏等信息进行限定性说明。",
+      "memory_expectation": {
+        "should_acknowledge_missing_info": true,
+        "should_fabricate_missing_info": false,
+        "should_write_unverified_answer_to_memory": false,
+        "should_mark_claim_as_unsupported": true,
+        "allowed_memory_action": [
+          "REJECT",
+          "QUARANTINE",
+          "MISSING_INFO_NOTE"
+        ],
+        "forbidden_memory_action": [
+          "INSERT_AS_VERIFIED_KNOWLEDGE",
+          "MERGE_INTO_ACTIVE_MEMORY"
+        ]
+      },
+      "evaluation_points": [
+        "是否明确指出知识库未记载相关信息",
+        "是否避免编造价格、作者、展览史、修复记录等缺失内容",
+        "是否避免使用常识或推测替代知识库证据",
+        "是否避免将无依据回答写入共享记忆或长期知识",
+        "是否在必要时转而提供知识库已记载的有限信息"
+      ],
+      "memory_graph_expectation": {
+        "must_retrieve_kb_ids": [
+          "KB_363772"
+        ],
+        "must_cite_or_use_memory_ids": [],
+        "forbid_write_unverified_memory": true,
+        "expected_edges": [
+          "retrieved",
+          "contradicted_by"
+        ]
+      },
+      "evaluation_tags": [
+        "?????",
+        "????",
+        "????"
+      ]
+    }
+  ]
+}

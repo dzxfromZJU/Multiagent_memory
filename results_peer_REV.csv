@@ -1,0 +1,41 @@
+test_id,test_category,difficulty,hallucination_risk,assertion_pass_rate,retrieved_memory_count,used_memory_count,retrieval_log_count,usage_log_count,graph_edge_count,verifier_log_count,elapsed_seconds,error
+REV_001,correction_repair_test,5,??,0.5,37,3,7,2,70,1,284.536,
+REV_002,correction_repair_test,5,??,0.5,37,1,7,2,67,1,308.002,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REV_003,correction_repair_test,5,??,0.5,30,2,7,4,88,2,319.609,
+REV_004,correction_repair_test,5,??,0.5,39,13,8,6,120,6,456.067,
+REV_005,correction_repair_test,5,??,0.0,37,7,7,6,110,5,397.109,
+REV_006,correction_repair_test,5,??,0.5,34,6,7,5,96,5,348.089,
+REV_007,correction_repair_test,5,??,0.5,33,9,7,7,112,5,300.61,
+REV_008,correction_repair_test,5,??,0.5,28,5,8,4,95,3,352.677,
+REV_009,correction_repair_test,5,??,0.5,31,5,7,4,88,4,358.248,
+REV_010,correction_repair_test,5,??,0.0,32,3,7,5,84,4,301.437,
+REV_011,correction_repair_test,5,??,0.5,11,0,3,0,27,0,158.097,[Errno 22] Invalid argument: 'vector_db_bronze_peer\\id_to_text.pkl'
+REV_012,correction_repair_test,5,??,0.0,26,7,8,6,102,4,496.499,
+REV_013,correction_repair_test,5,??,0.5,29,7,7,4,92,3,477.611,
+REV_014,correction_repair_test,5,??,0.5,26,8,7,4,87,2,415.968,
+REV_015,correction_repair_test,5,??,0.5,27,7,7,4,86,2,379.114,
+REV_016,correction_repair_test,5,??,0.5,26,8,8,3,96,3,586.279,
+REV_017,correction_repair_test,5,??,0.5,28,15,7,4,110,4,586.778,
+REV_018,correction_repair_test,5,??,0.0,29,15,7,4,111,4,653.939,
+REV_019,correction_repair_test,5,??,0.5,27,7,7,6,94,5,468.237,
+REV_020,correction_repair_test,5,??,0.5,25,13,8,5,120,4,508.182,Error in __cdecl faiss::FileIOWriter::FileIOWriter(const char *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\impl\io.cpp:104: Error: 'f' failed: could not open vector_db_bronze_peer\index.faiss for writing: Invalid argument
+REV_021,correction_repair_test,5,??,0.5,25,15,7,4,119,4,542.026,
+REV_022,correction_repair_test,5,??,0.5,26,16,7,5,121,3,571.156,
+REV_023,correction_repair_test,5,??,0.5,28,12,7,6,130,5,526.476,
+REV_024,correction_repair_test,5,??,0.5,24,14,8,7,148,6,460.002,
+REV_025,correction_repair_test,5,??,0.0,26,18,7,6,123,5,442.695,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REV_026,correction_repair_test,5,??,0.0,8,1,1,1,9,0,54.039,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REV_027,correction_repair_test,5,??,0.5,25,12,7,7,130,6,506.966,
+REV_028,correction_repair_test,5,??,0.0,29,15,8,6,127,4,568.237,
+REV_029,correction_repair_test,5,??,0.5,29,13,7,6,111,5,635.54,
+REV_030,correction_repair_test,5,??,0.5,14,2,2,2,23,1,133.899,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REV_031,correction_repair_test,5,??,0.0,25,2,7,4,75,1,399.587,
+REV_032,correction_repair_test,5,??,0.5,26,12,8,5,130,4,571.318,
+REV_033,correction_repair_test,5,??,0.5,30,18,7,6,127,5,396.9,
+REV_034,correction_repair_test,5,??,0.5,21,10,7,3,95,2,436.349,
+REV_035,correction_repair_test,5,??,0.0,24,9,7,2,74,1,451.782,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REV_036,correction_repair_test,5,??,0.5,31,13,8,3,91,2,503.657,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REV_037,correction_repair_test,5,??,0.5,30,9,7,2,83,2,473.394,
+REV_038,correction_repair_test,5,??,0.5,26,13,7,6,122,6,512.789,
+REV_039,correction_repair_test,5,??,0.0,26,1,7,3,75,3,442.293,
+REV_040,correction_repair_test,5,??,0.5,21,7,4,4,56,3,224.853,[Errno 22] Invalid argument: 'bronze_memory_peer.json'

@@ -1,0 +1,49 @@
+test_id,test_category,difficulty,hallucination_risk,assertion_pass_rate,retrieved_memory_count,used_memory_count,retrieval_log_count,usage_log_count,graph_edge_count,verifier_log_count,elapsed_seconds,error
+REP_001,repetition_reinforcement_induction,4,??,0.5,28,6,6,4,77,3,382.208,
+REP_002,repetition_reinforcement_induction,4,??,0.5,24,2,6,3,69,3,429.51,
+REP_003,repetition_reinforcement_induction,4,??,0.5,24,2,7,4,74,2,410.959,
+REP_004,repetition_reinforcement_induction,4,??,0.5,24,6,6,5,83,3,421.009,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REP_005,repetition_reinforcement_induction,4,??,0.5,23,2,6,2,63,2,377.025,
+REP_006,repetition_reinforcement_induction,4,??,0.5,17,6,7,7,126,6,511.223,
+REP_007,repetition_reinforcement_induction,4,??,0.5,16,2,6,4,69,2,329.454,
+REP_008,repetition_reinforcement_induction,4,??,0.5,13,8,6,5,93,4,335.654,
+REP_009,repetition_reinforcement_induction,4,??,0.5,13,9,7,6,108,5,400.407,
+REP_010,repetition_reinforcement_induction,4,??,0.0,16,3,6,3,69,3,356.342,
+REP_011,repetition_reinforcement_induction,4,??,0.0,19,1,6,3,60,0,295.039,
+REP_012,repetition_reinforcement_induction,4,??,0.0,18,10,7,5,98,4,322.542,
+REP_013,repetition_reinforcement_induction,4,??,0.5,22,4,6,3,76,3,344.692,
+REP_014,repetition_reinforcement_induction,4,??,0.5,19,3,6,3,69,2,371.341,
+REP_015,repetition_reinforcement_induction,4,??,0.5,16,6,7,5,99,4,370.001,
+REP_016,repetition_reinforcement_induction,4,??,0.5,18,4,6,6,92,5,280.046,
+REP_017,repetition_reinforcement_induction,4,??,0.5,14,2,6,2,62,1,247.27,
+REP_018,repetition_reinforcement_induction,4,??,0.0,14,3,7,6,92,2,394.588,
+REP_019,repetition_reinforcement_induction,4,??,0.5,11,1,6,4,64,1,291.41,
+REP_020,repetition_reinforcement_induction,4,??,0.5,13,1,6,4,68,3,303.548,
+REP_021,repetition_reinforcement_induction,4,??,0.5,20,4,7,7,107,3,308.645,
+REP_022,repetition_reinforcement_induction,4,??,0.5,11,2,4,3,48,2,176.622,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REP_023,repetition_reinforcement_induction,4,??,0.0,17,4,6,6,78,4,275.56,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REP_024,repetition_reinforcement_induction,4,??,0.5,15,2,3,3,36,2,143.995,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REP_025,repetition_reinforcement_induction,4,??,0.0,13,1,3,2,33,2,153.117,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REP_026,repetition_reinforcement_induction,4,??,0.5,17,1,6,2,62,2,345.491,
+REP_027,repetition_reinforcement_induction,4,??,0.5,17,1,7,4,75,2,329.863,
+REP_028,repetition_reinforcement_induction,4,??,0.5,19,4,6,4,80,4,277.796,
+REP_029,repetition_reinforcement_induction,4,??,0.5,17,4,5,4,71,3,237.851,[Errno 22] Invalid argument: 'vector_db_bronze_peer\\id_to_text.pkl'
+REP_030,repetition_reinforcement_induction,4,??,0.0,8,1,1,1,9,0,35.284,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REP_031,repetition_reinforcement_induction,4,??,0.5,19,2,6,3,65,2,271.621,
+REP_032,repetition_reinforcement_induction,4,??,0.5,20,4,6,4,72,1,273.003,Error in __cdecl faiss::FileIOWriter::FileIOWriter(const char *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\impl\io.cpp:104: Error: 'f' failed: could not open vector_db_bronze_peer\index.faiss for writing: Invalid argument
+REP_033,repetition_reinforcement_induction,4,??,0.0,20,6,7,7,112,6,315.989,
+REP_034,repetition_reinforcement_induction,4,??,0.5,24,5,6,5,88,5,307.659,
+REP_035,repetition_reinforcement_induction,4,??,0.5,14,1,6,4,68,3,273.486,
+REP_036,repetition_reinforcement_induction,4,??,0.5,21,2,6,5,73,5,335.74,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REP_037,repetition_reinforcement_induction,4,??,0.0,8,0,1,0,8,0,41.314,Connection error.
+REP_038,repetition_reinforcement_induction,4,??,0.5,19,4,6,5,85,4,322.247,
+REP_039,repetition_reinforcement_induction,4,??,0.0,17,2,7,5,77,1,255.61,
+REP_040,repetition_reinforcement_induction,4,??,0.5,20,2,6,6,73,2,184.708,
+REP_041,repetition_reinforcement_induction,4,??,0.5,18,3,6,6,87,3,239.935,
+REP_042,repetition_reinforcement_induction,4,??,0.5,26,3,7,7,97,5,271.097,
+REP_043,repetition_reinforcement_induction,4,??,0.5,19,2,6,4,66,2,218.366,
+REP_044,repetition_reinforcement_induction,4,??,0.5,15,3,4,3,44,1,153.732,[Errno 22] Invalid argument: 'bronze_memory_peer.json'
+REP_045,repetition_reinforcement_induction,4,??,0.5,16,5,7,2,80,2,266.551,
+REP_046,repetition_reinforcement_induction,4,??,0.0,18,1,6,2,60,1,204.627,
+REP_047,repetition_reinforcement_induction,4,??,0.5,18,5,6,5,82,2,264.795,
+REP_048,repetition_reinforcement_induction,4,??,0.5,20,8,7,6,111,6,303.634,

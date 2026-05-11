@@ -1,0 +1,32 @@
+{
+  "graph_db": "propagation_graph.sqlite3",
+  "nodes": {
+    "Agent": 5,
+    "Answer": 437,
+    "Claim": 12730,
+    "EditedKnowledge": 1163,
+    "Editor": 1,
+    "KBItem": 1810,
+    "Memory": 2175,
+    "Question": 437,
+    "Turn": 437
+  },
+  "edges": {
+    "answers": 437,
+    "asks": 437,
+    "cited": 125,
+    "contains": 874,
+    "contaminates": 437,
+    "contradicted_by": 6,
+    "contradicts": 4508,
+    "derived_from": 501,
+    "extracts": 12730,
+    "promoted_to": 4868,
+    "rejected_by": 33,
+    "retrieved": 243,
+    "retrieves": 1803,
+    "supports": 10316,
+    "uses": 653,
+    "written_by": 2175
+  }
+}

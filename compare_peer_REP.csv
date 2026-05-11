@@ -1,0 +1,49 @@
+test_id,task,target_item_ids,source_row_count,baseline_valid,edited_valid,baseline_error,edited_error,baseline_turn_count,edited_turn_count,baseline_answer_length,edited_answer_length,edited_curated_turn_count,edited_curated_fact_count,baseline_write_edge_count,edited_write_edge_count,baseline_contradict_edge_count,edited_contradict_edge_count,baseline_repair_edge_count,edited_repair_edge_count,answer_delta,baseline_has_correction,baseline_correct_fact_recovered,baseline_false_claim_repeated_without_correction,baseline_false_claim_resistance,baseline_rep_score,edited_has_correction,edited_correct_fact_recovered,edited_false_claim_repeated_without_correction,edited_false_claim_resistance,edited_rep_score,edited_curated_covered,edited_reduced_write_edges,edited_added_contradiction_edges,edited_added_repair_edges,edited_score_delta,edited_improved,edited_regressed
+REP_001,REP,364481,6,True,True,,,6,6,2003,2441,0,0,13,20,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_002,REP,363756,6,False,True,Connection error.,,1,6,206,2357,0,0,4,17,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_003,REP,364625,7,False,True,Connection error.,,0,7,0,3670,0,0,0,14,0,0,0,0,edited_only,False,False,False,False,0,True,False,False,False,0,False,False,False,False,0,False,False
+REP_004,REP,363277,6,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',6,5,852,1980,0,0,22,23,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_005,REP,364262,6,True,True,,,6,6,1785,3011,0,0,23,12,0,0,0,0,changed,True,False,False,False,0,True,False,False,False,0,False,True,False,False,0,False,False
+REP_006,REP,363194,7,False,True,Connection error.,,0,7,0,3010,7,70,0,47,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,True,False,False,False,1,True,False
+REP_007,REP,364770,6,False,True,Connection error.,,0,6,0,2312,0,0,0,16,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,False,False,False,False,1,True,False
+REP_008,REP,363250,6,True,True,,,6,6,1250,1804,6,60,33,29,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,True,True,False,False,0,False,False
+REP_009,REP,363166,7,False,True,Connection error.,,3,7,950,2068,7,56,9,33,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,True,False,False,False,0,False,False
+REP_010,REP,363663,6,False,True,Connection error.,,0,6,0,1785,0,0,0,15,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,False,False,False,False,1,True,False
+REP_011,REP,364680,6,False,True,Connection error.,,0,6,0,1482,0,0,0,9,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,False,False,False,False,1,True,False
+REP_012,REP,363417,7,False,True,Connection error.,,0,7,0,1827,0,0,0,27,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,False,False,False,False,1,True,False
+REP_013,REP,363874,6,False,True,Connection error.,,0,6,0,2155,0,0,0,21,0,0,0,0,edited_only,False,False,False,False,0,True,False,False,False,0,False,False,False,False,0,False,False
+REP_014,REP,364287,6,False,True,Connection error.,,0,6,0,2415,0,0,0,15,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,False,False,False,False,1,True,False
+REP_015,REP,363457,7,False,True,Connection error.,,0,7,0,2788,0,0,0,30,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,False,False,False,False,1,True,False
+REP_016,REP,364620,6,False,True,Connection error.,,0,6,0,1035,0,0,0,31,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,False,False,False,False,1,True,False
+REP_017,REP,364131,6,False,True,Connection error.,,0,6,0,2614,0,0,0,11,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,False,False,False,False,1,True,False
+REP_018,REP,363950,7,False,True,Connection error.,,0,7,0,2561,0,0,0,24,0,0,0,0,edited_only,False,False,False,False,0,True,True,False,True,1,False,False,False,False,1,True,False
+REP_019,REP,363768,6,True,True,,,6,6,1665,2186,0,0,19,12,0,0,0,0,changed,True,False,False,False,0,True,True,False,True,1,False,True,False,False,1,True,False
+REP_020,REP,363569,6,False,True,Connection error.,,3,6,520,1666,0,0,12,16,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_021,REP,364176,7,False,True,Connection error.,,0,7,0,1715,0,0,0,32,0,0,0,0,edited_only,False,False,False,False,0,True,False,False,False,0,False,False,False,False,0,False,False
+REP_022,REP,363967,6,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',6,3,1445,988,0,0,21,8,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_023,REP,363697,6,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',6,5,2795,1270,0,0,15,20,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_024,REP,363872,7,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',7,2,4037,499,0,0,19,8,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_025,REP,363626,6,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',6,2,2779,770,0,0,15,5,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_026,REP,364250,6,True,True,,,6,6,3136,4391,0,0,17,12,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_027,REP,363355,7,True,True,,,7,7,3585,2892,0,0,19,15,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_028,REP,364193,6,True,True,,,6,6,1904,1889,0,0,15,24,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_029,REP,363512,6,True,False,,[Errno 22] Invalid argument: 'vector_db_bronze_peer\\id_to_text.pkl',6,4,3004,930,0,0,14,19,0,0,0,0,changed,True,False,False,False,0,True,False,False,False,0,False,False,False,False,0,False,False
+REP_030,REP,363687,7,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',7,0,2026,0,0,0,16,0,0,0,0,0,baseline_only,True,True,False,True,1,False,False,False,False,0,False,True,False,False,-1,False,True
+REP_031,REP,364632,6,True,True,,,6,6,1147,2412,0,0,22,13,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_032,REP,364367,6,True,False,,Error in __cdecl faiss::FileIOWriter::FileIOWriter(const char *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\impl\io.cpp:104: Error: 'f' failed: could not open vector_db_bronze_peer\index.faiss for writing: Invalid argument,6,5,2302,1742,0,0,24,15,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_033,REP,364719,7,True,True,,,7,7,2479,1223,0,0,34,36,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_034,REP,363556,6,False,True,[Errno 22] Invalid argument: 'bronze_memory_peer.json',,1,6,620,1847,0,0,2,29,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_035,REP,363399,6,True,True,,,6,6,1834,1842,0,0,12,16,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_036,REP,363196,7,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',7,5,1855,2063,5,50,18,17,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,True,True,False,False,0,False,False
+REP_037,REP,363464,6,True,False,,Connection error.,6,0,943,0,0,0,26,0,0,0,0,0,baseline_only,True,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+REP_038,REP,363897,6,True,True,,,6,6,1634,1525,0,0,18,26,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_039,REP,363386,7,True,True,,,7,7,1323,1995,0,0,29,14,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_040,REP,363866,6,True,True,,,6,6,1621,947,0,0,24,17,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_041,REP,363310,6,True,True,,,6,6,2400,1782,0,0,17,26,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_042,REP,363474,7,True,True,,,7,7,1378,1413,0,0,17,29,0,0,0,0,changed,True,False,False,False,0,True,False,False,False,0,False,False,False,False,0,False,False
+REP_043,REP,364652,6,True,True,,,6,6,734,1285,0,0,27,14,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_044,REP,364602,6,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',6,3,2364,1110,0,0,14,7,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_045,REP,364243,7,True,True,,,7,7,2030,2798,0,0,24,17,0,0,0,0,changed,True,False,False,False,0,True,False,False,False,0,False,True,False,False,0,False,False
+REP_046,REP,364038,6,True,True,,,6,6,959,2908,0,0,33,10,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,True,False,False,0,False,False
+REP_047,REP,364208,6,True,True,,,6,6,3254,2334,0,0,10,22,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,False,False,False,False,0,False,False
+REP_048,REP,363230,7,True,True,,,7,7,1617,1679,7,70,36,35,0,0,0,0,changed,True,True,False,True,1,True,True,False,True,1,True,True,False,False,0,False,False

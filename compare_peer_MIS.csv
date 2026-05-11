@@ -1,0 +1,73 @@
+test_id,task,target_item_ids,source_row_count,baseline_valid,edited_valid,baseline_error,edited_error,baseline_turn_count,edited_turn_count,baseline_answer_length,edited_answer_length,edited_curated_turn_count,edited_curated_fact_count,baseline_write_edge_count,edited_write_edge_count,baseline_contradict_edge_count,edited_contradict_edge_count,baseline_repair_edge_count,edited_repair_edge_count,answer_delta,baseline_a_fact_present,baseline_b_fact_present,baseline_entity_binding_complete,baseline_possible_attribute_swap,baseline_mis_score,edited_a_fact_present,edited_b_fact_present,edited_entity_binding_complete,edited_possible_attribute_swap,edited_mis_score,edited_curated_covered,edited_reduced_write_edges,edited_added_contradiction_edges,edited_added_repair_edges,edited_score_delta,edited_improved,edited_regressed
+MIS_001,MIS,"363929,363932",3,True,True,,,3,3,305,940,0,0,7,6,0,0,0,0,changed,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_002,MIS,"363410,363411",3,True,True,,,3,3,1108,929,0,0,4,7,0,0,0,0,changed,True,True,True,True,0,True,True,True,True,0,False,False,False,False,0,False,False
+MIS_003,MIS,"364332,364330",4,True,True,,,4,4,1232,1376,0,0,4,7,0,0,0,0,changed,True,True,True,False,1,False,False,False,False,0,False,False,False,False,-1,False,True
+MIS_004,MIS,"364285,364291",3,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',3,2,2236,738,0,0,3,4,0,0,0,0,changed,True,True,True,True,0,False,False,False,False,0,False,False,False,False,0,False,False
+MIS_005,MIS,"363157,363179",3,True,True,,,3,3,1453,553,2,46,3,10,0,0,0,0,changed,True,True,True,True,0,False,False,False,False,0,True,False,False,False,0,False,False
+MIS_006,MIS,"364154,364155",3,True,True,,,3,3,1235,1001,1,6,5,7,0,0,0,0,changed,True,True,True,True,0,False,True,False,True,-1,True,False,False,False,-1,False,True
+MIS_007,MIS,"364774,364775",4,True,True,,,4,4,876,1289,0,0,9,8,2,0,0,0,changed,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_008,MIS,"364733,364734",3,True,True,,,3,3,761,236,0,0,10,3,0,0,0,0,changed,True,True,True,False,1,False,False,False,False,0,False,True,False,False,-1,False,True
+MIS_009,MIS,"364806,364807",3,True,True,,,3,3,862,383,0,0,5,12,0,0,0,0,changed,False,True,False,False,0,False,False,False,False,0,False,False,False,False,0,False,False
+MIS_010,MIS,"364286,364287",3,True,True,,,3,3,365,583,0,0,6,7,0,0,0,0,changed,False,False,False,False,0,False,False,False,False,0,False,False,False,False,0,False,False
+MIS_011,MIS,"364173,364177",4,True,True,,,4,4,459,1446,0,0,13,14,0,0,0,0,changed,False,False,False,False,0,False,False,False,False,0,False,False,False,False,0,False,False
+MIS_012,MIS,"364454,364461",3,True,True,,,3,3,755,861,0,0,5,3,0,0,0,0,changed,True,True,True,True,0,True,True,True,True,0,False,True,False,False,0,False,False
+MIS_013,MIS,"363154,363260",3,True,False,,[Errno 22] Invalid argument: 'bronze_memory_peer.json',3,1,1064,212,1,20,5,2,0,0,0,0,changed,True,True,True,True,0,True,False,False,True,-1,True,True,False,False,-1,False,True
+MIS_014,MIS,"363152,363160",3,True,True,,,3,3,899,1299,3,32,7,9,0,0,0,0,changed,True,True,True,False,1,False,False,False,False,0,True,False,False,False,-1,False,True
+MIS_015,MIS,"363684,363683",4,True,True,,,4,4,1171,1427,0,0,10,10,0,0,0,0,changed,True,True,True,False,1,True,True,True,False,1,False,False,False,False,0,False,False
+MIS_016,MIS,"364668,364670",3,True,True,,,3,3,874,766,0,0,5,6,0,0,0,0,changed,False,False,False,False,0,True,True,True,True,0,False,False,False,False,0,False,False
+MIS_017,MIS,"363700,363687",3,True,True,,,3,3,802,1121,0,0,6,4,0,0,0,0,changed,True,True,True,False,1,True,True,True,False,1,False,True,False,False,0,False,False
+MIS_018,MIS,"363147,363159",3,True,True,,,3,3,1729,522,3,35,14,14,0,0,0,0,changed,True,True,True,False,1,True,True,True,True,0,True,False,False,False,-1,False,True
+MIS_019,MIS,"364452,364453",4,True,True,,,4,4,1405,328,0,0,29,16,0,0,0,0,changed,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_020,MIS,"363339,363356",3,True,True,,,3,3,1329,678,0,0,7,14,0,0,0,0,changed,False,False,False,False,0,True,True,True,True,0,False,False,False,False,0,False,False
+MIS_021,MIS,"364625,364624",3,True,True,,,3,3,368,1185,0,0,5,4,0,0,0,0,changed,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_022,MIS,"363164,363165",3,True,True,,,3,3,771,1289,3,38,5,9,0,0,0,0,changed,False,False,False,False,0,False,True,False,True,-1,True,False,False,False,-1,False,True
+MIS_023,MIS,"364091,364102",4,True,False,,Connection error.,4,0,833,0,0,0,10,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_024,MIS,"363974,363975",3,True,False,,Connection error.,3,1,1691,1235,0,0,17,1,4,0,0,0,changed,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_025,MIS,"363160,363161",3,True,False,,Connection error.,3,0,1972,0,0,0,4,0,0,0,0,0,baseline_only,True,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_026,MIS,"363911,363912",3,True,False,,Connection error.,3,0,859,0,0,0,9,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_027,MIS,"363379,363380",4,True,False,,Connection error.,4,0,2237,0,0,0,9,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_028,MIS,"364078,364076",3,True,False,,Connection error.,3,1,772,18,0,0,5,1,0,0,0,0,changed,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_029,MIS,"364053,364054",3,True,False,,Connection error.,3,0,606,0,0,0,14,0,4,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_030,MIS,"364654,364657",3,True,False,,Connection error.,3,0,211,0,0,0,6,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_031,MIS,"363190,363191",4,True,False,,Connection error.,4,0,532,0,0,0,14,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_032,MIS,"363952,363951",3,True,False,,Connection error.,3,0,830,0,0,0,3,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_033,MIS,"363205,363279",3,True,False,,Connection error.,3,0,518,0,0,0,5,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_034,MIS,"363419,363420",3,True,False,,Connection error.,3,0,304,0,0,0,12,0,0,0,0,0,baseline_only,True,False,False,True,-1,False,False,False,False,0,False,True,False,False,1,True,False
+MIS_035,MIS,"364102,364141",4,True,False,,Connection error.,4,0,746,0,0,0,26,0,1,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_036,MIS,"364701,364702",3,True,False,,Connection error.,3,0,440,0,0,0,22,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_037,MIS,"363341,363342",3,True,False,,Connection error.,3,0,498,0,0,0,7,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_038,MIS,"363234,363279",3,True,False,,Connection error.,3,0,414,0,0,0,12,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_039,MIS,"364494,364485",4,True,False,,Connection error.,4,0,718,0,0,0,9,0,0,0,0,0,baseline_only,False,True,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_040,MIS,"364487,364488",3,True,True,,,3,3,1427,1156,0,0,5,5,0,0,0,0,changed,True,True,True,True,0,False,False,False,False,0,False,False,False,False,0,False,False
+MIS_041,MIS,"363171,363179",3,True,False,,Connection error.,3,0,684,0,0,0,9,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_042,MIS,"364304,364305",3,True,False,,Connection error.,3,0,917,0,0,0,9,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_043,MIS,"363146,363147",4,True,False,,Connection error.,4,0,650,0,0,0,11,0,1,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_044,MIS,"363591,363592",3,True,False,,Connection error.,3,0,329,0,0,0,12,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_045,MIS,"363157,363238",3,True,False,,Connection error.,3,0,858,0,0,0,8,0,0,0,0,0,baseline_only,True,False,False,True,-1,False,False,False,False,0,False,True,False,False,1,True,False
+MIS_046,MIS,"364544,364545",3,True,False,,Connection error.,3,0,1249,0,0,0,9,0,0,0,0,0,baseline_only,False,True,False,True,-1,False,False,False,False,0,False,True,False,False,1,True,False
+MIS_047,MIS,"363923,363922",4,True,False,,Connection error.,4,0,1254,0,0,0,5,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_048,MIS,"364778,364779",3,True,False,,Connection error.,3,0,903,0,0,0,10,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_049,MIS,"363562,363563",3,True,False,,Connection error.,3,0,481,0,0,0,5,0,0,0,0,0,baseline_only,True,True,True,False,1,False,False,False,False,0,False,True,False,False,-1,False,True
+MIS_050,MIS,"364007,364008",3,True,False,,Connection error.,3,0,620,0,0,0,12,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_051,MIS,"363784,363785",4,True,False,,Connection error.,4,3,947,56,0,0,9,3,0,0,0,0,changed,True,True,True,False,1,False,False,False,False,0,False,True,False,False,-1,False,True
+MIS_052,MIS,"364407,364405",3,True,False,,Connection error.,3,0,1020,0,0,0,5,0,0,0,0,0,baseline_only,True,True,True,False,1,False,False,False,False,0,False,True,False,False,-1,False,True
+MIS_053,MIS,"363375,363376",3,True,True,,,3,3,727,206,0,0,4,5,0,0,0,0,changed,False,False,False,False,0,False,False,False,False,0,False,False,False,False,0,False,False
+MIS_054,MIS,"364162,364156",3,True,True,,,3,3,713,885,0,0,10,5,0,0,0,0,changed,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_055,MIS,"364292,364293",4,False,False,Connection error.,Connection error.,2,2,1325,468,0,0,2,7,0,0,0,0,changed,True,True,True,True,0,True,True,True,True,0,False,False,False,False,0,False,False
+MIS_056,MIS,"364442,364445",3,False,True,OpenAI API call timed out. This could be due to congestion or too small a timeout value. The timeout can be specified by setting the 'timeout' value (in seconds) in the llm_config (if you are using agents) or the OpenAIWrapper constructor (if you are using the OpenAIWrapper directly).,,1,3,938,971,0,0,1,11,0,1,0,0,changed,True,True,True,True,0,True,True,True,True,0,False,False,True,False,0,False,False
+MIS_057,MIS,"364752,364899",3,False,True,Connection error.,,0,3,0,1049,0,0,0,6,0,0,0,0,edited_only,False,False,False,False,0,True,True,True,False,1,False,False,False,False,1,True,False
+MIS_058,MIS,"364647,364648",3,False,True,Connection error.,,0,3,0,852,0,0,0,4,0,0,0,0,edited_only,False,False,False,False,0,False,False,False,False,0,False,False,False,False,0,False,False
+MIS_059,MIS,"363826,363827",4,False,True,Connection error.,,0,4,0,1028,0,0,0,17,0,0,0,0,edited_only,False,False,False,False,0,False,False,False,False,0,False,False,False,False,0,False,False
+MIS_060,MIS,"364524,364525",3,False,True,Connection error.,,0,3,0,558,0,0,0,15,0,0,0,0,edited_only,False,False,False,False,0,True,True,True,True,0,False,False,False,False,0,False,False
+MIS_061,MIS,"363748,363749",3,True,True,,,3,3,1635,870,0,0,4,6,0,0,0,0,changed,False,True,False,False,0,False,True,False,False,0,False,False,False,False,0,False,False
+MIS_062,MIS,"363678,363679",3,True,True,,,3,3,957,1540,0,0,5,9,0,0,0,0,changed,True,True,True,False,1,True,False,False,False,0,False,False,False,False,-1,False,True
+MIS_063,MIS,"364134,364126",4,True,False,,Connection error.,4,3,295,1345,0,0,25,6,0,0,0,0,changed,True,True,True,True,0,True,True,True,True,0,False,True,False,False,0,False,False
+MIS_064,MIS,"363220,363221",3,True,False,,Connection error.,3,0,1760,0,0,0,10,0,0,0,0,0,baseline_only,True,True,True,False,1,False,False,False,False,0,False,True,False,False,-1,False,True
+MIS_065,MIS,"364833,364834",3,True,False,,Connection error.,3,0,1511,0,0,0,4,0,0,0,0,0,baseline_only,True,True,True,False,1,False,False,False,False,0,False,True,False,False,-1,False,True
+MIS_066,MIS,"364883,364884",3,True,False,,Connection error.,3,0,1223,0,0,0,8,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_067,MIS,"363553,363554",4,True,False,,Connection error.,4,0,1623,0,0,0,4,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_068,MIS,"363831,363832",3,True,False,,Connection error.,3,0,1454,0,0,0,5,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_069,MIS,"363610,363611",3,True,False,,Connection error.,3,0,867,0,0,0,4,0,0,0,0,0,baseline_only,True,True,True,False,1,False,False,False,False,0,False,True,False,False,-1,False,True
+MIS_070,MIS,"364412,364413",3,True,False,,Connection error.,3,0,699,0,0,0,7,0,0,0,0,0,baseline_only,True,True,True,True,0,False,False,False,False,0,False,True,False,False,0,False,False
+MIS_071,MIS,"363146,363171",4,True,False,,Connection error.,4,0,2973,0,0,0,4,0,0,0,0,0,baseline_only,True,True,True,False,1,False,False,False,False,0,False,True,False,False,-1,False,True
+MIS_072,MIS,"364681,364682",3,True,False,,Connection error.,3,0,1910,0,0,0,8,0,0,0,0,0,baseline_only,False,False,False,False,0,False,False,False,False,0,False,True,False,False,0,False,False
