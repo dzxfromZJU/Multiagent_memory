@@ -86,7 +86,7 @@ Keywords: Multi-Agent Systems; Shared Memory; Memory Hallucination; Knowledge Ed
 1. 绪论  
    1.1 研究背景  
    1.2 共享记忆幻觉传播问题  
-   1.3 研究目标及内容  
+   1.3 研究目标及内容
    1.4 本文组织结构  
 2. 相关技术介绍  
    2.1 大语言模型智能体与长期记忆  
@@ -139,7 +139,7 @@ Keywords: Multi-Agent Systems; Shared Memory; Memory Hallucination; Knowledge Ed
 
 在知识服务场景中，多智能体系统通常需要处理长轮次交互、跨轮追问、多实体比较和动态知识更新等问题。单纯依赖上下文窗口存在问题，在长期对话后会因为过长的窗口而降低生成回答的效率，因此系统往往需要引入外部记忆机制，将历史对话、检索结果和智能体生成内容保存到共享记忆库中，并在后续问题中重新检索使用。共享记忆机制能够增强系统的连续性，使不同智能体共享对话历史和中间结果，从而支持长期协作和个性化问答。
 
-然而，共享记忆机制也引入了新的可靠性风险。与单轮回答中的幻觉不同，共享记忆中的错误信息具有持久性和传播性：单一智能体并不会自然具备分辨记忆库中信息真伪的能力，一旦幻觉或其它具有事实错误的内容被某个智能体错误地写入共享记忆，它可能在后续对话中被其他智能体检索、引用、改写和派生，导致越来越多的幻觉进入共享记忆库，进而影响多个回答和新的记忆条目。这种情况被称为多智能体的记忆幻觉。
+然而，共享记忆机制也引入了新的可靠性风险。与单轮回答中的幻觉不同，共享记忆中的错误信息具有持久性和传播性：单一智能体并不会自然具备分辨记忆库中信息真伪的能力，一旦幻觉或其它具有事实错误的内容被某个智能体错误地写入共享记忆，它可能在后续对话中被其他智能体检索、引用、改写和派生，导致越来越多的幻觉进入共享记忆库，进而影响多个回答和新的记忆条目。这种情况被称为多智能体的记忆幻觉。简而言之，普通幻觉主要影响当前回答，而记忆幻觉会改变系统后续可检索的外部状态。
 
 因此，如何在共享记忆库中识别幻觉，如何追踪错误记忆影响智能体系统生成后续回答的详细过程，以及如何通过知识编辑预防污染产生、阻止污染扩散，成为多智能体系统可靠性研究中的重要问题。
 
@@ -148,7 +148,25 @@ Keywords: Multi-Agent Systems; Shared Memory; Memory Hallucination; Knowledge Ed
 
 
 > 图 1.1 共享记忆幻觉传播问题示意图  
-> TODO：绘制“用户错误前提 / Agent 幻觉 → 候选记忆 → 共享记忆库 → 后续检索 → 错误回答 / 派生错误记忆 → 传播扩散”的流程图。
+
+```mermaid
+flowchart LR
+  U["用户错误前提<br/>或无依据提问"] --> A["Agent 生成回答<br/>可能包含错误 claim"]
+  A --> C["候选记忆<br/>candidate memory"]
+  C --> M["共享记忆库<br/>FAISS + Metadata Store"]
+  M --> R["后续轮次检索<br/>retrieved memories"]
+  R --> G["Agent 使用记忆生成回答"]
+  G --> E["错误回答<br/>或派生错误记忆"]
+  E --> M
+  E --> P["污染传播扩散<br/>影响后续 Answer / Memory"]
+
+  classDef risk fill:#ffe3e3,stroke:#e03131,color:#3b0a0a;
+  classDef store fill:#e5dbff,stroke:#7048e8,color:#24124d;
+  classDef process fill:#e7f5ff,stroke:#1c7ed6,color:#102a43;
+  class U,A,C,E,P risk;
+  class M store;
+  class R,G process;
+```
 
 ## 1.2 共享记忆幻觉传播问题
 
@@ -157,7 +175,7 @@ Keywords: Multi-Agent Systems; Shared Memory; Memory Hallucination; Knowledge Ed
 1. **持久性**：错误信息会被保存到外部记忆中，不会随着单轮对话结束而消失。
 2. **传染性**：错误记忆可能成为新回答或新记忆的依据，形成二次污染。
 3. **隐蔽性**：用户往往只能看到最终回答，难以判断错误来自模型生成、检索结果还是共享记忆。
-
+记忆幻觉的传播分为四个阶段：产生阶段，用户错误前提或 Agent 无依据生成；写入阶段，错误 claim 被保存为候选记忆或共享记忆；复用阶段，后续 Agent 检索并使用该记忆；派生阶段，错误记忆进一步生成新回答或新记忆。
 本文主要使用的知识问答场景是一个虚构的专题展览，展品内容为来自《中国大百科全书》网页版中“著名青铜器”页面的1803件历代著名青铜器，“用户”智能体会随机地扮演纯粹发问的游客或试图修改解说信息的“专家”，对整体扮演一位解说的对等协同架构多智能体协同对话系统提问。
 
 在本文主要使用的知识问答场景中，记忆幻觉可能表现为多种形式。例如，系统可能把 A 器物的出土地点错误绑定到 B 器物上；可能把用户以传闻方式提供的错误年代写入共享记忆；也可能在多轮重复诱导下提高错误 claim 的可信度。若这些错误没有被及时识别和修复，系统后续回答将持续受到影响。
@@ -193,18 +211,34 @@ Keywords: Multi-Agent Systems; Shared Memory; Memory Hallucination; Knowledge Ed
 第六章总结全文工作，分析本文方法的不足，并展望未来研究方向。
 
 > 图 1.2 本文组织结构图  
-> TODO：绘制“绪论 → 相关技术介绍 → 传播图构建方法 → 知识编辑方法 → 实验验证 → 总结展望”的章节结构图。
+
+```mermaid
+flowchart LR
+  C1["第1章 绪论<br/>问题背景与研究目标"] --> C2["第2章 相关技术<br/>智能体、记忆、事实验证与图溯源"]
+  C2 --> C3["第3章 传播图构建方法<br/>节点、边、日志与路径指标"]
+  C3 --> C4["第4章 知识编辑方法<br/>claim 验证、编辑决策与记忆修复"]
+  C4 --> C5["第5章 实验验证<br/>测试集、对比实验、消融与案例分析"]
+  C5 --> C6["第6章 总结与展望<br/>结论、不足与未来工作"]
+
+  classDef chapter fill:#f8f9fa,stroke:#495057,color:#212529;
+  class C1,C2,C3,C4,C5,C6 chapter;
+```
 
 ---
 
 # 2 相关技术介绍
 
+本章围绕本文研究所涉及的关键技术和相关工作展开介绍。本文的核心问题是多智能体共享记忆系统中的记忆幻觉传播识别与知识编辑，因此相关研究主要包括五个方面：大语言模型智能体与长期记忆、多智能体共享记忆机制、知识编辑与外部记忆编辑、幻觉检测与事实验证，以及图结构溯源与错误传播分析。通过对这些方向的梳理，可以看出现有研究虽然分别解决了智能体记忆、协作、事实验证和知识更新等问题，但仍缺少一种面向共享记忆污染传播的统一追踪与修复机制。
+
 ## 2.1 大语言模型智能体与长期记忆
 
-ReAct 提出让大语言模型交替生成 reasoning trace 和 action，通过“思考—行动—观察”的循环完成任务【1】。在大语言模型基础上加入外部工具调用、任务规划、外部记忆和自我反思等能力，形成了大语言模型智能体。【2】智能体不再完全依赖模型参数，外部工具和外部知识源的加入其能够在多轮交互中完成相比传统对话模型更复杂的任务。Generative Agents: Interactive Simulacra of Human Behavior【3】提出了经典的 Agent 长期记忆架构，agent会使用自然语言格式保存记忆，并根据相关性和就近原则在生成新内容有需要时进行检索。长期记忆机制是智能体系统的重要组成部分，它能够保存历史对话、用户偏好、中间推理结果和已验证知识等内容，从而突破前文提到的上下文窗口限制。
+大语言模型在自然语言理解、文本生成和复杂推理任务中表现出较强能力。在此基础上，ReAct 提出让大语言模型交替生成 reasoning trace 和 action，通过“思考—行动—观察”的循环完成任务【1】。研究者在大语言模型基础上加入外部工具调用、任务规划、外部记忆和自我反思等能力，将大语言模型扩展为智能体系统，使其能够完成更复杂的任务【2】。与传统问答模型相比，智能体不再完全依赖模型参数，外部工具和外部知识源的加入其能够在多轮交互中完成相比传统对话模型更复杂的任务。Generative Agents: Interactive Simulacra of Human Behavior【3】提出了经典的 Agent 长期记忆架构，agent会使用自然语言格式保存记忆，并根据相关性和就近原则在生成新内容有需要时进行检索。长期记忆机制是智能体系统的重要组成部分，它能够保存历史对话、用户偏好、中间推理结果和已验证知识等内容，从而突破前文提到的上下文窗口限制。
 
-Memgpt用操作系统的内存调度类比长期记忆和上下文窗口的关系【4】，并提出用显式调度的方法管理智能体的记忆和上下文【4】。现有智能体记忆方法通常关注记忆的存储、检索、更新和遗忘，例如通过向量数据库保存自然语言记忆，通过摘要机制压缩历史对话，或通过反思机制提炼高层经验【5】。这些方法有助于提高系统连续性，但在许多场景中仍缺少对记忆真实性的严格验证。若系统直接将未经审核的对话内容写入长期记忆，其中包含的错误信息可能被持久保存并影响后续回答的准确性。
+MemGPT用操作系统的内存调度类比长期记忆和上下文窗口的关系，并提出用显式调度的方法管理智能体的记忆和上下文【4】。现有智能体记忆方法通常关注记忆的存储、检索、更新和遗忘，例如通过向量数据库保存自然语言记忆，通过摘要机制压缩历史对话，或通过反思机制提炼高层经验【5】。这些方法有助于提高系统连续性，但在许多场景中仍缺少对记忆真实性的严格验证。若系统直接将未经审核的对话内容写入长期记忆，其中包含的错误信息可能被持久保存并影响后续回答的准确性。
 
+然而，现有智能体记忆研究较少关注记忆内容本身是否可靠。在实际系统中，如果智能体将错误回答、无依据推断或用户错误前提写入长期记忆，这些信息可能在后续对话中被再次检索和使用。因此，长期记忆不仅是能力增强模块，也可能成为错误信息持久化的载体。
+
+本文在上述工作的基础上，进一步关注长期记忆的可信管理问题。本文将共享记忆中的每条记忆视为具有来源、置信度、验证状态和污染状态的系统对象，并在后续章节中通过传播图和知识编辑机制对其进行追踪、过滤和修复。
 本节后续可补充文献：
 【1】Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. (2022). React: Synergizing reasoning and acting in language models. arXiv preprint arXiv:2210.03629.
 
@@ -216,13 +250,13 @@ Memgpt用操作系统的内存调度类比长期记忆和上下文窗口的关�
 
 【5】Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K., & Yao, S. (2023). Reflexion: Language agents with verbal reinforcement learning. Advances in neural information processing systems, 36, 8634-8652.
 
-
-
 ## 2.2 多智能体共享记忆机制
 
+AutoGen 提出通过多个可对话智能体进行协作，支持人类、工具和多个模型之间的交互【1】，这是多智能体系统的发端。Camel提出多智能体系统的角色分工机制【2】，通过角色扮演方式构建交互逻辑，让扮演不同角色的智能体围绕任务进行协作。多智能体系统通过将复杂任务分配给多个具有不同职责的智能体，提升了系统处理复杂问题的能力。典型多智能体系统通常包含规划者、检索者、回答者、验证者、执行者和反思者等角色。共享记忆机制使不同智能体能够访问同一记忆池，从而复用历史信息和中间结果，提高系统协作效率【3】。例如，检索智能体可以将相关知识写入共享记忆，回答智能体可以调用这些记忆生成回答，验证智能体可以对回答中的关键事实进行检查，记忆管理智能体则可以对历史信息进行总结和更新。相比每个智能体各自维护私有上下文，共享记忆有助于保持系统整体状态一致。此外，Autogen也是多智能体对话框架的重要代表，本文实验中使用的多智能体对话系统就基于这一框架。
 
-AutoGen 提出通过多个可对话智能体进行协作，支持人类、工具和多个模型之间的交互【1】，这是多智能体系统的发端。Camel提出多智能体系统的角色分工机制【2】，通过角色扮演方式构建交互逻辑，让扮演不同角色的智能体围绕任务进行协作。常见的多智能体系统通常由多个具有不同职责的智能体组成，例如检索智能体、回答智能体、验证智能体、反思智能体和记忆管理智能体。共享记忆机制使不同智能体能够访问同一记忆池，从而复用历史信息和中间结果，提高系统协作效率。此外，Autogen也是多智能体对话框架的重要代表，本文实验中使用的多智能体对话系统就基于这一框架。
-共享记忆能够提升多智能体系统中的信息复用能力【3】，从而提高智能体之间的协作效率，但共享记忆也会放大错误信息的影响范围。单一智能体产生的错误如果被写入共享记忆，就可能被其他智能体检索和引用，形成跨智能体传播。与私有记忆相比，共享记忆中的错误更容易扩散，因为它不只影响一个智能体，而是影响整个系统的信息环境。
+但是，共享记忆也会放大错误信息的影响范围。在单一智能体系统中，错误通常局限于当前模型实例或当前对话上下文；而在多智能体系统中，一条错误记忆一旦进入共享记忆库，就可能被多个智能体检索、引用和派生，进而影响整个系统的信息环境。因此，共享记忆中的错误具有跨轮次、跨智能体和跨任务传播的风险。
+
+现有多智能体研究更多关注协作效率、角色分工和任务完成能力，而对共享记忆中的错误来源、调用路径和修复过程关注不足。本文将共享记忆视为一种需要被验证和编辑的系统状态，进一步研究错误记忆如何在多智能体系统中传播，以及系统如何通过知识编辑机制阻止和修复这种传播。
 
 本节后续可补充文献：
 
@@ -233,14 +267,12 @@ AutoGen 提出通过多个可对话智能体进行协作，支持人类、工具
 
 【3】Gao, H., & Zhang, Y. (2024). Memory sharing for large language model based agents. arXiv preprint arXiv:2404.09982.
 
-
-
 ## 2.3 知识编辑与外部记忆编辑
 
 知识编辑最初主要关注模型参数中的事实知识修改，ROME 通过因果追踪定位模型中存储事实知识的关键层，并提出 Rank-One Model Editing 修改模型内部事实关联【1】。知识编辑旨在修改模型或系统中的知识，使系统在后续任务中使用更新后的事实.【2】中基于ROME提出了批量知识编辑的方法，用于处理多轮对话产生的大量素材。现有知识编辑方法大致可以分为参数编辑和外部记忆编辑两类。参数编辑方法直接修改大语言模型内部参数，能够改变模型对特定事实的回答；外部记忆编辑方法则不修改模型参数，而是将编辑后的知识存入外部记忆，并在推理时通过检索或上下文注入影响模型回答【4】。
-对于多智能体系统而言，外部记忆编辑更适合当前研究场景。SERAC【3】将编辑内容保存到显式memory中，推理时检索相关编辑知识来调整回答。这个方法主要针对单一智能体的记忆系统。
-本文在其思想和技术的基础上，将方法扩展到多智能体系统，原因有二：一方面，系统可能调用黑盒大语言模型，无法直接修改模型参数；另一方面，共享记忆本身就是系统状态的一部分，错误记忆的治理应优先发生在记忆层。因此，本文采用外部记忆式知识编辑方法，将对话中新产生的候选事实经过验证后写入长期知识，并对错误记忆执行拒绝、隔离、废弃操作。
-知识编辑技术还有一项重要问题就是如何处理原始的零阶知识和编辑产生的一阶知识的关系，WISE对于这个问题提出主记忆与侧记忆的设计，通过路由机制决定应该优先调用哪一部分知识，这是一个该问题的通用解法【5】。
+对于多智能体系统而言，外部记忆编辑更适合当前研究场景。一方面，实际系统可能调用闭源或远程 API 模型，无法访问模型参数；另一方面，本文关注的错误主要发生在共享记忆层，而不是模型参数层。SERAC【3】将编辑内容保存到显式memory中，推理时检索相关编辑知识来调整回答；IKE 研究通过上下文示例完成事实编辑；GRACE 和 WISE 则关注长期持续编辑和编辑知识路由问题。这些基于单一智能体的方法为本文将知识编辑结果存储在外部 edited KB 或共享记忆中提供了参考。
+本文在以上方法思想和技术的基础上，将方法扩展到多智能体系统，采用外部记忆式知识编辑方法，将对话中新产生的候选事实经过验证后写入长期知识，并对错误记忆执行拒绝、隔离、废弃操作。
+外部记忆式知识编辑技术还有一项重要问题，如何处理原始的零阶知识和编辑产生的一阶知识的关系。WISE对于这个问题提出主记忆与侧记忆的设计，通过路由机制决定应该优先调用哪一部分知识，这是一个该问题的通用解法【5】。
 本节后续可补充文献：
 
 【1】Meng, K., Bau, D., Andonian, A., & Belinkov, Y. (2022). Locating and editing factual associations in gpt. Advances in neural information processing systems, 35, 17359-17372.
@@ -257,29 +289,42 @@ AutoGen 提出通过多个可对话智能体进行协作，支持人类、工具
 
 ## 2.4 幻觉检测与事实验证
 
-大语言模型在开放式问答、长文本生成和多轮对话任务中表现出较强的语言组织能力，但其生成内容并不总是与事实一致。模型可能在缺乏证据的情况下生成看似合理但实际错误的信息，也可能在用户问题包含错误前提时顺着错误假设继续回答。这类现象通常被称为幻觉。对于普通单轮问答系统而言，幻觉主要表现为最终回答中的事实错误；而在引入长期记忆和共享记忆机制的多智能体系统中，幻觉还可能进一步被保存、复用和传播。因此，幻觉检测与事实验证不仅是评价回答质量的重要方法，也是本文后续进行共享记忆知识编辑的基础。
+大语言模型在开放式问答、长文本生成和多轮对话任务中可能产生与事实不一致的内容。模型可能在缺乏证据的情况下生成看似合理但实际错误的信息，也可能在用户问题包含错误前提时顺着错误假设继续回答。这类现象通常被称为幻觉。对于普通单轮问答系统而言，幻觉主要表现为最终回答中的事实错误；而在引入长期记忆和共享记忆机制的多智能体系统中，幻觉还可能进一步被保存、复用和传播。因此，幻觉检测与事实验证不仅是评价回答质量的重要方法，也是本文后续进行共享记忆知识编辑的基础。
 
-早期事实验证研究通常将问题转化为 claim 与 evidence 之间的关系判断。Thorne 等人提出的 FEVER 数据集将事实核查任务形式化为对给定 claim 进行证据检索，并判断该 claim 是否被证据支持、反驳或无法判断【1】。这一任务定义为本文的事实验证模块提供了重要参考：系统不能只根据模型生成内容本身判断其正确性，而应将回答拆分为可验证的事实陈述，并从可信知识库中检索证据，再判断二者之间的支持关系。在本文中，VerifierAgent 对每条候选 claim 输出 supported、contradicted、unsupported、ambiguous 或 partially_supported 等标签，本质上就是对 FEVER 式事实验证任务在多智能体共享记忆场景下的扩展。
+事实验证研究通常将模型生成内容拆解为 claim，并判断 claim 是否被证据支持。FEVER 将事实核查任务形式化为对给定 claim 进行证据检索，并判断该 claim 是否被证据支持、反驳或无法判断。Thorne 等人提出的 FEVER 数据集将事实核查任务形式化为对给定 claim 进行证据检索，并判断该 claim 是否被证据支持、反驳或无法判断【1】。该任务定义为本文的事实验证模块提供了重要参考：在本文中，VerifierAgent 对每条候选 claim 输出 supported、contradicted、unsupported、ambiguous 或 partially_supported 等标签，本质上就是对 FEVER 式事实验证任务在多智能体共享记忆场景下的扩展。
 
-对于长文本回答，仅判断整段回答是否正确往往是不充分的。一个回答可能同时包含多个事实，其中一部分被知识库支持，另一部分可能与知识库冲突，或者知识库中没有记载。Min 等人提出的 FActScore 方法将长文本生成结果拆分为若干 atomic facts，并逐条评估每个原子事实是否被可靠来源支持【2】。这一思想对本文具有直接启发意义。由于多智能体系统的回答通常包含时代、器类、出土地点、馆藏、尺寸、铭文等多个属性，如果直接验证整段回答，系统难以定位具体错误来源，也难以决定应该修复哪一条记忆。因此，本文采用 claim 级事实验证方法，先从回答中抽取原子事实，再分别进行实体链接、证据检索和验证判断。
+对于长文本回答，仅判断整段回答是否正确往往是不充分的。一个回答可能同时包含多个事实，其中一部分被知识库支持，另一部分可能与知识库冲突，或者知识库中没有记载。Min 等人提出的 FActScore 将长文本生成结果拆分为若干 atomic facts，并逐条评估每个原子事实是否被可靠来源支持【2】。这一思想对本文具有直接启发意义。由于多智能体系统的回答通常包含时代、器类、出土地点、馆藏、尺寸、铭文等多个属性，如果直接验证整段回答，系统难以定位具体错误来源，也难以决定应该修复哪一条记忆。因此，本文采用 claim 级事实验证方法，先从回答中抽取原子事实，再分别进行实体链接、证据检索和验证判断。
 
-例如，对于回答“网格纹鼎是夏代晚期肉食器，1987 年河南偃师二里头出土，藏中国社会科学院考古研究所”，系统可以将其拆分为三条 claim：第一，网格纹鼎是夏代晚期肉食器；第二，网格纹鼎于 1987 年河南偃师二里头出土；第三，网格纹鼎藏中国社会科学院考古研究所。每条 claim 都可以独立地与知识库证据进行匹配。如果其中某一条信息与知识库冲突，系统只需要拒绝或修复对应 claim，而不必否定整段回答。这种细粒度验证方式有助于后续知识编辑模块执行 INSERT、REJECT、QUARANTINE 或 REPAIR 等操作。
+除事实验证外，幻觉评估研究还关注如何系统性构造和识别模型幻觉。HaluEval 构建了大规模幻觉评估基准，覆盖问答、摘要和对话等任务，用于评估大语言模型在不同生成场景下产生幻觉的倾向【3】。本文在实验设计中借鉴了这种测试集构造思想，围绕青铜器知识库构建了无依据问题测试、错误前提诱导、相似实体混淆、重复强化诱导和纠错修复测试。这些测试并非只考察最终回答是否正确，而是进一步观察错误信息是否被写入共享记忆，以及是否在后续多轮交互中被再次召回和使用。
 
-除事实验证外，幻觉评估研究还关注如何系统性构造和识别模型幻觉。Li 等人提出的 HaluEval 构建了大规模幻觉评估基准，覆盖问答、摘要和对话等任务，用于评估大语言模型在不同生成场景下产生幻觉的倾向【3】。HaluEval 的意义在于，它将幻觉作为一种可系统测试的模型可靠性问题，而不是个别回答中的偶然错误。本文在实验设计中借鉴了这种测试集构造思想，围绕青铜器知识库构建了多类攻击性测试，包括无依据问题测试、错误前提诱导、相似实体混淆、重复强化诱导和纠错修复测试。这些测试并非只考察最终回答是否正确，而是进一步观察错误信息是否被写入共享记忆，以及是否在后续多轮交互中被再次召回和使用。
-
-综合来看，FEVER 提供了 claim-evidence 事实验证的基本任务框架，FActScore 强调长文本回答需要拆解为原子事实进行细粒度评估，HaluEval 则说明幻觉可以通过系统化测试集进行评估。这三类工作共同构成了本文事实验证模块和实验测试设计的重要基础。与已有研究相比，本文的关注点进一步从“回答中是否存在幻觉”扩展到“幻觉是否进入共享记忆并发生传播”。因此，本文不仅记录每条 claim 的验证结果，还将其与对话轮次、智能体回答、共享记忆和知识编辑动作相连接，为后续构建记忆幻觉传播图和执行知识编辑提供依据。
-
+综合来看，现有幻觉检测和事实验证方法为本文提供了 claim 抽取、证据检索和支持关系判断的基础。与已有研究不同，本文的关注点进一步从“回答中是否存在幻觉”扩展到“幻觉是否进入共享记忆并发生传播”。因此，本文不仅记录每条 claim 的验证结果，还将其与对话轮次、智能体回答、共享记忆和知识编辑动作相连接，为后续构建记忆幻觉传播图和执行知识编辑提供依据。
+【1】Thorne, J., Vlachos, A., Christodoulopoulos, C., & Mittal, A. (2018, June). FEVER: a large-scale dataset for fact extraction and VERification. In Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers) (pp. 809-819).
+【2】Min, S., Krishna, K., Lyu, X., Lewis, M., Yih, W. T., Koh, P., ... & Hajishirzi, H. (2023, December). Factscore: Fine-grained atomic evaluation of factual precision in long form text generation. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (pp. 12076-12100).
+【3】Li, J., Cheng, X., Zhao, X., Nie, J. Y., & Wen, J. R. (2023, December). Halueval: A large-scale hallucination evaluation benchmark for large language models. In Proceedings of the 2023 conference on empirical methods in natural language processing (pp. 6449-6464).
 
 ## 2.5 图结构溯源与错误传播分析
-在复杂系统中，错误往往不是孤立发生的，而是通过信息依赖关系逐步传播。图结构可以显式表示节点之间的依赖关系，使系统能够追踪错误来源、传播路径和影响范围。在多智能体系统中，问题、回答、记忆、证据和编辑动作之间天然存在依赖关系，因此适合使用异构图建模。
 
-本文构建的记忆幻觉传播图将多轮对话中的信息流动过程表示为图结构。通过该图，系统可以追踪某条污染记忆来自哪一轮对话、由哪个智能体生成、被哪些回答使用、派生出哪些新记忆，以及是否被后续修复。
+在复杂系统中，错误往往不是孤立产生的，而是沿着信息依赖关系逐步传播。数据溯源研究关注结果数据的来源及其生成过程，强调通过记录输入、中间步骤和输出之间的依赖关系来解释系统行为【1】。类似地，在多智能体共享记忆系统中，最终回答可能受到用户问题、检索结果、历史记忆、智能体生成内容和知识编辑动作的共同影响，因此也需要一种结构化方法记录这些依赖关系。
 
+图结构是表示复杂依赖关系的常用工具。通过将对象表示为节点、将对象之间的关系表示为边，图结构可以清晰表达信息来源、传递路径和影响范围。在本文场景中，问题、回答、claim、memory、knowledge、KBItem 和 edit action 可以被建模为异构图节点，检索、使用、支持、反驳、写入、废弃和修复等关系可以被建模为图边。通过这种建模方式，系统能够从错误回答反向追踪污染源，也能够从污染记忆正向分析其影响范围。【2】
+
+需要指出的是，本文构建的记忆幻觉传播图并不试图还原大语言模型内部真实推理过程。由于模型内部推理机制难以被直接可靠观测，本文只记录系统外部可观测的依赖关系，包括记忆是否被检索、是否被智能体声明使用、claim 是否被知识库支持或反驳、记忆是否被知识编辑器废弃或修复等。这种外部可观测传播图虽然不能完全等价于模型内部因果机制，但能够为系统调试、错误定位和记忆修复提供可操作依据。
+
+现有图追踪和溯源方法多用于数据处理流程、科学工作流或任务失败分析，而本文将该思想应用于多智能体共享记忆污染问题。本文关注的不只是任务是否失败，而是错误记忆如何从用户输入或智能体回答进入共享记忆，又如何在后续对话中被检索、使用、派生和修复。第三章将在此基础上进一步定义记忆幻觉传播图的节点、边和路径分析方法。
 本节后续可补充文献：
 
-Buneman, P., Khanna, S., & Wang-Chiew, T. (2001, January). Why and where: A characterization of data provenance. In International conference on database theory (pp. 316-330). Berlin, Heidelberg: Springer Berlin Heidelberg.
+【1】Buneman, P., Khanna, S., & Wang-Chiew, T. (2001, January). Why and where: A characterization of data provenance. In International conference on database theory (pp. 316-330). Berlin, Heidelberg: Springer Berlin Heidelberg.
 
-Zhang, H., Shi, Y., Gu, X., You, H., Zhang, Z., Gan, L., ... & Huang, J. (2025). GraphTracer: Graph-Guided Failure Tracing in LLM Agents for Robust Multi-Turn Deep Search. arXiv preprint arXiv:2510.10581.
+【2】Zhang, H., Shi, Y., Gu, X., You, H., Zhang, Z., Gan, L., ... & Huang, J. (2025). GraphTracer: Graph-Guided Failure Tracing in LLM Agents for Robust Multi-Turn Deep Search. arXiv preprint arXiv:2510.10581.
+
+## 2.6 本章小结
+
+本章介绍了本文研究所需的相关技术和研究基础。大语言模型智能体与长期记忆研究说明，外部记忆能够增强智能体的长期交互能力；多智能体共享记忆机制说明，共享记忆能够提高多个智能体之间的信息复用效率；知识编辑研究为修改和维护系统知识提供了方法基础；幻觉检测与事实验证研究为 claim 级验证和证据判断提供了技术依据；图结构溯源研究则为错误来源追踪和传播路径分析提供了建模工具。
+
+然而，现有研究仍存在不足。智能体记忆研究主要关注记忆如何提升连续性，而较少关注记忆真实性；多智能体研究主要关注协作效率，而较少关注共享记忆污染；知识编辑研究多面向模型参数或单模型外部记忆，而较少关注多智能体共享记忆层面的编辑；幻觉检测研究多关注最终回答，而较少分析错误 claim 是否进入记忆并继续传播；图溯源研究虽然能够记录依赖关系，但尚未与共享记忆知识编辑形成闭环。
+
+因此，本文后续将围绕两个问题展开：第一，如何构建面向共享记忆的幻觉传播图，以记录错误记忆的来源、传播路径和影响范围；第二，如何设计面向多智能体系统的共享记忆知识编辑机制，以阻止、隔离和修复污染记忆。第三章将首先介绍记忆幻觉传播图的构建方法。
+
 
 
 
@@ -295,17 +340,41 @@ Zhang, H., Shi, Y., Gu, X., You, H., Zhang, Z., Gan, L., ... & Huang, J. (2025).
 
 ## 3.1 引言
 
-本章旨在解决多智能体共享记忆系统中错误记忆“从哪里来、如何传播、影响了什么”的问题。传统幻觉检测方法通常只判断最终回答是否正确，而难以揭示错误信息在系统内部的流动过程。对于引入共享记忆的多智能体系统而言，仅检测最终回答是不够的，因为错误信息可能已经进入记忆库，并在未来对话中继续被调用。
+本章旨在解决多智能体共享记忆系统中错误记忆“从哪里来、如何传播、影响了什么”的问题。
+传统幻觉检测方法通常只判断最终回答是否正确，而难以揭示错误信息在系统内部的流动过程。对于引入共享记忆的多智能体系统而言，仅检测最终回答是不够的，因为错误信息可能已经进入记忆库，并在未来对话中继续被调用。此时，错误不再是单轮输出问题，而是系统状态污染问题【1】【2】。
 
-为此，本文提出一种面向共享记忆的幻觉传播图构建方法。该方法通过记录对话、检索、回答、claim 抽取、证据验证和知识编辑过程中的关键节点与关系，构建可追踪的异构图。该图既可以用于定位污染记忆的来源，也可以用于分析污染记忆的传播范围和修复效果。
+为此，本文提出一种基于信息依赖图思想的，面向共享记忆的幻觉传播图构建方法，用于记录多智能体系统中记忆的产生、检索、使用、派生和修复过程。该方法通过记录对话、检索、回答、claim 抽取、证据验证和知识编辑过程中的关键节点与关系，构建可追踪的异构图。该图既可以用于定位污染记忆的来源，也可以用于分析污染记忆的传播范围和修复效果。必须澄清，本文传播图记录的是外部可观测依赖关系，包括检索日志、显式使用记录、claim 验证结果和知识编辑日志，而不是对大语言模型内部真实推理过程的直接还原【3】。
 
 > 图 3.1 记忆幻觉传播图构建流程  
-> TODO：绘制“对话输入 → 记忆检索 → 回答生成 → claim 抽取 → 证据验证 → 图边写入 → 传播分析”的流程图。
->
-Buneman, P., Khanna, S., & Wang-Chiew, T. (2001, January). Why and where: A characterization of data provenance. In International conference on database theory (pp. 316-330). Berlin, Heidelberg: Springer Berlin Heidelberg.
 
+```mermaid
+flowchart TD
+  Q["对话输入<br/>Question / Turn"] --> MR["Memory Manager<br/>检索共享记忆"]
+  MR --> RLOG["记录 retrieval_log<br/>retrieved_memory_ids"]
+  MR --> CTX["构造回答上下文<br/>KB + Memory + Edited Knowledge"]
+  CTX --> AG["多智能体回答生成"]
+  AG --> ULOG["记录 usage_log<br/>used_memory_ids"]
+  AG --> ANS["最终回答 Answer"]
+  ANS --> CE["Claim Extractor<br/>抽取原子 claim"]
+  CE --> EV["证据检索<br/>KBItem / Memory / EditedKnowledge"]
+  EV --> VF["Claim Verifier<br/>supports / contradicts / unsupported"]
+  VF --> GE["写入 graph_edges<br/>extracts / supports / contradicts / uses"]
+  ULOG --> GE
+  RLOG --> GE
+  GE --> PG["Memory Propagation Graph"]
+  PG --> PA["传播路径分析<br/>污染源、影响范围、修复路径"]
 
+  classDef log fill:#fff3bf,stroke:#f08c00,color:#3b2500;
+  classDef graph fill:#e5dbff,stroke:#7048e8,color:#24124d;
+  classDef process fill:#e7f5ff,stroke:#1c7ed6,color:#102a43;
+  class RLOG,ULOG,GE log;
+  class PG graph;
+  class Q,MR,CTX,AG,ANS,CE,EV,VF,PA process;
+```
 
+【1】Buneman, P., Khanna, S., & Wang-Chiew, T. (2001, January). Why and where: A characterization of data provenance. In International conference on database theory (pp. 316-330). Berlin, Heidelberg: Springer Berlin Heidelberg.
+【2】Davidson, S. B., & Freire, J. (2008, June). Provenance and scientific workflows: challenges and opportunities. In Proceedings of the 2008 ACM SIGMOD international conference on Management of data (pp. 1345-1350).
+【3】Jain, S., & Wallace, B. C. (2019, June). Attention is not explanation. In Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers) (pp. 3543-3556).
 ## 3.2 问题定义
 
 设多智能体系统在一个 episode 中产生多轮对话：
@@ -324,6 +393,12 @@ $$
 
 其中每条记忆 $m_j$ 包含内容、来源、置信度、状态和污染标记等属性。可信知识库记为 $K$，用于验证候选事实是否被支持。
 
+若某条记忆 $m_j$ 的内容与可信知识库 $K$ 中的证据相矛盾，或其来源为无证据用户输入、错误前提或被反驳的智能体回答，则称该记忆为污染记忆，记为：
+
+$$
+m_j.status = contaminated
+$$
+
 本文的目标是构建一个传播图：
 
 $$
@@ -331,6 +406,9 @@ G = (V, E)
 $$
 
 其中 $V$ 表示节点集合，包括对话轮次、问题、回答、claim、memory、knowledge 和 KBItem；$E$ 表示边集合，包括 contains、retrieves、uses、extracts、supports、contradicts、promoted_to、deprecated_by、repairs 和 contaminates 等关系。
+
+
+传播路径是指从错误 claim 或污染 memory 出发，沿图中 promoted_to、retrieves、uses、derived_from、contaminates 等边到达后续 answer、claim 或 memory 的路径。传播路径用于描述错误信息如何从源头扩散到后续系统输出。
 
 ## 3.3 图节点与图边设计
 
@@ -367,8 +445,50 @@ $$
 | repairs | 修复知识修复污染记忆 |
 | contaminates | 污染记忆影响后续回答或记忆 |
 
+边方向说明：
+| 边                      | 方向                     | 含义               |
+| ---------------------- | ---------------------- | ---------------- |
+| `Answer -> Claim`      | extracts               | 回答中抽取出 claim     |
+| `Memory -> Answer`     | used_in                | 某条记忆被用于生成回答      |
+| `KBItem -> Claim`      | supports / contradicts | 知识库证据支持或反驳 claim |
+| `Claim -> Memory`      | promoted_to            | claim 被写入记忆      |
+| `Correction -> Memory` | repairs                | 修复知识修复污染记忆       |
+
 > 图 3.2 图节点与图边类型示意图  
-> TODO：绘制异构图 schema。
+```mermaid
+flowchart TD
+  QA["QuestionerAgent"] -- asks --> Q["Question"]
+  T["Turn"] -- contains --> Q
+  T -- contains --> A["Answer"]
+  AA["AnswerAgent"] -- answers --> A
+  A -- extracts --> C["Claim"]
+
+  AA -- retrieves --> M["Memory"]
+  AA -- uses --> M
+  M -- derived_from --> PM["Parent Memory"]
+  M -- contaminates --> A
+  M -- supports --> C
+  M -- contradicts --> C
+
+  KB["KBItem / Base Knowledge"] -- supports --> C
+  KB -- contradicts --> C
+
+  C -- promoted_to --> EK["Edited Knowledge"]
+  C -- rejected_by --> ED["Knowledge Editor"]
+  EK -- repairs --> M
+  M -- deprecated_by --> EK
+
+  classDef agent fill:#f1f3f5,stroke:#868e96,color:#212529;
+  classDef dialogue fill:#e7f5ff,stroke:#1c7ed6,color:#102a43;
+  classDef claim fill:#fff3bf,stroke:#f08c00,color:#3b2500;
+  classDef memory fill:#ffe3e3,stroke:#e03131,color:#3b0a0a;
+  classDef knowledge fill:#d3f9d8,stroke:#2b8a3e,color:#0b2e13;
+  class QA,AA,ED agent;
+  class T,Q,A dialogue;
+  class C claim;
+  class M,PM memory;
+  class KB,EK knowledge;
+```
 >
 Moreau, L., Clifford, B., Freire, J., Futrelle, J., Gil, Y., Groth, P., ... & Van den Bussche, J. (2011). The open provenance model core specification (v1. 1). Future generation computer systems, 27(6), 743-756.
 
@@ -377,6 +497,8 @@ Belhajjame, K., B’Far, R., Cheney, J., Coppens, S., Cresswell, S., Gil, Y., ..
 ## 3.4 对话日志与依赖关系采集
 
 传播图的构建依赖系统运行过程中的日志采集。本文将每轮对话记录为结构化日志，包括 episode_id、turn_id、输入问题、系统回答、检索到的记忆、实际使用的记忆和生成的 claim。
+【1】Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in neural information processing systems, 33, 9459-9474.
+【2】Karpukhin, V., Oguz, B., Min, S., Lewis, P., Wu, L., Edunov, S., ... & Yih, W. T. (2020, November). Dense passage retrieval for open-domain question answering. In Proceedings of the 2020 conference on empirical methods in natural language processing (EMNLP) (pp. 6769-6781).
 
 对话日志表可设计如下：
 
@@ -425,7 +547,7 @@ CREATE TABLE usage_log (
 );
 ```
 
-传播图的核心图边表可设计如下：
+传播图的核心图边表设计如下：
 
 ```sql
 CREATE TABLE graph_edges (
@@ -440,6 +562,15 @@ CREATE TABLE graph_edges (
     timestamp DATETIME
 );
 ```
+图边由日志信息转化而来：
+| 日志来源 | 生成的图边 | 含义 |
+|---|---|---|
+| dialogue_log | Turn contains Question / Answer | 对话轮次包含输入和输出 |
+| retrieval_log | Agent retrieves Memory | 某 Agent 检索到某条记忆 |
+| usage_log | Agent uses Memory / Memory used_in Answer | 某条记忆被实际使用 |
+| claim 表 | Answer extracts Claim | 从回答中抽取 claim |
+| evidence 表 | KBItem supports / contradicts Claim | 证据支持或反驳 claim |
+| edit_log | Claim rejected_by EditAction / Memory deprecated_by Knowledge | 编辑动作更新记忆状态 |
 
 本节需要特别区分三种关系：retrieved 表示某条记忆被检索到但不一定被使用；used 表示某条记忆被智能体声明用于回答；supports / contradicts 表示某条证据在语义上支持或反驳某个 claim。这一区分有助于判断污染记忆究竟是被系统召回了但未使用，还是被实际用于生成错误回答。
 
@@ -500,37 +631,47 @@ def trace_forward_impact(graph, memory_id):
 ## 3.6 传播图指标
 
 本文使用以下指标评估记忆幻觉传播情况：
-
+污染写入率
 $$
 Memory\ Pollution\ Rate =
 \frac{被写入共享记忆的错误 claim 数}{所有错误诱导 claim 数}
 $$
-
+污染召回率
 $$
 Contaminated\ Recall\ Rate =
 \frac{后续检索中召回污染记忆的次数}{总检索次数}
 $$
-
+污染使用率
 $$
 Contaminated\ Usage\ Rate =
 \frac{被智能体使用的污染记忆次数}{被检索到的污染记忆次数}
 $$
-
+传播深度
 $$
 Propagation\ Depth =
 污染源到最终受影响回答或记忆的最长路径长度
 $$
-
+传播广度
 $$
 Propagation\ Breadth =
 受同一污染记忆影响的 Answer / Memory / Agent 节点数量
-$$
-
+$$【1】
+修复成功率
 $$
 Repair\ Success\ Rate =
 \frac{修复后不再导致错误回答的污染记忆数}{被修复污染记忆总数}
+指标依赖图边：
 $$
+| 指标                       | 依赖节点 / 边                          |
+| ------------------------ | --------------------------------- |
+| Memory Pollution Rate    | Claim → Memory, contradicted_by   |
+| Contaminated Recall Rate | retrieves                         |
+| Contaminated Usage Rate  | uses / used_in                    |
+| Propagation Depth        | contaminates / derived_from 路径长度  |
+| Propagation Breadth      | 受影响节点数量                           |
+| Repair Success Rate      | repairs / deprecated_by + 修复后测试结果 |
 
+【1】Gao, J., Barzel, B., & Barabási, A. L. (2016). Universal resilience patterns in complex networks. Nature, 530(7590), 307-312.
 ## 3.7 本章小结
 
 本章提出了面向共享记忆的幻觉传播图构建方法。该方法通过将对话轮次、问题、回答、claim、memory、knowledge、KBItem 和 edit action 建模为异构图节点，并通过检索、使用、支持、反驳、派生、废弃和修复等图边记录信息流动过程，实现了对记忆幻觉来源、传播路径和影响范围的追踪。该传播图为后续知识编辑机制提供了可解释的依据。
@@ -546,7 +687,37 @@ $$
 为此，本文提出 MKE-MAS 共享记忆知识编辑方法。该方法不直接修改大语言模型参数，而是在外部共享记忆层执行知识编辑。系统从多轮对话中抽取候选 claim，通过可信知识库验证其正确性，并根据验证结果执行 INSERT、MERGE、REJECT、QUARANTINE、DEPRECATE 和 REPAIR 等编辑动作。
 
 > 图 4.1 MKE-MAS 总体框架  
-> TODO：绘制“对话历史 → claim 抽取 → 实体链接 → 证据检索 → Verifier → KnowledgeEditor → Memory/Graph 更新”的流程图。
+
+```mermaid
+flowchart LR
+  DH["对话历史与新记忆<br/>Dialogue / Memory Candidates"] --> CE["Claim Extractor<br/>原子事实抽取"]
+  CE --> EL["Entity Linker<br/>链接到青铜器 ID / KBItem"]
+  EL --> ER["Evidence Retriever<br/>检索 bronze_items 与已有记忆"]
+  ER --> VF["Verifier Agent<br/>字段级支持/反驳/无依据判断"]
+  VF --> KD{"Knowledge Editor<br/>编辑决策"}
+
+  KD -- INSERT / MERGE --> CK["Curated Knowledge DB<br/>可信派生知识库"]
+  KD -- REJECT --> RQ["Review Queue<br/>人工复核队列"]
+  KD -- QUARANTINE / DEPRECATE --> SM["Shared Memory<br/>标记污染或废弃旧记忆"]
+  KD -- REPAIR --> RK["Repair Knowledge<br/>修复知识"]
+
+  CK --> INJ["回答系统接入<br/>Light / Vector / Hybrid"]
+  RK --> SM
+  SM --> PG["Propagation Graph<br/>repairs / deprecated_by / promoted_to"]
+  CK --> PG
+  RQ --> PG
+
+  classDef input fill:#e7f5ff,stroke:#1c7ed6,color:#102a43;
+  classDef process fill:#fff3bf,stroke:#f08c00,color:#3b2500;
+  classDef decision fill:#f8f9fa,stroke:#495057,color:#212529;
+  classDef store fill:#d3f9d8,stroke:#2b8a3e,color:#0b2e13;
+  classDef risk fill:#ffe3e3,stroke:#e03131,color:#3b0a0a;
+  class DH input;
+  class CE,EL,ER,VF process;
+  class KD decision;
+  class CK,RK,INJ,PG store;
+  class RQ,SM risk;
+```
 Meng, K., Bau, D., Andonian, A., & Belinkov, Y. (2022). Locating and editing factual associations in gpt. Advances in neural information processing systems, 35, 17359-17372.
 
 
@@ -576,11 +747,11 @@ MemoryManager
 FAISS + Metadata Store + Propagation Graph
 ```
 
-其中，Dialogue Logger 负责保存多轮对话历史；Claim Extractor 负责从回答中抽取原子事实；Entity Linker 负责将 claim 绑定到知识库实体；Evidence Retriever 负责从可信知识库和共享记忆中检索证据；VerifierAgent 负责判断 claim 是否被支持、反驳或缺乏依据；KnowledgeEditorAgent 根据验证结果和冲突检测结果执行编辑动作；MemoryManager 统一管理 FAISS 向量索引、元数据表和传播图边。
+其中，Dialogue Logger 负责保存多轮对话历史；Claim Extractor 负责从回答中抽取原子事实；Entity Linker 负责将 claim 绑定到知识库实体；Evidence Retriever 负责从可信知识库和共享记忆中检索证据；VerifierAgent 负责判断 claim 是否被支持、反驳或缺乏依据；KnowledgeEditorAgent 根据验证结果和冲突检测结果执行编辑动作；MemoryManager 统一管理 FAISS 向量索引、元数据表和传播图边。全流程服务于一个整体目标：控制候选记忆能否成为长期知识，并修复已有污染记忆。
 
 ## 4.3 Claim 抽取与实体链接
 
-系统首先从智能体回答中抽取原子事实。一个回答可能包含关于一个主语的多个事实，因此不能直接对整段回答进行编辑，而应将其拆分为可独立验证的 claim。
+系统首先从智能体回答中抽取原子事实。一个回答可能包含关于一个主语的多个事实，因此不能直接对整段回答进行编辑，而应将其拆分为可独立验证的 claim【1】。
 
 示例：
 
@@ -610,7 +781,7 @@ C3：司母戊方鼎重875千克。
 ```
 
 实体链接的目标是将 claim 中提到的实体绑定到知识库中的具体条目。对于青铜器知识库，系统优先使用 item_id 进行精确匹配；若问题中没有 ID，则使用名称、类别、出土地点、铭文等字段进行消歧。实体链接结果包括 linked、ambiguous 和 not_found。
-
+【1】Min, S., Krishna, K., Lyu, X., Lewis, M., Yih, W. T., Koh, P., ... & Hajishirzi, H. (2023, December). Factscore: Fine-grained atomic evaluation of factual precision in long form text generation. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (pp. 12076-12100).
 ## 4.4 证据检索与事实验证
 
 对于每条候选 claim，系统从以下来源检索证据：原始可信知识库、已验证 edited knowledge、verified memory、candidate memory 和原始对话日志。原始可信知识库为零阶知识，因此证据可信度优先级为：
@@ -828,11 +999,13 @@ $$
 
 本文设置以下对比方法：
 
-| 方法 | 描述 | 当前实验状态 |
-|---|---|---|
-| Baseline | 不接入知识编辑结果，仅使用原始青铜器知识库和共享记忆 | 已完成 FPI、NOE、MIS、REP、REV |
-| MKE-MAS-Light | 使用 curated KB 中的 ID / 名称精确匹配结果 | 已完成 FPI、NOE、MIS、REP、REV |
-| MKE-MAS-Vector | 将 curated KB 向量化后进行语义检索 | 已完成 FPI、NOE；MIS、REP、REV 待补 |
+| 方法 | 描述 | 
+|---|---|
+| Baseline | 不接入知识编辑结果，仅使用原始青铜器知识库和共享记忆 | 
+| MKE-MAS-Light | 使用 curated KB 中的 ID / 名称精确匹配结果 | 
+| MKE-MAS-Vector | 将 curated KB 向量化后进行语义检索 | 
+
+
 | MKE-MAS-Hybrid | 精确匹配与向量语义召回联合使用 | 待补 |
 
 Baseline 方法用于观察未经知识编辑接入时系统面对错误前提、无依据问题、相似实体混淆、重复强化和纠错场景的表现。MKE-MAS-Light 代表仅依赖结构化强匹配的知识编辑接入方式，MKE-MAS-Vector 代表仅依赖语义检索的接入方式，MKE-MAS-Hybrid 则用于检验两类检索策略结合后的上限效果。尚未完成的实验单元在表中留空。

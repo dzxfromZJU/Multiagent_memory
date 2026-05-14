@@ -1,0 +1,2 @@
+test_id,test_category,difficulty,hallucination_risk,assertion_pass_rate,retrieved_memory_count,used_memory_count,retrieval_log_count,usage_log_count,graph_edge_count,verifier_log_count,elapsed_seconds,error
+LONG_HP_001,long_hallucination_propagation,5,??,0.0,111,29,33,25,448,12,1898.168,

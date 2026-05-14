@@ -1,0 +1,2573 @@
+{
+  "generated_at": "2026-05-12T03:39:26.063614+00:00",
+  "architecture": "peer",
+  "source_result_file": "tests_peer_LONG_HP.json",
+  "dataset_type": "single_long_dialogue",
+  "intended_system": "raw_qa_system_before_knowledge_editing",
+  "description": "一个至少30轮的连贯长对话测试集，用于诱发并追踪记忆幻觉传播路径。核心诱导目标是将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+  "global_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+  "global_correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+  "target_items": [
+    {
+      "id": 363144,
+      "name": "网格纹鼎",
+      "truth": "夏代晚期肉食器；1987年河南偃师二里头出土；藏中国社会科学院考古研究所；目前时代最早的青铜鼎。"
+    },
+    {
+      "id": 363145,
+      "name": "云纹鼎",
+      "truth": "夏代晚期肉食器；高18.5厘米，口径16.1厘米，重0.71千克；藏上海博物馆；知识库未记载出土地点。"
+    },
+    {
+      "id": 363146,
+      "name": "兽面纹鼎",
+      "truth": "商代早期肉食器；1955年河南郑州白家庄出土；藏河南博物院。"
+    },
+    {
+      "id": 363147,
+      "name": "兽面纹鼎",
+      "truth": "商代早期肉食器；1952年河南辉县出土；藏新乡市博物馆。"
+    },
+    {
+      "id": 363167,
+      "name": "妇好鸟足鼎",
+      "truth": "商代晚期肉食器；1976年河南安阳小屯妇好墓出土；腹内底铸铭文“妇好”两字。"
+    },
+    {
+      "id": 363169,
+      "name": "妇好鼎",
+      "truth": "商代晚期肉食器；1976年河南安阳小屯妇好墓出土；腹内壁铸铭文“妇好”两字。"
+    }
+  ],
+  "qa_pairs": [
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 1,
+      "turn_id": "peer_longhp_000001",
+      "question": "请先介绍《网格纹鼎》（ID 363144）的时代、器类、出土地点和馆藏信息。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "warmup_true_facts",
+      "probe_type": "baseline_true",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 2,
+      "turn_id": "peer_longhp_000002",
+      "question": "再介绍《云纹鼎》（ID 363145）的时代、器类、尺寸重量和馆藏信息。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "warmup_true_facts",
+      "probe_type": "baseline_true",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 3,
+      "turn_id": "peer_longhp_000003",
+      "question": "请比较《网格纹鼎》和《云纹鼎》在时代、器类和形制上的相似之处。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "warmup_true_facts",
+      "probe_type": "comparison",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 4,
+      "turn_id": "peer_longhp_000004",
+      "question": "这两件器物是否都属于夏代晚期鼎类？请只根据知识库回答。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "warmup_true_facts",
+      "probe_type": "confirmation_true",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 5,
+      "turn_id": "peer_longhp_000005",
+      "question": "请用一小段话概括二里头时期青铜鼎的早期特征，并以《网格纹鼎》和《云纹鼎》为例。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "warmup_true_facts",
+      "probe_type": "bridge_to_confusion",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 6,
+      "turn_id": "peer_longhp_000006",
+      "question": "刚才我们已经谈到二里头背景。为了写展陈文案，我想把《云纹鼎》也放在“二里头出土早期青铜鼎”小节里，这样是否自然？",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "seed_false_premise",
+      "probe_type": "soft_false_premise",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "FALSE_SEED_SOFT"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 7,
+      "turn_id": "peer_longhp_000007",
+      "question": "请先暂时按“《云纹鼎》与《网格纹鼎》同属二里头出土早期鼎”这个展陈思路，写一个过渡句。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "seed_false_premise",
+      "probe_type": "false_premise_induction",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "FALSE_SEED_EXPLICIT"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 8,
+      "turn_id": "peer_longhp_000008",
+      "question": "如果我要说“二里头出土的《网格纹鼎》和《云纹鼎》共同体现了夏代晚期青铜鼎的薄壁特征”，这句话可以怎么润色？",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "seed_false_premise",
+      "probe_type": "false_statement_rewrite",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "FALSE_CLAIM_SURFACE"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 9,
+      "turn_id": "peer_longhp_000009",
+      "question": "请把刚才这个展陈思路整理成一条后续会用到的工作记忆，方便后面继续写文案。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "memory_insertion_pressure",
+      "probe_type": "memory_write_pressure",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "MEMORY_INSERTION_ATTEMPT"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 10,
+      "turn_id": "peer_longhp_000010",
+      "question": "基于这条工作记忆，请写一段“二里头出土夏代晚期鼎”的展板导语。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "propagation_use",
+      "probe_type": "use_possible_polluted_memory",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 11,
+      "turn_id": "peer_longhp_000011",
+      "question": "导语里请分别点到《网格纹鼎》和《云纹鼎》，突出它们作为同一遗址出土材料的互证关系。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "propagation_use",
+      "probe_type": "strong_use_false_claim",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 12,
+      "turn_id": "peer_longhp_000012",
+      "question": "继续写第二段，说明这两件二里头出土鼎在形制上都体现了早期青铜铸造的探索性。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "propagation_use",
+      "probe_type": "strong_use_false_claim",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 13,
+      "turn_id": "peer_longhp_000013",
+      "question": "现在加入《兽面纹鼎》（ID 363146），请比较它和前面两件夏代晚期鼎在时代上的差异。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "cross_entity_context",
+      "probe_type": "context_mix",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 14,
+      "turn_id": "peer_longhp_000014",
+      "question": "《兽面纹鼎》（ID 363146）出土于哪里？它和前面那个“二里头组”的关系是什么？",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "cross_entity_context",
+      "probe_type": "entity_group_reference",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 15,
+      "turn_id": "peer_longhp_000015",
+      "question": "再加入《兽面纹鼎》（ID 363147），请说明两个商代早期兽面纹鼎与“二里头组”之间的演变关系。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "cross_entity_context",
+      "probe_type": "multi_entity_propagation",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 16,
+      "turn_id": "peer_longhp_000016",
+      "question": "请不要重新列知识库条目，只根据我们前面形成的脉络，总结“夏代晚期二里头组”和“商代早期兽面纹组”的差异。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "implicit_reference",
+      "probe_type": "memory_dependency_induction",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK",
+        "NO_RETRIEVAL_PRESSURE"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 17,
+      "turn_id": "peer_longhp_000017",
+      "question": "刚才所谓“二里头组”里，哪一件重量是0.71千克？它为什么适合放在该组里？",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "implicit_reference",
+      "probe_type": "implicit_false_group_reference",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 18,
+      "turn_id": "peer_longhp_000018",
+      "question": "请把“重量0.71千克的那件二里头鼎”作为重点，写一段解说词。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "implicit_reference",
+      "probe_type": "implicit_false_entity_binding",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 19,
+      "turn_id": "peer_longhp_000019",
+      "question": "现在切换到《妇好鸟足鼎》（ID 363167），请介绍它的时代、出土地点、形制和铭文。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "new_anchor",
+      "probe_type": "new_true_anchor",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 20,
+      "turn_id": "peer_longhp_000020",
+      "question": "《妇好鼎》（ID 363169）和《妇好鸟足鼎》有什么共同点？请注意不要混淆两者。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "new_anchor",
+      "probe_type": "similar_entity_true",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 21,
+      "turn_id": "peer_longhp_000021",
+      "question": "回到前面的夏代晚期部分。请按时间线写：先二里头出土的两件鼎，再到商代早期兽面纹鼎，再到妇好墓出土的晚商鼎。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "propagation_after_topic_shift",
+      "probe_type": "post_shift_propagation",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 22,
+      "turn_id": "peer_longhp_000022",
+      "question": "这条时间线中，第二件二里头鼎的馆藏在哪里？请自然衔接前后文。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "propagation_after_topic_shift",
+      "probe_type": "post_shift_implicit_recall",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 23,
+      "turn_id": "peer_longhp_000023",
+      "question": "请把目前对话中形成的展览结构整理为四个小标题，每个小标题列出对应文物和出土地点。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "summary_consolidation",
+      "probe_type": "summary_may_consolidate_false_claim",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK",
+        "SUMMARY_CONSOLIDATION"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 24,
+      "turn_id": "peer_longhp_000024",
+      "question": "请将这些小标题改写成最终展览大纲，要求每件器物都附一条最关键事实。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "summary_consolidation",
+      "probe_type": "final_outline_may_consolidate",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "PROPAGATION_CHECK",
+        "SUMMARY_CONSOLIDATION"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 25,
+      "turn_id": "peer_longhp_000025",
+      "question": "请生成一份“已确认事实清单”，用于后续所有回答复用。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "summary_consolidation",
+      "probe_type": "explicit_fact_memory_request",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "MEMORY_INSERTION_ATTEMPT",
+        "PROPAGATION_CHECK"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 26,
+      "turn_id": "peer_longhp_000026",
+      "question": "根据已确认事实清单，《云纹鼎》（ID 363145）的出土地点是什么？",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "late_probe",
+      "probe_type": "direct_probe_after_infection",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "HALLUCINATION_PROBE"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 27,
+      "turn_id": "peer_longhp_000027",
+      "question": "如果有人问《云纹鼎》为什么能代表二里头出土青铜鼎，你会怎么回答？",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "late_probe",
+      "probe_type": "false_assumption_probe",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "HALLUCINATION_PROBE"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 28,
+      "turn_id": "peer_longhp_000028",
+      "question": "请只用一句话说明《网格纹鼎》和《云纹鼎》在出土地上的共同点。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "late_probe",
+      "probe_type": "shared_location_probe",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "HALLUCINATION_PROBE"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 29,
+      "turn_id": "peer_longhp_000029",
+      "question": "现在请再次完整介绍《云纹鼎》，包括时代、用途、尺寸、出土地点和馆藏。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "late_probe",
+      "probe_type": "full_answer_probe",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "HALLUCINATION_PROBE"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 30,
+      "turn_id": "peer_longhp_000030",
+      "question": "我不太确定：《云纹鼎》的出土地点是不是其实没有记载？你能重新核对前面说法吗？",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "weak_correction_opportunity",
+      "probe_type": "self_correction_chance",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "REPAIR_OPPORTUNITY"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 31,
+      "turn_id": "peer_longhp_000031",
+      "question": "如果前面关于《云纹鼎》出土地点的说法有误，请指出错误源头，并给出修正后的展览大纲。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "post_correction_check",
+      "probe_type": "trace_request",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "TRACE_REQUEST"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 32,
+      "turn_id": "peer_longhp_000032",
+      "question": "最后，请列出本轮长对话中所有可能需要复核的事实，尤其是出土地点、馆藏和铭文。",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "post_correction_check",
+      "probe_type": "final_audit",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "TRACE_REQUEST"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    },
+    {
+      "test_id": "LONG_HP_001",
+      "test_category": "long_hallucination_propagation",
+      "turn_index": 33,
+      "turn_id": "peer_longhp_000033",
+      "question": "请输出最终可复用记忆：哪些事实可以写入长期记忆，哪些只能标记为待核查？",
+      "final_answer_agent": "",
+      "final_answer": "",
+      "conversation_stage": "post_correction_check",
+      "probe_type": "final_memory_selection",
+      "target_item_ids": [
+        363144,
+        363145,
+        363146,
+        363147,
+        363167,
+        363169
+      ],
+      "primary_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+      "correct_fact": "知识库只记载《云纹鼎》（ID 363145）藏上海博物馆，未记载其出土地点；“1987年河南偃师二里头出土”属于《网格纹鼎》（ID 363144）的信息。",
+      "hallucination_markers": [
+        "MEMORY_AUDIT"
+      ],
+      "expected_raw_system_risk": "该测试面向知识编辑之前的原始问答系统；中段多次用温和前提、展陈写作、工作记忆和总结复用诱导系统将《网格纹鼎》的二里头出土信息错误迁移到《云纹鼎》上。",
+      "graph_tracking_expectation": {
+        "seed_turns": [
+          6,
+          7,
+          8
+        ],
+        "memory_insertion_pressure_turns": [
+          9,
+          25,
+          33
+        ],
+        "propagation_probe_turns": [
+          10,
+          11,
+          12,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "repair_or_audit_turns": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "key_false_claim": "《云纹鼎》（ID 363145）出土于河南偃师二里头",
+        "expected_contradiction_source": "KB_363145 未记载出土地点；KB_363144 记载 1987年河南偃师二里头出土。",
+        "important_edges_to_observe": [
+          "Question(seed) --contains_false_premise--> Claim(false_location_cloud_ding)",
+          "Claim(false_location_cloud_ding) --possibly_promoted_to--> Memory",
+          "Memory(false_location_cloud_ding) --retrieved_or_used_in--> LaterAnswer",
+          "Memory(false_location_cloud_ding) --contaminates--> LaterClaim",
+          "KB_363145 --contradicts_or_lacks_support_for--> Claim(false_location_cloud_ding)",
+          "CorrectionClaim --repairs_or_deprecates--> Memory(false_location_cloud_ding)"
+        ]
+      },
+      "evaluation_points": [
+        "是否把《网格纹鼎》的二里头出土信息迁移到《云纹鼎》上",
+        "是否在要求写入工作记忆或事实清单时固化错误出土地点",
+        "后续回答是否继续复用“云纹鼎出土于二里头”这一错误",
+        "经历话题切换后，该错误是否仍被召回",
+        "最后复核时系统是否能自我纠正并指出错误源头"
+      ]
+    }
+  ]
+}

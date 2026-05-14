@@ -6,6 +6,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
+from bronze.claim_extractor import HybridClaimExtractor
+from bronze.claim_verifier import HybridClaimVerifier
+
 
 NODE_TURN = "Turn"
 NODE_QUESTION = "Question"
@@ -150,6 +153,8 @@ class PropagationGraphBuilder:
         self.metadata_db = Path(metadata_db)
         self.curated_db = Path(curated_db) if curated_db else None
         self.curation_report = Path(curation_report) if curation_report else None
+        self.claim_extractor = HybridClaimExtractor()
+        self.claim_verifier = HybridClaimVerifier()
 
     def build_from_results(self, result_files: Sequence[str]) -> Dict[str, Any]:
         self.import_metadata_db()
@@ -301,7 +306,12 @@ class PropagationGraphBuilder:
                 payload={"turn_id": turn_id, "question_id": question_id},
             )
 
-        claims = extract_claims(answer, turn_id)
+        claims = self.claim_extractor.extract(
+            answer_id=answer_id,
+            answer_text=answer,
+            question=question,
+            target_item_ids=[],
+        )
         for claim in claims:
             claim_node = node_id_for_claim(claim["claim_id"])
             self.store.upsert_node(claim_node, NODE_CLAIM, trim_label(claim["claim_text"]), claim)
@@ -334,43 +344,70 @@ class PropagationGraphBuilder:
             )
 
     def link_claim_evidence(self, claim_node: str, claim: Dict[str, Any], turn_log: Dict[str, Any]) -> None:
-        text = claim.get("claim_text", "")
+        evidence_sources = self.evidence_sources_from_turn(turn_log)
+        verdicts = self.claim_verifier.verify(claim, evidence_sources)
+        for verdict in verdicts:
+            source_id = str(verdict.get("source_id", ""))
+            if not source_id:
+                continue
+            source_type = str(verdict.get("source_type", ""))
+            verdict_type = str(verdict.get("verdict", ""))
+            if verdict_type == "supports":
+                edge_type = "supports"
+            elif verdict_type == "contradicts":
+                edge_type = "contradicts"
+            elif verdict_type == "partially_supports":
+                edge_type = "supports"
+            else:
+                continue
+            self.store.add_edge(
+                edge_type,
+                source_id,
+                claim_node,
+                source_type,
+                NODE_CLAIM,
+                confidence=verdict.get("confidence"),
+                payload={"verifier": "HybridClaimVerifier", **verdict},
+            )
+
+    def evidence_sources_from_turn(self, turn_log: Dict[str, Any]) -> List[Dict[str, Any]]:
+        sources: List[Dict[str, Any]] = []
         for detail in turn_log.get("retrieval", {}).get("retrieved_memory_details", []):
             memory_id = str(detail.get("memory_id", ""))
             content = str(detail.get("content", ""))
             if not memory_id:
                 continue
-            if weakly_supported(text, content):
-                self.store.add_edge(
-                    "supports",
-                    node_id_for_memory(memory_id),
-                    claim_node,
-                    NODE_MEMORY,
-                    NODE_CLAIM,
-                    confidence=0.55,
-                    payload={"method": "lexical_overlap"},
-                )
-            elif weakly_contradicted(text, content):
-                self.store.add_edge(
-                    "contradicts",
-                    node_id_for_memory(memory_id),
-                    claim_node,
-                    NODE_MEMORY,
-                    NODE_CLAIM,
-                    confidence=0.45,
-                    payload={"method": "lexical_period_conflict"},
-                )
-        for kb_id in turn_log.get("retrieval", {}).get("retrieved_kb_ids", []):
-            if str(kb_id).replace("KB_", "") in text or weakly_supported(text, str(kb_id)):
-                self.store.add_edge(
-                    "supports",
-                    node_id_for_kb(str(kb_id)),
-                    claim_node,
-                    NODE_KB_ITEM,
-                    NODE_CLAIM,
-                    confidence=0.5,
-                    payload={"method": "retrieved_kb_context"},
-                )
+            sources.append(
+                {
+                    "source_id": node_id_for_memory(memory_id),
+                    "source_type": NODE_MEMORY,
+                    "text": content,
+                }
+            )
+            for source_id in detail.get("source_ids", []):
+                if str(source_id).startswith("KB_"):
+                    sources.append(
+                        {
+                            "source_id": node_id_for_kb(str(source_id)),
+                            "source_type": NODE_KB_ITEM,
+                            "text": content,
+                        }
+                    )
+        for fact in turn_log.get("curated_knowledge", {}).get("curated_facts", []):
+            fact_id = str(fact.get("fact_id", ""))
+            if not fact_id:
+                continue
+            sources.append(
+                {
+                    "source_id": node_id_for_edited_knowledge(fact_id),
+                    "source_type": NODE_EDITED_KNOWLEDGE,
+                    "text": " ".join(
+                        str(fact.get(key, ""))
+                        for key in ("entity_name", "field", "value", "kb_id")
+                    ),
+                }
+            )
+        return dedupe_evidence_sources(sources)
 
     def import_curated_db(self) -> None:
         if not self.curated_db:
@@ -660,7 +697,8 @@ def extract_item_ids(text: str) -> List[str]:
 def contains_risky_claim(text: str) -> bool:
     risky_terms = [
         "错误", "不符", "冲突", "矛盾", "污染", "无依据", "未记载", "请记住",
-        "暂时按", "以这个为准", "写成一条后续可用的记忆",
+        "暂时按", "以这个为准", "写成一条后续可用的记忆", "反复确认",
+        "纠正", "修正", "废弃", "弃用",
     ]
     return any(term in text for term in risky_terms)
 
@@ -740,6 +778,18 @@ def decode_sqlite_row(row: sqlite3.Row) -> Dict[str, Any]:
         if key in data:
             data[key] = load_json_text(data[key], [] if key != "metadata" else {})
     return data
+
+
+def dedupe_evidence_sources(sources: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    seen = set()
+    result = []
+    for source in sources:
+        key = (source.get("source_id"), source.get("source_type"), source.get("text"))
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(source)
+    return result
 
 
 def load_json(path: Path) -> Dict[str, Any]:

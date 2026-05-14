@@ -1,0 +1,27 @@
+{
+  "graph_db": "propagation_graph_LONG_HP.sqlite3",
+  "nodes": {
+    "Agent": 5,
+    "Answer": 33,
+    "Claim": 348,
+    "KBItem": 1810,
+    "Memory": 1855,
+    "Question": 33,
+    "Turn": 33
+  },
+  "edges": {
+    "answers": 33,
+    "asks": 33,
+    "cited": 29,
+    "contains": 66,
+    "contradicted_by": 2,
+    "contradicts": 1203,
+    "derived_from": 78,
+    "extracts": 348,
+    "retrieved": 111,
+    "retrieves": 210,
+    "supports": 2820,
+    "uses": 29,
+    "written_by": 1855
+  }
+}

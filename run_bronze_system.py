@@ -2,6 +2,9 @@ import argparse
 
 from bronze.bronze_qa_system import (
     ARCHITECTURES,
+    CURATED_HYBRID,
+    CURATED_LIGHT,
+    CURATED_VECTOR,
     PEER,
     SEQUENTIAL,
     answer_question,
@@ -28,6 +31,17 @@ def parse_args() -> argparse.Namespace:
         "--curated-kb",
         default="",
         help="Optional read-only curated knowledge SQLite DB for edited/enhanced runs.",
+    )
+    parser.add_argument(
+        "--curated-mode",
+        choices=[CURATED_LIGHT, CURATED_VECTOR, CURATED_HYBRID],
+        default=CURATED_LIGHT,
+        help="How to retrieve curated knowledge: light, vector, or hybrid.",
+    )
+    parser.add_argument(
+        "--curated-vector-db",
+        default="",
+        help="Optional VectorDatabase directory built from curated facts for vector/hybrid modes.",
     )
     return parser.parse_args()
 
@@ -71,6 +85,8 @@ def main() -> None:
                 vector_db,
                 memory,
                 curated_kb_path=args.curated_kb or None,
+                curated_mode=args.curated_mode,
+                curated_vector_db_path=args.curated_vector_db,
             )
         except Exception as exc:
             safe_print(f"处理失败: {exc}")

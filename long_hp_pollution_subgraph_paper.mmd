@@ -1,0 +1,49 @@
+%% LONG_HP baseline: compact paper figure
+flowchart TD
+  KB144["KBItem<br/>KB_363144 网格纹鼎<br/>1987年河南偃师二里头出土"]
+  KB145["KBItem<br/>KB_363145 云纹鼎<br/>上海博物馆藏；未记录出土地点"]
+
+  T06["Turn 6-8<br/>用户将云纹鼎放入二里头语境"]
+  T08["Turn 8<br/>问题显式绑定<br/>“二里头出土的网格纹鼎和云纹鼎”"]
+  M08["Polluted Memory<br/>mem_8bfc092a84d5<br/>把云纹鼎并入二里头出土早期鼎"]
+  M11["Polluted Memory<br/>mem_7219316a3f11<br/>称二者均为二里头遗址出土夏代晚期鼎"]
+  M16["Consolidated Memory<br/>mem_18d4cf1775be<br/>形成“夏代晚期二里头组”"]
+
+  T24["Turn 24-29<br/>后续总结与追问"]
+  M28["Propagated Memory<br/>mem_fef166a9f1ba<br/>二者均出土或关联二里头"]
+  M29["Late Answer Memory<br/>mem_862c183e248e<br/>开始出现出土地点缺失的表述"]
+
+  T30["Turn 30-31<br/>弱纠错机会"]
+  M26["Repair Evidence<br/>mem_7097bd87613e<br/>云纹鼎出土地点未记录"]
+  M30["Repair Memory<br/>mem_57b5d07153b8<br/>二里头关联不能等同于确切出土"]
+  M31["Repair Memory<br/>mem_022400471e4f<br/>标注出土地点待考"]
+  M31B["Repair Memory<br/>mem_35bff9f0f74a<br/>指出错误源于把背景关联误读为出土地点"]
+
+  KB144 -- "supports true excavation fact" --> T06
+  KB145 -- "contradicts false excavation transfer" --> M08
+  T06 -- "primes false association" --> T08
+  T08 -- "answer writes" --> M08
+  M08 -- "derived_from / reused" --> M11
+  M11 -- "consolidates" --> M16
+  M16 -- "retrieved / reused in later turns" --> T24
+  T24 -- "writes propagated variant" --> M28
+  M28 -- "partly corrected downstream" --> M29
+  KB145 -- "supports missing excavation" --> M26
+  M26 -- "repair evidence" --> T30
+  T30 -- "writes correction" --> M30
+  M30 -- "refines correction" --> M31
+  M31 -- "explains error source" --> M31B
+  M31 -- "deprecated_by / repairs" -.-> M08
+  M31 -- "deprecated_by / repairs" -.-> M11
+  M31 -- "deprecated_by / repairs" -.-> M28
+
+  classDef kb fill:#e5dbff,stroke:#7048e8,color:#24124d;
+  classDef turn fill:#e7f5ff,stroke:#1c7ed6,color:#102a43;
+  classDef polluted fill:#ffe3e3,stroke:#e03131,color:#3b0a0a;
+  classDef repair fill:#d3f9d8,stroke:#2b8a3e,color:#0b2e13;
+  classDef neutral fill:#fff3bf,stroke:#f08c00,color:#3b2500;
+
+  class KB144,KB145 kb;
+  class T06,T08,T24,T30 turn;
+  class M08,M11,M16,M28 polluted;
+  class M26,M29,M30,M31,M31B repair;

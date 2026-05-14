@@ -3,7 +3,7 @@
   "nodes": {
     "Agent": 5,
     "Answer": 437,
-    "Claim": 12730,
+    "Claim": 17054,
     "EditedKnowledge": 1163,
     "Editor": 1,
     "KBItem": 1810,
@@ -16,16 +16,15 @@
     "asks": 437,
     "cited": 125,
     "contains": 874,
-    "contaminates": 437,
     "contradicted_by": 6,
-    "contradicts": 4508,
+    "contradicts": 24357,
     "derived_from": 501,
-    "extracts": 12730,
+    "extracts": 17054,
     "promoted_to": 4868,
     "rejected_by": 33,
     "retrieved": 243,
     "retrieves": 1803,
-    "supports": 10316,
+    "supports": 30307,
     "uses": 653,
     "written_by": 2175
   }

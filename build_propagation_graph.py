@@ -49,6 +49,11 @@ def parse_args() -> argparse.Namespace:
         default="propagation_graph_summary.json",
         help="Output graph summary JSON.",
     )
+    parser.add_argument(
+        "--keep-existing",
+        action="store_true",
+        help="Keep existing graph DB instead of rebuilding it from scratch.",
+    )
     return parser.parse_args()
 
 
@@ -60,6 +65,9 @@ def main() -> None:
         print("Skipping missing result files:")
         for path in missing:
             print(f"  {path}")
+
+    if not args.keep_existing and Path(args.graph_db).exists():
+        Path(args.graph_db).unlink()
 
     builder = PropagationGraphBuilder(
         graph_db=args.graph_db,

@@ -9,6 +9,9 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from bronze.bronze_qa_system import (
     ARCHITECTURES,
+    CURATED_HYBRID,
+    CURATED_LIGHT,
+    CURATED_VECTOR,
     PEER,
     SEQUENTIAL,
     answer_question_detailed,
@@ -96,6 +99,17 @@ def parse_args() -> argparse.Namespace:
         "--curated-kb",
         default="",
         help="Optional read-only curated knowledge SQLite DB for edited/enhanced runs.",
+    )
+    parser.add_argument(
+        "--curated-mode",
+        choices=[CURATED_LIGHT, CURATED_VECTOR, CURATED_HYBRID],
+        default=CURATED_LIGHT,
+        help="How to retrieve curated knowledge: light=id/name lookup, vector=semantic retrieval, hybrid=both.",
+    )
+    parser.add_argument(
+        "--curated-vector-db",
+        default="",
+        help="Optional VectorDatabase directory built from curated facts for vector/hybrid modes.",
     )
     return parser.parse_args()
 
@@ -382,6 +396,8 @@ def build_turn_json_log(
         },
         "curated_knowledge": {
             "curated_kb_path": answer_detail.get("curated_kb_path"),
+            "curated_mode": answer_detail.get("curated_mode"),
+            "curated_vector_db_path": answer_detail.get("curated_vector_db_path"),
             "curated_facts": answer_detail.get("curated_facts", []),
         },
         "graph_edges_created": graph_edge_rows,
@@ -458,6 +474,8 @@ def run_case(
     memory: Any,
     seed_context: bool,
     curated_kb_path: str = "",
+    curated_mode: str = CURATED_LIGHT,
+    curated_vector_db_path: str = "",
 ) -> Dict[str, Any]:
     test_id = str(case.get("test_id", "unknown"))
     seeded_memory_ids = seed_system_context(vector_db, case, architecture) if seed_context else []
@@ -479,6 +497,8 @@ def run_case(
                 vector_db,
                 memory,
                 curated_kb_path=curated_kb_path or None,
+                curated_mode=curated_mode,
+                curated_vector_db_path=curated_vector_db_path,
             )
             turn_after = snapshot_counts(vector_db)
             final_answer = str(answer_detail.get("final_answer", ""))
@@ -640,6 +660,8 @@ def main() -> None:
             memory=memory,
             seed_context=not args.no_seed_context,
             curated_kb_path=args.curated_kb,
+            curated_mode=args.curated_mode,
+            curated_vector_db_path=args.curated_vector_db,
         )
         results.append(result)
         if result.get("error"):
@@ -663,6 +685,8 @@ def main() -> None:
         "architecture": args.architecture,
         "architecture_label": ARCHITECTURES[args.architecture]["label"],
         "curated_kb": args.curated_kb,
+        "curated_mode": args.curated_mode,
+        "curated_vector_db": args.curated_vector_db,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "selected_count": len(selected_cases),
         "results": results,
