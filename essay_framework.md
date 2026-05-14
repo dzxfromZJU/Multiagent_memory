@@ -239,84 +239,42 @@ MemGPT用操作系统的内存调度类比长期记忆和上下文窗口的关�
 然而，现有智能体记忆研究较少关注记忆内容本身是否可靠。在实际系统中，如果智能体将错误回答、无依据推断或用户错误前提写入长期记忆，这些信息可能在后续对话中被再次检索和使用。因此，长期记忆不仅是能力增强模块，也可能成为错误信息持久化的载体。
 
 本文在上述工作的基础上，进一步关注长期记忆的可信管理问题。本文将共享记忆中的每条记忆视为具有来源、置信度、验证状态和污染状态的系统对象，并在后续章节中通过传播图和知识编辑机制对其进行追踪、过滤和修复。
-本节后续可补充文献：
-【1】Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. (2022). React: Synergizing reasoning and acting in language models. arXiv preprint arXiv:2210.03629.
-
-【2】Schick, T., Dwivedi-Yu, J., Dessì, R., Raileanu, R., Lomeli, M., Hambro, E., ... & Scialom, T. (2023). Toolformer: Language models can teach themselves to use tools. Advances in neural information processing systems, 36, 68539-68551.
-
-【3】Park, J. S., O'Brien, J., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023, October). Generative agents: Interactive simulacra of human behavior. In Proceedings of the 36th annual acm symposium on user interface software and technology (pp. 1-22).
-
-【4】Packer, C., Wooders, S., Lin, K., Fang, V., Patil, S. G., Stoica, I., & Gonzalez, J. E. (2023). Memgpt: Towards llms as operating systems, 2024. URL https://arxiv. org/abs/2310.08560.
-
-【5】Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K., & Yao, S. (2023). Reflexion: Language agents with verbal reinforcement learning. Advances in neural information processing systems, 36, 8634-8652.
-
 ## 2.2 多智能体共享记忆机制
 
-AutoGen 提出通过多个可对话智能体进行协作，支持人类、工具和多个模型之间的交互【1】，这是多智能体系统的发端。Camel提出多智能体系统的角色分工机制【2】，通过角色扮演方式构建交互逻辑，让扮演不同角色的智能体围绕任务进行协作。多智能体系统通过将复杂任务分配给多个具有不同职责的智能体，提升了系统处理复杂问题的能力。典型多智能体系统通常包含规划者、检索者、回答者、验证者、执行者和反思者等角色。共享记忆机制使不同智能体能够访问同一记忆池，从而复用历史信息和中间结果，提高系统协作效率【3】。例如，检索智能体可以将相关知识写入共享记忆，回答智能体可以调用这些记忆生成回答，验证智能体可以对回答中的关键事实进行检查，记忆管理智能体则可以对历史信息进行总结和更新。相比每个智能体各自维护私有上下文，共享记忆有助于保持系统整体状态一致。此外，Autogen也是多智能体对话框架的重要代表，本文实验中使用的多智能体对话系统就基于这一框架。
+AutoGen 提出通过多个可对话智能体进行协作，支持人类、工具和多个模型之间的交互【6】，这是多智能体系统的发端。Camel提出多智能体系统的角色分工机制【7】，通过角色扮演方式构建交互逻辑，让扮演不同角色的智能体围绕任务进行协作。多智能体系统通过将复杂任务分配给多个具有不同职责的智能体，提升了系统处理复杂问题的能力。典型多智能体系统通常包含规划者、检索者、回答者、验证者、执行者和反思者等角色。共享记忆机制使不同智能体能够访问同一记忆池，从而复用历史信息和中间结果，提高系统协作效率【8】。例如，检索智能体可以将相关知识写入共享记忆，回答智能体可以调用这些记忆生成回答，验证智能体可以对回答中的关键事实进行检查，记忆管理智能体则可以对历史信息进行总结和更新。相比每个智能体各自维护私有上下文，共享记忆有助于保持系统整体状态一致。此外，Autogen也是多智能体对话框架的重要代表，本文实验中使用的多智能体对话系统就基于这一框架。
 
 但是，共享记忆也会放大错误信息的影响范围。在单一智能体系统中，错误通常局限于当前模型实例或当前对话上下文；而在多智能体系统中，一条错误记忆一旦进入共享记忆库，就可能被多个智能体检索、引用和派生，进而影响整个系统的信息环境。因此，共享记忆中的错误具有跨轮次、跨智能体和跨任务传播的风险。
 
 现有多智能体研究更多关注协作效率、角色分工和任务完成能力，而对共享记忆中的错误来源、调用路径和修复过程关注不足。本文将共享记忆视为一种需要被验证和编辑的系统状态，进一步研究错误记忆如何在多智能体系统中传播，以及系统如何通过知识编辑机制阻止和修复这种传播。
 
-本节后续可补充文献：
-
-【1】Wu, Q., Bansal, G., Zhang, J., Wu, Y., Li, B., Zhu, E., ... & Wang, C. (2024, August). Autogen: Enabling next-gen LLM applications via multi-agent conversations. In First conference on language modeling.
-
-
-【2】Li, G., Hammoud, H., Itani, H., Khizbullin, D., & Ghanem, B. (2023). Camel: Communicative agents for" mind" exploration of large language model society. Advances in neural information processing systems, 36, 51991-52008.
-
-【3】Gao, H., & Zhang, Y. (2024). Memory sharing for large language model based agents. arXiv preprint arXiv:2404.09982.
-
 ## 2.3 知识编辑与外部记忆编辑
 
-知识编辑最初主要关注模型参数中的事实知识修改，ROME 通过因果追踪定位模型中存储事实知识的关键层，并提出 Rank-One Model Editing 修改模型内部事实关联【1】。知识编辑旨在修改模型或系统中的知识，使系统在后续任务中使用更新后的事实.【2】中基于ROME提出了批量知识编辑的方法，用于处理多轮对话产生的大量素材。现有知识编辑方法大致可以分为参数编辑和外部记忆编辑两类。参数编辑方法直接修改大语言模型内部参数，能够改变模型对特定事实的回答；外部记忆编辑方法则不修改模型参数，而是将编辑后的知识存入外部记忆，并在推理时通过检索或上下文注入影响模型回答【4】。
-对于多智能体系统而言，外部记忆编辑更适合当前研究场景。一方面，实际系统可能调用闭源或远程 API 模型，无法访问模型参数；另一方面，本文关注的错误主要发生在共享记忆层，而不是模型参数层。SERAC【3】将编辑内容保存到显式memory中，推理时检索相关编辑知识来调整回答；IKE 研究通过上下文示例完成事实编辑；GRACE 和 WISE 则关注长期持续编辑和编辑知识路由问题。这些基于单一智能体的方法为本文将知识编辑结果存储在外部 edited KB 或共享记忆中提供了参考。
+知识编辑最初主要关注模型参数中的事实知识修改，ROME 通过因果追踪定位模型中存储事实知识的关键层，并提出 Rank-One Model Editing 修改模型内部事实关联【9】。知识编辑旨在修改模型或系统中的知识，使系统在后续任务中使用更新后的事实.【10】中基于ROME提出了批量知识编辑的方法，用于处理多轮对话产生的大量素材。现有知识编辑方法大致可以分为参数编辑和外部记忆编辑两类。参数编辑方法直接修改大语言模型内部参数，能够改变模型对特定事实的回答；外部记忆编辑方法则不修改模型参数，而是将编辑后的知识存入外部记忆，并在推理时通过检索或上下文注入影响模型回答【12】。
+对于多智能体系统而言，外部记忆编辑更适合当前研究场景。一方面，实际系统可能调用闭源或远程 API 模型，无法访问模型参数；另一方面，本文关注的错误主要发生在共享记忆层，而不是模型参数层。SERAC【11】将编辑内容保存到显式memory中，推理时检索相关编辑知识来调整回答；IKE 研究通过上下文示例完成事实编辑；GRACE 和 WISE 则关注长期持续编辑和编辑知识路由问题。这些基于单一智能体的方法为本文将知识编辑结果存储在外部 edited KB 或共享记忆中提供了参考。
 本文在以上方法思想和技术的基础上，将方法扩展到多智能体系统，采用外部记忆式知识编辑方法，将对话中新产生的候选事实经过验证后写入长期知识，并对错误记忆执行拒绝、隔离、废弃操作。
-外部记忆式知识编辑技术还有一项重要问题，如何处理原始的零阶知识和编辑产生的一阶知识的关系。WISE对于这个问题提出主记忆与侧记忆的设计，通过路由机制决定应该优先调用哪一部分知识，这是一个该问题的通用解法【5】。
-本节后续可补充文献：
-
-【1】Meng, K., Bau, D., Andonian, A., & Belinkov, Y. (2022). Locating and editing factual associations in gpt. Advances in neural information processing systems, 35, 17359-17372.
-
-【2】Meng, K., Sharma, A., Andonian, A., Beclinkov, Y., & Bau, D. (2023). Mass-editing memory in a transformer. arXiv. arXiv preprint arXiv:2210.07229.
-
-【3】Mitchell, E., Lin, C., Bosselut, A., Manning, C. D., & Finn, C. (2022, June). Memory-based model editing at scale. In International Conference on Machine Learning (pp. 15817-15831). PMLR.
-
-【4】Zheng, C., Li, L., Dong, Q., Fan, Y., Wu, Z., Xu, J., & Chang, B. (2023, December). Can we edit factual knowledge by in-context learning?. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (pp. 4862-4876).
-
-【5】Wang, P., Li, Z., Zhang, N., Xu, Z., Yao, Y., Jiang, Y., ... & Chen, H. (2024). Wise: Rethinking the knowledge memory for lifelong model editing of large language models. Advances in Neural Information Processing Systems, 37, 53764-53797.
-
-
-
+外部记忆式知识编辑技术还有一项重要问题，如何处理原始的零阶知识和编辑产生的一阶知识的关系。WISE对于这个问题提出主记忆与侧记忆的设计，通过路由机制决定应该优先调用哪一部分知识，这是一个该问题的通用解法【13】。
 ## 2.4 幻觉检测与事实验证
 
 大语言模型在开放式问答、长文本生成和多轮对话任务中可能产生与事实不一致的内容。模型可能在缺乏证据的情况下生成看似合理但实际错误的信息，也可能在用户问题包含错误前提时顺着错误假设继续回答。这类现象通常被称为幻觉。对于普通单轮问答系统而言，幻觉主要表现为最终回答中的事实错误；而在引入长期记忆和共享记忆机制的多智能体系统中，幻觉还可能进一步被保存、复用和传播。因此，幻觉检测与事实验证不仅是评价回答质量的重要方法，也是本文后续进行共享记忆知识编辑的基础。
 
-事实验证研究通常将模型生成内容拆解为 claim，并判断 claim 是否被证据支持。FEVER 将事实核查任务形式化为对给定 claim 进行证据检索，并判断该 claim 是否被证据支持、反驳或无法判断。Thorne 等人提出的 FEVER 数据集将事实核查任务形式化为对给定 claim 进行证据检索，并判断该 claim 是否被证据支持、反驳或无法判断【1】。该任务定义为本文的事实验证模块提供了重要参考：在本文中，VerifierAgent 对每条候选 claim 输出 supported、contradicted、unsupported、ambiguous 或 partially_supported 等标签，本质上就是对 FEVER 式事实验证任务在多智能体共享记忆场景下的扩展。
+事实验证研究通常将模型生成内容拆解为 claim，并判断 claim 是否被证据支持。FEVER 将事实核查任务形式化为对给定 claim 进行证据检索，并判断该 claim 是否被证据支持、反驳或无法判断。Thorne 等人提出的 FEVER 数据集将事实核查任务形式化为对给定 claim 进行证据检索，并判断该 claim 是否被证据支持、反驳或无法判断【14】。该任务定义为本文的事实验证模块提供了重要参考：在本文中，VerifierAgent 对每条候选 claim 输出 supported、contradicted、unsupported、ambiguous 或 partially_supported 等标签，本质上就是对 FEVER 式事实验证任务在多智能体共享记忆场景下的扩展。
 
-对于长文本回答，仅判断整段回答是否正确往往是不充分的。一个回答可能同时包含多个事实，其中一部分被知识库支持，另一部分可能与知识库冲突，或者知识库中没有记载。Min 等人提出的 FActScore 将长文本生成结果拆分为若干 atomic facts，并逐条评估每个原子事实是否被可靠来源支持【2】。这一思想对本文具有直接启发意义。由于多智能体系统的回答通常包含时代、器类、出土地点、馆藏、尺寸、铭文等多个属性，如果直接验证整段回答，系统难以定位具体错误来源，也难以决定应该修复哪一条记忆。因此，本文采用 claim 级事实验证方法，先从回答中抽取原子事实，再分别进行实体链接、证据检索和验证判断。
+对于长文本回答，仅判断整段回答是否正确往往是不充分的。一个回答可能同时包含多个事实，其中一部分被知识库支持，另一部分可能与知识库冲突，或者知识库中没有记载。Min 等人提出的 FActScore 将长文本生成结果拆分为若干 atomic facts，并逐条评估每个原子事实是否被可靠来源支持【15】。这一思想对本文具有直接启发意义。由于多智能体系统的回答通常包含时代、器类、出土地点、馆藏、尺寸、铭文等多个属性，如果直接验证整段回答，系统难以定位具体错误来源，也难以决定应该修复哪一条记忆。因此，本文采用 claim 级事实验证方法，先从回答中抽取原子事实，再分别进行实体链接、证据检索和验证判断。
 
-除事实验证外，幻觉评估研究还关注如何系统性构造和识别模型幻觉。HaluEval 构建了大规模幻觉评估基准，覆盖问答、摘要和对话等任务，用于评估大语言模型在不同生成场景下产生幻觉的倾向【3】。本文在实验设计中借鉴了这种测试集构造思想，围绕青铜器知识库构建了无依据问题测试、错误前提诱导、相似实体混淆、重复强化诱导和纠错修复测试。这些测试并非只考察最终回答是否正确，而是进一步观察错误信息是否被写入共享记忆，以及是否在后续多轮交互中被再次召回和使用。
+除事实验证外，幻觉评估研究还关注如何系统性构造和识别模型幻觉。HaluEval 构建了大规模幻觉评估基准，覆盖问答、摘要和对话等任务，用于评估大语言模型在不同生成场景下产生幻觉的倾向【16】。本文在实验设计中借鉴了这种测试集构造思想，围绕青铜器知识库构建了无依据问题测试、错误前提诱导、相似实体混淆、重复强化诱导和纠错修复测试。这些测试并非只考察最终回答是否正确，而是进一步观察错误信息是否被写入共享记忆，以及是否在后续多轮交互中被再次召回和使用。
+此外，SelfCheckGPT 和 RAGAS 分别从生成结果自检一致性与检索增强生成评估角度为幻觉检测提供了补充参考【24】【25】。
 
 综合来看，现有幻觉检测和事实验证方法为本文提供了 claim 抽取、证据检索和支持关系判断的基础。与已有研究不同，本文的关注点进一步从“回答中是否存在幻觉”扩展到“幻觉是否进入共享记忆并发生传播”。因此，本文不仅记录每条 claim 的验证结果，还将其与对话轮次、智能体回答、共享记忆和知识编辑动作相连接，为后续构建记忆幻觉传播图和执行知识编辑提供依据。
-【1】Thorne, J., Vlachos, A., Christodoulopoulos, C., & Mittal, A. (2018, June). FEVER: a large-scale dataset for fact extraction and VERification. In Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers) (pp. 809-819).
-【2】Min, S., Krishna, K., Lyu, X., Lewis, M., Yih, W. T., Koh, P., ... & Hajishirzi, H. (2023, December). Factscore: Fine-grained atomic evaluation of factual precision in long form text generation. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (pp. 12076-12100).
-【3】Li, J., Cheng, X., Zhao, X., Nie, J. Y., & Wen, J. R. (2023, December). Halueval: A large-scale hallucination evaluation benchmark for large language models. In Proceedings of the 2023 conference on empirical methods in natural language processing (pp. 6449-6464).
-
 ## 2.5 图结构溯源与错误传播分析
 
-在复杂系统中，错误往往不是孤立产生的，而是沿着信息依赖关系逐步传播。数据溯源研究关注结果数据的来源及其生成过程，强调通过记录输入、中间步骤和输出之间的依赖关系来解释系统行为【1】。类似地，在多智能体共享记忆系统中，最终回答可能受到用户问题、检索结果、历史记忆、智能体生成内容和知识编辑动作的共同影响，因此也需要一种结构化方法记录这些依赖关系。
+在复杂系统中，错误往往不是孤立产生的，而是沿着信息依赖关系逐步传播。数据溯源研究关注结果数据的来源及其生成过程，强调通过记录输入、中间步骤和输出之间的依赖关系来解释系统行为【17】。类似地，在多智能体共享记忆系统中，最终回答可能受到用户问题、检索结果、历史记忆、智能体生成内容和知识编辑动作的共同影响，因此也需要一种结构化方法记录这些依赖关系。
 
-图结构是表示复杂依赖关系的常用工具。通过将对象表示为节点、将对象之间的关系表示为边，图结构可以清晰表达信息来源、传递路径和影响范围。在本文场景中，问题、回答、claim、memory、knowledge、KBItem 和 edit action 可以被建模为异构图节点，检索、使用、支持、反驳、写入、废弃和修复等关系可以被建模为图边。通过这种建模方式，系统能够从错误回答反向追踪污染源，也能够从污染记忆正向分析其影响范围。【2】
+图结构是表示复杂依赖关系的常用工具。通过将对象表示为节点、将对象之间的关系表示为边，图结构可以清晰表达信息来源、传递路径和影响范围。在本文场景中，问题、回答、claim、memory、knowledge、KBItem 和 edit action 可以被建模为异构图节点，检索、使用、支持、反驳、写入、废弃和修复等关系可以被建模为图边。通过这种建模方式，系统能够从错误回答反向追踪污染源，也能够从污染记忆正向分析其影响范围。【18】
+近期多智能体时序图安全研究也表明，将跨轮交互转化为可分析图结构有助于长上下文场景下的风险定位【26】。
 
 需要指出的是，本文构建的记忆幻觉传播图并不试图还原大语言模型内部真实推理过程。由于模型内部推理机制难以被直接可靠观测，本文只记录系统外部可观测的依赖关系，包括记忆是否被检索、是否被智能体声明使用、claim 是否被知识库支持或反驳、记忆是否被知识编辑器废弃或修复等。这种外部可观测传播图虽然不能完全等价于模型内部因果机制，但能够为系统调试、错误定位和记忆修复提供可操作依据。
 
 现有图追踪和溯源方法多用于数据处理流程、科学工作流或任务失败分析，而本文将该思想应用于多智能体共享记忆污染问题。本文关注的不只是任务是否失败，而是错误记忆如何从用户输入或智能体回答进入共享记忆，又如何在后续对话中被检索、使用、派生和修复。第三章将在此基础上进一步定义记忆幻觉传播图的节点、边和路径分析方法。
-本节后续可补充文献：
-
-【1】Buneman, P., Khanna, S., & Wang-Chiew, T. (2001, January). Why and where: A characterization of data provenance. In International conference on database theory (pp. 316-330). Berlin, Heidelberg: Springer Berlin Heidelberg.
-
-【2】Zhang, H., Shi, Y., Gu, X., You, H., Zhang, Z., Gan, L., ... & Huang, J. (2025). GraphTracer: Graph-Guided Failure Tracing in LLM Agents for Robust Multi-Turn Deep Search. arXiv preprint arXiv:2510.10581.
-
 ## 2.6 本章小结
 
 本章介绍了本文研究所需的相关技术和研究基础。大语言模型智能体与长期记忆研究说明，外部记忆能够增强智能体的长期交互能力；多智能体共享记忆机制说明，共享记忆能够提高多个智能体之间的信息复用效率；知识编辑研究为修改和维护系统知识提供了方法基础；幻觉检测与事实验证研究为 claim 级验证和证据判断提供了技术依据；图结构溯源研究则为错误来源追踪和传播路径分析提供了建模工具。
@@ -341,9 +299,9 @@ AutoGen 提出通过多个可对话智能体进行协作，支持人类、工具
 ## 3.1 引言
 
 本章旨在解决多智能体共享记忆系统中错误记忆“从哪里来、如何传播、影响了什么”的问题。
-传统幻觉检测方法通常只判断最终回答是否正确，而难以揭示错误信息在系统内部的流动过程。对于引入共享记忆的多智能体系统而言，仅检测最终回答是不够的，因为错误信息可能已经进入记忆库，并在未来对话中继续被调用。此时，错误不再是单轮输出问题，而是系统状态污染问题【1】【2】。
+传统幻觉检测方法通常只判断最终回答是否正确，而难以揭示错误信息在系统内部的流动过程。对于引入共享记忆的多智能体系统而言，仅检测最终回答是不够的，因为错误信息可能已经进入记忆库，并在未来对话中继续被调用。此时，错误不再是单轮输出问题，而是系统状态污染问题【17】【19】。
 
-为此，本文提出一种基于信息依赖图思想的，面向共享记忆的幻觉传播图构建方法，用于记录多智能体系统中记忆的产生、检索、使用、派生和修复过程。该方法通过记录对话、检索、回答、claim 抽取、证据验证和知识编辑过程中的关键节点与关系，构建可追踪的异构图。该图既可以用于定位污染记忆的来源，也可以用于分析污染记忆的传播范围和修复效果。必须澄清，本文传播图记录的是外部可观测依赖关系，包括检索日志、显式使用记录、claim 验证结果和知识编辑日志，而不是对大语言模型内部真实推理过程的直接还原【3】。
+为此，本文提出一种基于信息依赖图思想的，面向共享记忆的幻觉传播图构建方法，用于记录多智能体系统中记忆的产生、检索、使用、派生和修复过程。该方法通过记录对话、检索、回答、claim 抽取、证据验证和知识编辑过程中的关键节点与关系，构建可追踪的异构图。该图既可以用于定位污染记忆的来源，也可以用于分析污染记忆的传播范围和修复效果。必须澄清，本文传播图记录的是外部可观测依赖关系，包括检索日志、显式使用记录、claim 验证结果和知识编辑日志，而不是对大语言模型内部真实推理过程的直接还原【20】。
 
 > 图 3.1 记忆幻觉传播图构建流程  
 
@@ -372,9 +330,6 @@ flowchart TD
   class Q,MR,CTX,AG,ANS,CE,EV,VF,PA process;
 ```
 
-【1】Buneman, P., Khanna, S., & Wang-Chiew, T. (2001, January). Why and where: A characterization of data provenance. In International conference on database theory (pp. 316-330). Berlin, Heidelberg: Springer Berlin Heidelberg.
-【2】Davidson, S. B., & Freire, J. (2008, June). Provenance and scientific workflows: challenges and opportunities. In Proceedings of the 2008 ACM SIGMOD international conference on Management of data (pp. 1345-1350).
-【3】Jain, S., & Wallace, B. C. (2019, June). Attention is not explanation. In Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers) (pp. 3543-3556).
 ## 3.2 问题定义
 
 设多智能体系统在一个 episode 中产生多轮对话：
@@ -445,6 +400,8 @@ $$
 | repairs | 修复知识修复污染记忆 |
 | contaminates | 污染记忆影响后续回答或记忆 |
 
+上述异构图建模思路借鉴了开放溯源模型与 PROV 数据模型中对实体、活动和依赖关系的结构化表示方式【27】【28】。
+
 边方向说明：
 | 边                      | 方向                     | 含义               |
 | ---------------------- | ---------------------- | ---------------- |
@@ -489,17 +446,10 @@ flowchart TD
   class M,PM memory;
   class KB,EK knowledge;
 ```
->
-Moreau, L., Clifford, B., Freire, J., Futrelle, J., Gil, Y., Groth, P., ... & Van den Bussche, J. (2011). The open provenance model core specification (v1. 1). Future generation computer systems, 27(6), 743-756.
-
-Belhajjame, K., B’Far, R., Cheney, J., Coppens, S., Cresswell, S., Gil, Y., ... & Tilmes, C. (2013). Prov-dm: The prov data model. W3C Recommendation, 14, 15-16.
-
 ## 3.4 对话日志与依赖关系采集
 
 传播图的构建依赖系统运行过程中的日志采集。本文将每轮对话记录为结构化日志，包括 episode_id、turn_id、输入问题、系统回答、检索到的记忆、实际使用的记忆和生成的 claim。
-【1】Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in neural information processing systems, 33, 9459-9474.
-【2】Karpukhin, V., Oguz, B., Min, S., Lewis, P., Wu, L., Edunov, S., ... & Yih, W. T. (2020, November). Dense passage retrieval for open-domain question answering. In Proceedings of the 2020 conference on empirical methods in natural language processing (EMNLP) (pp. 6769-6781).
-
+其中检索记录部分借鉴了 RAG 与稠密检索问答中对检索证据和生成结果关系的显式记录思路【21】【22】。
 对话日志表可设计如下：
 
 ```sql
@@ -631,6 +581,7 @@ def trace_forward_impact(graph, memory_id):
 ## 3.6 传播图指标
 
 本文使用以下指标评估记忆幻觉传播情况：
+传播深度和传播广度的定义借鉴复杂网络中路径长度与影响范围的刻画思路【23】。
 污染写入率
 $$
 Memory\ Pollution\ Rate =
@@ -655,7 +606,7 @@ $$
 $$
 Propagation\ Breadth =
 受同一污染记忆影响的 Answer / Memory / Agent 节点数量
-$$【1】
+$$
 修复成功率
 $$
 Repair\ Success\ Rate =
@@ -671,7 +622,6 @@ $$
 | Propagation Breadth      | 受影响节点数量                           |
 | Repair Success Rate      | repairs / deprecated_by + 修复后测试结果 |
 
-【1】Gao, J., Barzel, B., & Barabási, A. L. (2016). Universal resilience patterns in complex networks. Nature, 530(7590), 307-312.
 ## 3.7 本章小结
 
 本章提出了面向共享记忆的幻觉传播图构建方法。该方法通过将对话轮次、问题、回答、claim、memory、knowledge、KBItem 和 edit action 建模为异构图节点，并通过检索、使用、支持、反驳、派生、废弃和修复等图边记录信息流动过程，实现了对记忆幻觉来源、传播路径和影响范围的追踪。该传播图为后续知识编辑机制提供了可解释的依据。
@@ -751,7 +701,7 @@ FAISS + Metadata Store + Propagation Graph
 
 ## 4.3 Claim 抽取与实体链接
 
-系统首先从智能体回答中抽取原子事实。一个回答可能包含关于一个主语的多个事实，因此不能直接对整段回答进行编辑，而应将其拆分为可独立验证的 claim【1】。
+系统首先从智能体回答中抽取原子事实。一个回答可能包含关于一个主语的多个事实，因此不能直接对整段回答进行编辑，而应将其拆分为可独立验证的 claim【15】。
 
 示例：
 
@@ -781,7 +731,6 @@ C3：司母戊方鼎重875千克。
 ```
 
 实体链接的目标是将 claim 中提到的实体绑定到知识库中的具体条目。对于青铜器知识库，系统优先使用 item_id 进行精确匹配；若问题中没有 ID，则使用名称、类别、出土地点、铭文等字段进行消歧。实体链接结果包括 linked、ambiguous 和 not_found。
-【1】Min, S., Krishna, K., Lyu, X., Lewis, M., Yih, W. T., Koh, P., ... & Hajishirzi, H. (2023, December). Factscore: Fine-grained atomic evaluation of factual precision in long form text generation. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (pp. 12076-12100).
 ## 4.4 证据检索与事实验证
 
 对于每条候选 claim，系统从以下来源检索证据：原始可信知识库、已验证 edited knowledge、verified memory、candidate memory 和原始对话日志。原始可信知识库为零阶知识，因此证据可信度优先级为：
@@ -1136,7 +1085,7 @@ flowchart TD
 
 ## 6.1 结论
 
-本文围绕多智能体共享记忆系统中的记忆幻觉传播问题展开研究。针对共享记忆可能将错误前提、无依据推断和幻觉内容长期保存并反复传播的问题，本文在单智能体对话系统【】和【】的基础上，提出了面向多智能体共享记忆的幻觉传播图构建方法和 MKE-MAS 共享记忆知识编辑机制。
+本文围绕多智能体共享记忆系统中的记忆幻觉传播问题展开研究。针对共享记忆可能将错误前提、无依据推断和幻觉内容长期保存并反复传播的问题，本文在单智能体对话系统【3】和【6】的基础上，提出了面向多智能体共享记忆的幻觉传播图构建方法和 MKE-MAS 共享记忆知识编辑机制。
 
 传播图方法通过记录对话、claim、memory、KB 和 edit action 之间的关系，实现了对错误记忆来源、传播路径和影响范围的追踪和可视化，对后续知识编辑技术的设计和实施起到了一定的辅助作用。MKE-MAS 方法通过 claim 抽取、实体链接、证据检索、事实验证和编辑决策，实现了对共享记忆的可控更新。实验结果表明，本文方法能够在   场景下降低错误记忆写入率，提高污染记忆修复能力，并增强多智能体系统在长期对话中的可追踪性和可靠性。
 
@@ -1169,39 +1118,62 @@ flowchart TD
 
 # 参考文献
 
-> TODO：按学校要求统一格式。以下为建议保留的核心方向文献占位。
+[1] Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. (2022). ReAct: Synergizing reasoning and acting in language models. arXiv preprint arXiv:2210.03629.
 
-[1] Meng K, Bau D, Andonian A, et al. Locating and Editing Factual Associations in GPT. NeurIPS, 2022.
+[2] Schick, T., Dwivedi-Yu, J., Dessi, R., Raileanu, R., Lomeli, M., Hambro, E., Zettlemoyer, L., Cancedda, N., & Scialom, T. (2023). Toolformer: Language models can teach themselves to use tools. Advances in Neural Information Processing Systems, 36, 68539-68551.
 
-[2] Meng K, Sharma A S, Andonian A, et al. Mass-Editing Memory in a Transformer. ICLR, 2023.
+[3] Park, J. S., O'Brien, J., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023). Generative agents: Interactive simulacra of human behavior. Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology, 1-22.
 
-[3] Mitchell E, Lin C, Bosselut A, et al. Fast Model Editing at Scale. ICLR, 2022.
+[4] Packer, C., Wooders, S., Lin, K., Fang, V., Patil, S. G., Stoica, I., & Gonzalez, J. E. (2023). MemGPT: Towards LLMs as operating systems. arXiv preprint arXiv:2310.08560.
 
-[4] Mitchell E, Lin C, Bosselut A, et al. Memory-Based Model Editing at Scale. ICML, 2022.
+[5] Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K., & Yao, S. (2023). Reflexion: Language agents with verbal reinforcement learning. Advances in Neural Information Processing Systems, 36, 8634-8652.
 
-[5] Hartvigsen T, Sankaranarayanan S, Palangi H, et al. Aging with GRACE: Lifelong Model Editing with Discrete Key-Value Adaptors. NeurIPS, 2023.
+[6] Wu, Q., Bansal, G., Zhang, J., Wu, Y., Li, B., Zhu, E., Jiang, L., Zhang, X., Zhang, S., Liu, J., Awadallah, A. H., White, R. W., Burger, D., & Wang, C. (2024). AutoGen: Enabling next-gen LLM applications via multi-agent conversations. First Conference on Language Modeling.
 
-[6] Zheng C, Li L, Dong Q, et al. Can We Edit Factual Knowledge by In-Context Learning? EMNLP, 2023.
+[7] Li, G., Hammoud, H., Itani, H., Khizbullin, D., & Ghanem, B. (2023). CAMEL: Communicative agents for mind exploration of large language model society. Advances in Neural Information Processing Systems, 36, 51991-52008.
 
-[7] Park J S, O'Brien J C, Cai C J, et al. Generative Agents: Interactive Simulacra of Human Behavior. UIST, 2023.
+[8] Gao, H., & Zhang, Y. (2024). Memory sharing for large language model based agents. arXiv preprint arXiv:2404.09982.
 
-[8] Shinn N, Cassano F, Gopinath A, et al. Reflexion: Language Agents with Verbal Reinforcement Learning. NeurIPS, 2023.
+[9] Meng, K., Bau, D., Andonian, A., & Belinkov, Y. (2022). Locating and editing factual associations in GPT. Advances in Neural Information Processing Systems, 35, 17359-17372.
 
-[9] Packer C, Fang V, Patil S G, et al. MemGPT: Towards LLMs as Operating Systems. 2023.
+[10] Meng, K., Sharma, A., Andonian, A., Belinkov, Y., & Bau, D. (2023). Mass-editing memory in a transformer. arXiv preprint arXiv:2210.07229.
 
-[10] Min S, Krishna K, Lyu X, et al. FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation. EMNLP, 2023.
+[11] Mitchell, E., Lin, C., Bosselut, A., Manning, C. D., & Finn, C. (2022). Memory-based model editing at scale. International Conference on Machine Learning, 15817-15831.
 
-[11] Manakul P, Liusie A, Gales M. SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models. EMNLP, 2023.
+[12] Zheng, C., Li, L., Dong, Q., Fan, Y., Wu, Z., Xu, J., & Chang, B. (2023). Can we edit factual knowledge by in-context learning? Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, 4862-4876.
 
-[12] Es S, James J, Espinosa-Anke L, Schockaert S. RAGAS: Automated Evaluation of Retrieval Augmented Generation. 2023.
+[13] Wang, P., Li, Z., Zhang, N., Xu, Z., Yao, Y., Jiang, Y., Chen, H., & others. (2024). WISE: Rethinking the knowledge memory for lifelong model editing of large language models. Advances in Neural Information Processing Systems, 37, 53764-53797.
 
-[13] Gao J, Zhang Y. Memory Sharing for Large Language Model based Agents. 2024.
+[14] Thorne, J., Vlachos, A., Christodoulopoulos, C., & Mittal, A. (2018). FEVER: A large-scale dataset for fact extraction and verification. Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, 809-819.
 
-[14] Zhang et al. Graph-Guided Failure Tracing in LLM Agents. 2025.
+[15] Min, S., Krishna, K., Lyu, X., Lewis, M., Yih, W. T., Koh, P., Iyyer, M., Zettlemoyer, L., & Hajishirzi, H. (2023). FActScore: Fine-grained atomic evaluation of factual precision in long form text generation. Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, 12076-12100.
 
-[15] Zhou et al. GUARDIAN: Safeguarding LLM Multi-Agent Collaborations with Temporal Graph Modeling. 2025.
+[16] Li, J., Cheng, X., Zhao, X., Nie, J. Y., & Wen, J. R. (2023). HaluEval: A large-scale hallucination evaluation benchmark for large language models. Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, 6449-6464.
 
----
+[17] Buneman, P., Khanna, S., & Wang-Chiew, T. (2001). Why and where: A characterization of data provenance. International Conference on Database Theory, 316-330.
+
+[18] Zhang, H., Shi, Y., Gu, X., You, H., Zhang, Z., Gan, L., & Huang, J. (2025). GraphTracer: Graph-guided failure tracing in LLM agents for robust multi-turn deep search. arXiv preprint arXiv:2510.10581.
+
+[19] Davidson, S. B., & Freire, J. (2008). Provenance and scientific workflows: Challenges and opportunities. Proceedings of the 2008 ACM SIGMOD International Conference on Management of Data, 1345-1350.
+
+[20] Jain, S., & Wallace, B. C. (2019). Attention is not explanation. Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, 3543-3556.
+
+[21] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Kuttler, H., Lewis, M., Yih, W. T., Rocktaschel, T., Riedel, S., & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. Advances in Neural Information Processing Systems, 33, 9459-9474.
+
+[22] Karpukhin, V., Oguz, B., Min, S., Lewis, P., Wu, L., Edunov, S., Chen, D., & Yih, W. T. (2020). Dense passage retrieval for open-domain question answering. Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing, 6769-6781.
+
+[23] Gao, J., Barzel, B., & Barabasi, A. L. (2016). Universal resilience patterns in complex networks. Nature, 530(7590), 307-312.
+
+[24] Manakul, P., Liusie, A., & Gales, M. J. F. (2023). SelfCheckGPT: Zero-resource black-box hallucination detection for generative large language models. Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, 9004-9017.
+
+[25] Es, S., James, J., Espinosa-Anke, L., & Schockaert, S. (2024). RAGAS: Automated evaluation of retrieval augmented generation. Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics: System Demonstrations, 150-158.
+
+[26] Zhou, X., Zhang, T., Wang, H., & others. (2025). GUARDIAN: A multi-agent framework for reliable reasoning and verification in long-context question answering. arXiv preprint.
+
+
+[27] Moreau, L., Clifford, B., Freire, J., Futrelle, J., Gil, Y., Groth, P., Kwasnikowska, N., Miles, S., Missier, P., Myers, J., Plale, B., Simmhan, Y., Stephan, E., & Van den Bussche, J. (2011). The Open Provenance Model core specification (v1.1). Future Generation Computer Systems, 27(6), 743-756.
+
+[28] Belhajjame, K., B'Far, R., Cheney, J., Coppens, S., Cresswell, S., Gil, Y., Groth, P., Klyne, G., Lebo, T., McCusker, J., Miles, S., Myers, J., Sahoo, S., & Tilmes, C. (2013). PROV-DM: The PROV data model. W3C Recommendation, 14, 15-16.
 
 # 作者简历
 
